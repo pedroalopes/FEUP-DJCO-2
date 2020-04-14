@@ -1,39 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.ProBuilder;
+﻿using UnityEngine;
 
-public class CheckCameraPoint : MonoBehaviour {
+public class CheckCameraPoint: MonoBehaviour
+{
+    [SerializeField] private string selectableTag = "Selectable";
+    [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Material defaultMaterial;
 
-    public Camera camera;
 
-
-	// Use this for initialization
-	void Start () {
-
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public Transform newObject;
+    private Transform _selection;
+    
+    private void Update()
+    {
         if(Input.GetKeyDown(KeyCode.E)) {
             Debug.Log("pressed E");
+            
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit)) {
+                var position = hit.point;
 
-            RaycastHit hit; 
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray,out hit)) {
-                Debug.Log("Selected: " + hit.transform.name); 
-                Debug.Log("Position: " + hit.point);
-
-                /*Pintar o cubo todo*/
-                hit.transform.GetComponent<MeshRenderer>().material.color = Color.black;
-                
-
-                for(var i = 0 ; i < hit.transform.GetComponent<ProBuilderMesh>().faceCount ; i++) {
-                    hit.transform.GetComponent<ProBuilderMesh>().SetFaceColor(hit.transform.GetComponent<ProBuilderMesh>().faces[i], Color.black);
-                }
+                Instantiate(newObject, position, Quaternion.identity);
             }
         }
-	}
+
+        /*if (_selection != null)
+        {
+            var selectionRenderer = _selection.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            _selection = null;
+        }
+        
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            var selection = hit.transform;
+            if (selection.CompareTag(selectableTag))
+            {
+                var selectionRenderer = selection.GetComponent<Renderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = highlightMaterial;
+                }
+
+                _selection = selection;
+            }
+        }*/
+    }
 }
