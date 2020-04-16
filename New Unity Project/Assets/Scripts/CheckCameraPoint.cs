@@ -18,9 +18,8 @@ public class CheckCameraPoint: MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
-                var position = hit.point;
-
-                Instantiate(newObject, position, Quaternion.identity);
+                //TODO: Insert Element that was casted
+                HandleUse(hit);
             }
         }
 
@@ -47,5 +46,20 @@ public class CheckCameraPoint: MonoBehaviour
                 _selection = selection;
             }
         }*/
+    }
+
+    private void HandleUse(RaycastHit hit)
+    {
+        var position = hit.point;
+
+        //TODO: Divide by element casted
+        if(hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            position += Vector3.Scale(new Vector3(-2, -2, -2), hit.normal);
+            Debug.Log(hit.normal);
+            Instantiate(newObject, position, Quaternion.identity);
+            newObject.GetComponent<SpawningMovement>().normalDir = hit.normal;
+
+        }
     }
 }
