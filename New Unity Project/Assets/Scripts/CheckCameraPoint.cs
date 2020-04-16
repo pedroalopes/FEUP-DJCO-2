@@ -9,14 +9,26 @@ public class CheckCameraPoint: MonoBehaviour
 
     public Transform newObject;
     private Transform _selection;
+
+    private LineRenderer lr;
+
+    void Start() {
+        lr = GetComponent<LineRenderer>();
+    }
     
     private void Update()
     {
+        lr.SetPosition(0, transform.position);
+        RaycastHit hit;
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit)) {
+            lr.SetPosition(1, hit.point);
+        }
+        
         if(Input.GetKeyDown(KeyCode.E)) {
             Debug.Log("pressed E");
             
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
                 //TODO: Insert Element that was casted
                 HandleUse(hit);
