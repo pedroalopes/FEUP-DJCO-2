@@ -65,13 +65,19 @@ public class CheckCameraPoint: MonoBehaviour
         var position = hit.point;
 
         //TODO: Divide by element casted
+        /*   EARTH BENDING   */
         if(hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            position += Vector3.Scale(new Vector3(-2, -2, -2), hit.normal);
+            position += Vector3.Scale(new Vector3(-4, -4, -4), hit.normal);
             Debug.Log(hit.normal);
             newObject.GetComponent<SpawningMovement>().normalDir = hit.normal;
             Instantiate(newObject, position, Quaternion.FromToRotation(Vector3.up,hit.normal));
 
+        } else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
+        {
+            hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
+
         }
+        /********************************/
     }
 }

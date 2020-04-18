@@ -7,6 +7,7 @@ public class SpawningMovement : MonoBehaviour
     public float speed = 2.5f;
     private Vector3 initialPos;
     public Vector3 normalDir;
+    private int cubeSize = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,13 @@ public class SpawningMovement : MonoBehaviour
     void Update()
     {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, initialPos + Vector3.Scale(new Vector3(2,2,2),normalDir),step);
+        Vector3 movingAmout = new Vector3(2 * cubeSize, 2 * cubeSize, 2 * cubeSize);
+        transform.position = Vector3.MoveTowards(transform.position, initialPos + Vector3.Scale(movingAmout,normalDir),step);
 
+    }
+
+    public void changeCubeSize(int amount)
+    {
+        cubeSize = amount;
     }
 }
