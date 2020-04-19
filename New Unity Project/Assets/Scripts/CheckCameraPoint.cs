@@ -79,5 +79,9 @@ public class CheckCameraPoint: MonoBehaviour
 
         }
         /********************************/
+       if(hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+        {
+            hit.transform.gameObject.GetComponent<PickUp>().Interact();
+        }
     }
 }
