@@ -9,8 +9,9 @@ public class CheckCameraPoint: MonoBehaviour
 
     public Transform newObject;
     private Transform _selection;
-
     private LineRenderer lr;
+    public Transform firePrefab;
+    private Transform fireObject;
 
     void Start() {
         lr = GetComponent<LineRenderer>();
@@ -33,6 +34,26 @@ public class CheckCameraPoint: MonoBehaviour
                 //TODO: Insert Element that was casted
                 HandleUse(hit);
             }
+        }
+        else if(Input.GetKey(KeyCode.F)) {
+            if (fireObject == null)
+            {
+                fireObject = Instantiate(firePrefab, transform.position+(transform.forward*2), transform.rotation);
+            }
+            else
+            {
+                fireObject.position = transform.position + (transform.forward * 2);
+                if (fireObject.localScale.x < 1)
+                {
+                    fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+                }
+            }
+            
+        } else if(Input.GetKeyUp(KeyCode.F)) {
+            Vector3 initialPosition = transform.position;
+            Vector3 finalPosition = hit.point;
+            
+            handleFire(initialPosition, finalPosition, hit);
         }
 
         /*if (_selection != null)
@@ -83,5 +104,14 @@ public class CheckCameraPoint: MonoBehaviour
         {
             hit.transform.gameObject.GetComponent<PickUp>().Interact();
         }
+    }
+    
+    private void handleFire(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    {
+        Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
+        Vector3 shoot = (finalPosition - fireObject.position).normalized;
+        rb.AddForce(shoot * 500);
+
+        fireObject = null;
     }
 }
