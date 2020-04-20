@@ -247,18 +247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  vaultLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  ledgeLayer:
-    serializedVersion: 2
-    m_Bits: 256
   ladderLayer:
     serializedVersion: 2
     m_Bits: 512
-  wallrunLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!114 &1149800568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 4
   runSpeed: 8
-  slideSpeed: 10
   crouchSpeed: 2
   jumpSpeed: 8
   gravity: 20

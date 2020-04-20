@@ -20,6 +20,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private Vector2 targetCharacterDirection;
 
+    private Quaternion rotation;
+
     void Start()
     {
         // Set target direction to the camera's initial orientation.
@@ -59,7 +61,8 @@ public class CameraMovement : MonoBehaviour
         if (clampInDegrees.y < 360)
             _mouseAbsolute.y = Mathf.Clamp(_mouseAbsolute.y, -clampInDegrees.y * 0.5f, clampInDegrees.y * 0.5f);
 
-        transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
+        rotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
+        transform.localRotation = rotation;
 
         // If there's a character body that acts as a parent to the camera
         if (characterBody)
@@ -72,5 +75,10 @@ public class CameraMovement : MonoBehaviour
             var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
             transform.localRotation *= yRotation;
         }
+    }
+
+    public Quaternion getRotation()
+    {
+        return rotation;
     }
 }
