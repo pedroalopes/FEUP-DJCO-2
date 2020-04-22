@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Selectable
+  - Levitate
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Ladder
   - EarthCube
   - MoveableObject
-  - 
+  - LevitateObject
   - 
   - 
   - 
