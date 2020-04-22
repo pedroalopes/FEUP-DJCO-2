@@ -1041,7 +1041,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   newObject: {fileID: 3566844535259100629, guid: f7a107f1048b24847b49e6abd35b390f,
     type: 3}
-  firePrefab: {fileID: 1247597910945018354, guid: bbabb889ad0a3627dbcb49e0d0950bd7,
+  firePrefab: {fileID: 1247597910945018354, guid: b3f1fcb00179743ca8e75f1d724de541,
     type: 3}
 --- !u!120 &310534846
 LineRenderer:

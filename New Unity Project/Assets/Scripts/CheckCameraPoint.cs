@@ -46,6 +46,9 @@ public class CheckCameraPoint: MonoBehaviour
                 if (fireObject.localScale.x < 1)
                 {
                     fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+
+                    fireObject.GetComponent<FireObjectScript>().addDamage();
+                    fireObject.GetComponent<FireObjectScript>().removeForce();
                 }
             }
             
@@ -110,7 +113,7 @@ public class CheckCameraPoint: MonoBehaviour
     {
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
         Vector3 shoot = (finalPosition - fireObject.position).normalized;
-        rb.AddForce(shoot * 500);
+        rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
 
         fireObject = null;
     }
