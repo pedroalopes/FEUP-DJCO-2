@@ -21,12 +21,12 @@ public class RotateToMouse : MonoBehaviour
             rayMouse = cam.ScreenPointToRay(mousePos);
             if (Physics.Raycast(rayMouse.origin, rayMouse.direction, out hit, maximumLength))
             {
-                RotateToMouseDirection(gameObject, hit.point);
+                MouseDirection(gameObject, hit.point);
             }
             else
             {
                 var pos = rayMouse.GetPoint(maximumLength);
-                RotateToMouseDirection(gameObject, pos);
+                MouseDirection(gameObject, pos);
             }
         }
         else
@@ -36,11 +36,10 @@ public class RotateToMouse : MonoBehaviour
 
     }
 
-    void RotateToMouseDirection(GameObject obj, Vector3 destination)
+    void MouseDirection(GameObject obj, Vector3 destination)
     {
         direction = destination - obj.transform.position;
         rotation = Quaternion.LookRotation(direction);
-        //obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
     }
 
     public Quaternion getRotation() {
