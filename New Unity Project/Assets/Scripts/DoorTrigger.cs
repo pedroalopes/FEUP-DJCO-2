@@ -20,4 +20,9 @@ public class DoorTrigger : MonoBehaviour
         door.transform.position += new Vector3(0, 6, 0);
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        door.transform.position += new Vector3(0, 6, 0);
+
+    }
 }
