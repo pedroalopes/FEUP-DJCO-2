@@ -3175,12 +3175,13 @@ GameObject:
   - component: {fileID: 506594331}
   - component: {fileID: 506594330}
   - component: {fileID: 506594329}
+  - component: {fileID: 506594332}
   - component: {fileID: 506594328}
   - component: {fileID: 506594327}
   - component: {fileID: 506594326}
   m_Layer: 12
   m_Name: MoveableCube
-  m_TagString: Untagged
+  m_TagString: Levitate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3292,6 +3293,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0.045, y: -0.057000004, z: -0.076000005}
+--- !u!114 &506594332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506594325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad376b910046f8804b7f8767a185a517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightLevel: 0
+  levitateHeight: 1
+  bounceDamp: 0.05
+  centreOffset: {x: 0, y: 0, z: 0}
+  effect_duration: 5
+  effect_countdown: 0
+  height_increment: 0.1
 --- !u!1 &515066628
 GameObject:
   m_ObjectHideFlags: 0
