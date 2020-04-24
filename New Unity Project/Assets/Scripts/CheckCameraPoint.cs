@@ -6,7 +6,7 @@ public class CheckCameraPoint : MonoBehaviour
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material defaultMaterial;
 
-
+    public PlayerController player;
     public Transform newObject;
     private Transform _selection;
     private LineRenderer lr;
@@ -35,87 +35,58 @@ public class CheckCameraPoint : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("pressed E");
-
-            if (Physics.Raycast(ray, out hit))
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
             {
-                //TODO: Insert Element that was casted
-                HandleUse(hit);
+                if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
+            }
+        } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
+        {
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+            {
+                if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
             }
         }
-        else if (Input.GetKey(KeyCode.F))
+
+        switch (player.element)
         {
-            if (fireObject == null)
-            {
-                fireObject = Instantiate(firePrefab, transform.position + (transform.forward * 2), transform.rotation);
-            }
-            else
-            {
-                fireObject.position = transform.position + (transform.forward * 2);
-                if (fireObject.localScale.x < 1)
+            case Element.Earth:
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
-
-                    fireObject.GetComponent<FireObjectScript>().addDamage();
-                    fireObject.GetComponent<FireObjectScript>().removeForce();
+                    HandleEarth(hit, ray);
                 }
-            }
-
-        }
-        else if (Input.GetKeyUp(KeyCode.F))
-        {
-            Vector3 initialPosition = transform.position;
-            Vector3 finalPosition = hit.point;
-
-            handleFire(initialPosition, finalPosition, hit);
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            SpawnWindPulse(ray);
-        }
-        else if (Input.GetKey(KeyCode.L))
-        {
-            if(!Physics.Raycast(ray, out hit))
-                return; 
-
-            if (!hit.transform.CompareTag("Levitate"))
-            {
-                Debug.Log("Can't levitate that");
-                return;
-            }
-
-            LevitationProperty prop = hit.collider.gameObject.GetComponent<LevitationProperty>();
-            prop.EnableLevitate();
-
-        }
-
-        /*if (_selection != null)
-        {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
-            _selection = null;
-        }
-        
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            var selection = hit.transform;
-            if (selection.CompareTag(selectableTag))
-            {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
+                break;
+            case Element.Wind:
+                if (Input.GetKey(KeyCode.E))
                 {
-                    selectionRenderer.material = highlightMaterial;
+                    HandleWind(hit, ray);
                 }
+                break;
+            case Element.Fire:
+                if (Input.GetKey(KeyCode.E))
+                {
+                    HandleFire(hit);
 
-                _selection = selection;
-            }
-        }*/
+                } else if(Input.GetKeyUp(KeyCode.E))
+                {
+                    Vector3 initialPosition = transform.position;
+                    Vector3 finalPosition = hit.point;
+
+                    FireShooter(initialPosition, finalPosition, hit);
+                }
+                break;
+            case Element.Water:
+                break;
+        }
+   
+           
+       
     }
-
-    private void HandleUse(RaycastHit hit)
+    
+    private void HandleEarth(RaycastHit hit, Ray ray)
     {
+        if (!Physics.Raycast(ray, out hit))
+            return;
+
         var position = hit.point;
 
         //TODO: Divide by element casted
@@ -133,20 +104,54 @@ public class CheckCameraPoint : MonoBehaviour
             hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
 
         }
-        /********************************/
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
-        {
-            hit.transform.gameObject.GetComponent<PickUp>().Interact();
-        }
     }
 
-    private void handleFire(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    private void HandleFire(RaycastHit hit)
+    {
+        if (fireObject == null)
+        {
+            fireObject = Instantiate(firePrefab, transform.position + (transform.forward * 2), transform.rotation);
+
+        }
+        else
+        {
+            fireObject.position = transform.position + (transform.forward * 2);
+            if (fireObject.localScale.x < 1)
+            {
+
+                fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+
+                fireObject.GetComponent<FireObjectScript>().addDamage();
+                fireObject.GetComponent<FireObjectScript>().removeForce();
+            }
+        }
+
+    }
+
+    
+    private void FireShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
     {
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
         Vector3 shoot = (finalPosition - fireObject.position).normalized;
         rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
 
         fireObject = null;
+    }
+
+    private void HandleWind(RaycastHit hit, Ray ray)
+    {
+        if (!Physics.Raycast(ray, out hit))
+            return;
+
+        if (!hit.transform.CompareTag("Levitate"))
+        {
+            Debug.Log("Can't levitate that");
+            return;
+        }
+
+      
+        LevitationProperty prop = hit.collider.gameObject.GetComponent<LevitationProperty>();
+        prop.EnableLevitate();
     }
 
     private void SpawnWindPulse(Ray rayMouse)
@@ -176,4 +181,6 @@ public class CheckCameraPoint : MonoBehaviour
             Debug.Log("No firepoint");
         }
     }
+
+
 }

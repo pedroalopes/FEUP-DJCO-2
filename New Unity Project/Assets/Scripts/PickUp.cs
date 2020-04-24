@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     Vector3 objectPos;
-    float distance;
+    public float distance;
 
     public bool canHold = true;
     public GameObject item;
@@ -16,7 +16,7 @@ public class PickUp : MonoBehaviour
     private void Update()
     {
         distance = Vector3.Distance(item.transform.position, tempParent.transform.position);
-        if(distance > pickUpDistance)
+        if(!canInteract())
         {
             isHolding = false;
         }
@@ -35,18 +35,24 @@ public class PickUp : MonoBehaviour
         }
     }
 
-    public void Interact()
+    public bool Interact()
     {
         if (!isHolding)
         {
-            if (distance <= pickUpDistance)
+            if (canInteract())
             {
                 item.GetComponent<Rigidbody>().useGravity = false;
                 item.GetComponent<Rigidbody>().detectCollisions = true;
             }
-            else return;
+            else return false;
         }
 
         isHolding = !isHolding;
+        return true;
+
+    }
+    public bool canInteract()
+    {
+        return distance <= pickUpDistance;
     }
 }

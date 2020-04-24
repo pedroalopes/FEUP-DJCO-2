@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Status { idle, moving, crouching, climbingLadder }
+public enum Element { Earth, Fire, Water, Wind }
 
 public class PlayerController : MonoBehaviour
 {
     public Status status;
+    public Element element;
     [SerializeField]
     private LayerMask ladderLayer;
    
@@ -55,11 +57,14 @@ public class PlayerController : MonoBehaviour
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();
+     
 
 
         //Check for movement updates
         CheckCrouching();
         CheckLadderClimbing();
+        CheckElementChange();
+    
 
     }
 
@@ -205,5 +210,25 @@ public class PlayerController : MonoBehaviour
         Vector3 bottom = top - (transform.up * halfheight);
 
         return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1);
+    }
+
+    void CheckElementChange()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            element = Element.Earth;
+        } else if (Input.GetKey(KeyCode.Alpha2))
+        {
+            element = Element.Wind;
+        }
+        else if (Input.GetKey(KeyCode.Alpha3))
+        {
+            element = Element.Fire;
+        }
+        else if (Input.GetKey(KeyCode.Alpha4))
+        {
+            element = Element.Water;
+        }
+
     }
 }
