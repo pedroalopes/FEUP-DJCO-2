@@ -17,6 +17,13 @@ public class CheckCameraPoint : MonoBehaviour
     public GameObject firePoint;
     public GameObject pulse;
 
+	//WATER
+	private float waterCooldown = 0.00f;
+	private float cloudCooldown = 0.00f;
+    private Transform waterObject;
+    public Transform waterPrefab;
+	public Transform cloudPrefab;
+	
     void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -75,6 +82,16 @@ public class CheckCameraPoint : MonoBehaviour
                 }
                 break;
             case Element.Water:
+                if (Input.GetKey(KeyCode.E))
+                {
+                    HandleWater(hit);
+					
+                }
+                if (Input.GetKey(KeyCode.F))
+                {
+                    CreateCloud(hit, ray);
+					
+                }
                 break;
         }
    
@@ -181,6 +198,43 @@ public class CheckCameraPoint : MonoBehaviour
             Debug.Log("No firepoint");
         }
     }
+	
+    private void HandleWater(RaycastHit hit)
+    {
+        if (waterObject == null && Time.time > waterCooldown)
+        {
+				waterObject = Instantiate(waterPrefab, transform.position +(transform.forward * 2), transform.rotation);
+				waterCooldown = Time.time + 0.3f;
+				Vector3 initialPosition = transform.position;
+				Vector3 finalPosition = hit.point;
+				waterShooter(initialPosition, finalPosition, hit);
+				waterObject = null;
+        }
+    }
 
+    private void waterShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    {
+        Rigidbody rb = waterObject.gameObject.GetComponent<Rigidbody>();
+        Vector3 shoot = (finalPosition - waterObject.position).normalized;
+        rb.AddForce(shoot * (int)waterObject.GetComponent<WaterObject>().getForce());
+        waterObject = null;
+    }
+    
+    private void CreateCloud(RaycastHit hit, Ray ray)
+    {
+        if (!Physics.Raycast(ray, out hit))
+            return;
 
+        var position = hit.point;
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > cloudCooldown)
+        {
+			position += new Vector3(0,8,0);
+            Instantiate(cloudPrefab, position, Quaternion.identity);
+			cloudCooldown = Time.time + 5f;
+        }
+        else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
+        {
+            hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
+        }
+    }
 }

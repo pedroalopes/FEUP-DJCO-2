@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
+  element: 0
   ladderLayer:
     serializedVersion: 2
     m_Bits: 512
