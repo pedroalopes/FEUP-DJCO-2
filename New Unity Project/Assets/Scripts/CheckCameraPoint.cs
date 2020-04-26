@@ -19,10 +19,10 @@ public class CheckCameraPoint : MonoBehaviour
 
 	//WATER
 	private float waterCooldown = 0.00f;
-	private float cloudCooldown = 0.00f;
+	private float dropCooldown = 0.00f;
     private Transform waterObject;
     public Transform waterPrefab;
-	public Transform cloudPrefab;
+	public Transform dropPrefab;
 	
     void Start()
     {
@@ -89,7 +89,7 @@ public class CheckCameraPoint : MonoBehaviour
                 }
                 if (Input.GetKey(KeyCode.F))
                 {
-                    CreateCloud(hit, ray);
+                    CreateDrop(hit, ray);
 					
                 }
                 break;
@@ -201,14 +201,13 @@ public class CheckCameraPoint : MonoBehaviour
 	
     private void HandleWater(RaycastHit hit)
     {
-        if (waterObject == null && Time.time > waterCooldown)
+        if (Time.time > waterCooldown)
         {
-				waterObject = Instantiate(waterPrefab, transform.position +(transform.forward * 2), transform.rotation);
 				waterCooldown = Time.time + 0.3f;
+				waterObject = Instantiate(waterPrefab, transform.position +(transform.forward * 2), transform.rotation);
 				Vector3 initialPosition = transform.position;
 				Vector3 finalPosition = hit.point;
 				waterShooter(initialPosition, finalPosition, hit);
-				waterObject = null;
         }
     }
 
@@ -220,21 +219,17 @@ public class CheckCameraPoint : MonoBehaviour
         waterObject = null;
     }
     
-    private void CreateCloud(RaycastHit hit, Ray ray)
+    private void CreateDrop(RaycastHit hit, Ray ray)
     {
         if (!Physics.Raycast(ray, out hit))
             return;
 
         var position = hit.point;
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > cloudCooldown)
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > dropCooldown)
         {
 			position += new Vector3(0,8,0);
-            Instantiate(cloudPrefab, position, Quaternion.identity);
-			cloudCooldown = Time.time + 5f;
-        }
-        else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
-        {
-            hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
+            Instantiate(dropPrefab, position, Quaternion.identity);
+			dropCooldown = Time.time + 5f;
         }
     }
 }
