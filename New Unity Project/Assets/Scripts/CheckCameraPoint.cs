@@ -18,10 +18,8 @@ public class CheckCameraPoint : MonoBehaviour
     public GameObject pulse;
 
 	//WATER
-	private float waterCooldown = 0.00f;
 	private float dropCooldown = 0.00f;
     private Transform waterObject;
-    public Transform waterPrefab;
 	public Transform dropPrefab;
 	
     void Start()
@@ -84,12 +82,12 @@ public class CheckCameraPoint : MonoBehaviour
             case Element.Water:
                 if (Input.GetKey(KeyCode.E))
                 {
-                    HandleWater(hit);
+                    HandleWater(hit, ray);
 					
-                }
-                if (Input.GetKey(KeyCode.F))
+                } 
+				else if(Input.GetKeyUp(KeyCode.E))
                 {
-                    CreateDrop(hit, ray);
+                    CreateDrop();
 					
                 }
                 break;
@@ -199,37 +197,36 @@ public class CheckCameraPoint : MonoBehaviour
         }
     }
 	
-    private void HandleWater(RaycastHit hit)
+    private void HandleWater(RaycastHit hit, Ray ray)
     {
-        if (Time.time > waterCooldown)
+        if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > dropCooldown)
         {
-				waterCooldown = Time.time + 0.3f;
-				waterObject = Instantiate(waterPrefab, transform.position +(transform.forward * 2), transform.rotation);
-				Vector3 initialPosition = transform.position;
-				Vector3 finalPosition = hit.point;
-				waterShooter(initialPosition, finalPosition, hit);
+            waterObject = Instantiate(dropPrefab, hit.point + new Vector3(0,1,0),  Quaternion.identity);
+
         }
+		
+        else if (waterObject != null)
+        {
+            waterObject.position = hit.point + new Vector3(0,1,0);
+			
+		
+            waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+			
+			Rigidbody rb = waterObject.GetComponent<Rigidbody>();
+			rb.mass += 0.05f;
+		}
+		if(hit.transform.gameObject.layer != LayerMask.NameToLayer("Ground") && waterObject != null) {	
+			CreateDrop();
+		}
+		
+		
     }
 
-    private void waterShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    private void CreateDrop()
     {
-        Rigidbody rb = waterObject.gameObject.GetComponent<Rigidbody>();
-        Vector3 shoot = (finalPosition - waterObject.position).normalized;
-        rb.AddForce(shoot * (int)waterObject.GetComponent<WaterObject>().getForce());
-        waterObject = null;
-    }
-    
-    private void CreateDrop(RaycastHit hit, Ray ray)
-    {
-        if (!Physics.Raycast(ray, out hit))
-            return;
-
-        var position = hit.point;
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > dropCooldown)
-        {
-			position += new Vector3(0,8,0);
-            Instantiate(dropPrefab, position, Quaternion.identity);
-			dropCooldown = Time.time + 5f;
-        }
+		if(waterObject != null) {
+			waterObject = null;
+			dropCooldown = Time.time + 3f;
+		}
     }
 }
