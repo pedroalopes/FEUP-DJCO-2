@@ -8,7 +8,6 @@ public class WaterDrop : MonoBehaviour
     private double damage = 1;
     private int force = 500;
     private float startTime;
-    public Transform waterPrefab;
     // Start is called before the first frame update
     void Start()
     {

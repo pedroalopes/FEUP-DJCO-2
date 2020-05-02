@@ -219,14 +219,13 @@ public class CheckCameraPoint : MonoBehaviour
 			CreateDrop();
 		}
 		
-		
     }
 
     private void CreateDrop()
     {
 		if(waterObject != null) {
 			waterObject = null;
-			dropCooldown = Time.time + 3f;
+			dropCooldown = Time.time + 2f;
 		}
     }
 }
