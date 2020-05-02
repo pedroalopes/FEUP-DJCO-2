@@ -8,21 +8,39 @@ public class DoorTrigger : MonoBehaviour
     GameObject door;
 
     bool isOpened = false;
-
+    private int objectsColliding = 0;
 
     private void OnCollisionEnter(Collision collision)
     {
-        door.transform.position += new Vector3(0, -6, 0);
+        addCollision();
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        door.transform.position += new Vector3(0, 6, 0);
+        removeCollision();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public void addCollision()
     {
-        door.transform.position += new Vector3(0, 6, 0);
+        objectsColliding++;
+    }
+
+    public void removeCollision()
+    {
+        objectsColliding--;
+    }
+
+    private void Update()
+    {
+        if(objectsColliding <= 0 && isOpened)
+        {
+            door.transform.position += new Vector3(0, 6, 0);
+            isOpened = false;
+        } else if(!isOpened && objectsColliding > 0)
+        {
+            door.transform.position += new Vector3(0, -6, 0);
+            isOpened = true;
+        }
 
     }
 }

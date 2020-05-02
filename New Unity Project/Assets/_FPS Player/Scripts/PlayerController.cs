@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class PlayerController : MonoBehaviour
     public Element element;
     [SerializeField]
     private LayerMask ladderLayer;
-   
+    public GameObject playerCollider;
+    private DoorTrigger lastButton;
 
     Vector3 wallNormal = Vector3.zero;
     Vector3 ladderNormal = Vector3.zero;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     bool canInteract;
     bool canGrabLedge;
     bool controlledSlide;
+    bool onButton = false;
 
     float rayDistance;
     float slideLimit;
@@ -68,10 +71,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log("Heellooo collisiong");
-    }
+     private void OnControllerColliderHit(ControllerColliderHit hit)
+     {
+        if(hit.transform.gameObject.tag == "Button" && !onButton)
+        {
+            lastButton = hit.transform.gameObject.GetComponent<DoorTrigger>();
+            lastButton.addCollision();
+            onButton = true;
+        } else if(onButton && hit.transform.gameObject.tag != "Button")
+        {
+            lastButton.removeCollision();
+            onButton = false;
+        }
+     }
 
     void UpdateInteraction()
     {
