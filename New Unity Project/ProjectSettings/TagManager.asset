@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Selectable
   - Levitate
+  - Destroyable
   layers:
   - Default
   - TransparentFX
