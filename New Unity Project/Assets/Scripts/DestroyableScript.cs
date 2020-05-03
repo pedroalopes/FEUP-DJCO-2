@@ -14,23 +14,25 @@ public class DestroyableScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(occultTime > 0.0f) {
+        if (occultTime > 0)
+        {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<MeshCollider>().enabled = false;
             StartCoroutine(ActivationRoutine());
         }
     }
 
-    public void occultObject(float damage) {
+    public void occultObject(float damage)
+    {
         this.occultTime = racio * damage;
+
     }
 
     IEnumerator ActivationRoutine()
-     {
-         yield return new WaitForSeconds(occultTime);
-         GetComponent<MeshRenderer>().enabled = true;
-            GetComponent<MeshCollider>().enabled = true;
-         occultTime = 0.0f;
-     }
-
+    {
+        yield return new WaitForSeconds(occultTime);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<MeshCollider>().enabled = true;
+        occultTime = 0.0f;
+    }
 }

@@ -11,43 +11,36 @@ public class FireObjectScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damage = 1.0f;
-        force = 600;
-        startTime = Time.time;
+        this.damage = 1.0f;
+        this.force = 600;
+        this.startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Time.time >= startTime + livingTime) {
-            printStatus();
-
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
         }
     }
 
     public void addDamage() {
-        damage += 0.1f;
+        this.damage += 0.1f;
     }
 
     public void removeForce() {
-        force -= 6;
+        this.force -= 6;
     }
     
     void OnCollisionEnter(Collision collision)
     {
-        printStatus();
-
-		GameObject gameObjectCollision = collision.gameObject;
-
-		if(gameObjectCollision.tag == "Destroyable") {
-            gameObjectCollision.GetComponent<DestroyableScript>().occultObject(damage);
+		if(collision.gameObject.tag == "Destroyable") {
+            collision.gameObject.GetComponent<DestroyableScript>().occultObject(this.damage);
         }
-
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
-    public double getForce() {
+    public int getForce() {
         return this.force;
     }
 
