@@ -205,7 +205,7 @@ public class CheckCameraPoint : MonoBehaviour
 		
         else if (waterObject != null)
         {
-            waterObject.position = hit.point + new Vector3(0,1,0);
+            waterObject.position = hit.point + new Vector3(0,1f,0);
 			
 		
             waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
