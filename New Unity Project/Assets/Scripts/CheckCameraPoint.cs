@@ -197,7 +197,7 @@ public class CheckCameraPoint : MonoBehaviour
 	
     private void HandleWater(RaycastHit hit, Ray ray)
     {
-        if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > dropCooldown)
+        if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
             waterObject = Instantiate(dropPrefab, hit.point + new Vector3(0,1,0),  Quaternion.identity);
 
@@ -213,7 +213,7 @@ public class CheckCameraPoint : MonoBehaviour
 			Rigidbody rb = waterObject.GetComponent<Rigidbody>();
 			rb.mass += 0.05f;
 		}
-		if(hit.transform.gameObject.layer != LayerMask.NameToLayer("Ground") && waterObject != null) {	
+		if(hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && waterObject != null) {	
 			CreateDrop();
 		}
 		
