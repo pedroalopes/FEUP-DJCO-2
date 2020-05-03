@@ -314,11 +314,12 @@ GameObject:
   - component: {fileID: 79651915}
   - component: {fileID: 79651914}
   - component: {fileID: 79651913}
+  - component: {fileID: 79651916}
   - component: {fileID: 79651912}
   - component: {fileID: 79651911}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -613,6 +614,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 20, y: 90, z: 0}
+--- !u!114 &79651916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79651910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb02410e19d5242bd9b1817cbc2124f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &106569430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5691,7 +5704,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399112413}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5825,7 +5838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436034534}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6177,7 +6190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679229999}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: PickupDestination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6953,7 +6966,7 @@ PrefabInstance:
     - target: {fileID: 6526632516643132701, guid: c2dc14f109b09a743b03757ef68006c7,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6526632517528651534, guid: c2dc14f109b09a743b03757ef68006c7,
         type: 3}
@@ -6963,7 +6976,7 @@ PrefabInstance:
     - target: {fileID: 7085721663646366572, guid: c2dc14f109b09a743b03757ef68006c7,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7085721664118310500, guid: c2dc14f109b09a743b03757ef68006c7,
         type: 3}
@@ -7033,7 +7046,7 @@ PrefabInstance:
     - target: {fileID: 7085721664118310506, guid: c2dc14f109b09a743b03757ef68006c7,
         type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
