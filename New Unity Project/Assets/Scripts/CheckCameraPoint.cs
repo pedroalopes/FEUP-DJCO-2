@@ -197,23 +197,59 @@ public class CheckCameraPoint : MonoBehaviour
 	
     private void HandleWater(RaycastHit hit, Ray ray)
     {
+		Vector3 vecX = new Vector3(-0.7f,0,0);
+		Vector3 vecY = new Vector3(0,-0.7f,0);
+		Vector3 vecZ = new Vector3(0,0,-0.7f);
+		
         if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
-            waterObject = Instantiate(dropPrefab, hit.point + new Vector3(0,1,0),  Quaternion.identity);
-
+			Vector3 finalVec = new Vector3(0,0,0);
+			if(hit.normal.y == -1)		//check for roof
+				finalVec += vecY;
+			else if(hit.normal.y == 1)
+				finalVec -= vecY;
+				
+			if(hit.normal.z == -1)
+				finalVec += vecZ;
+			else if(hit.normal.z == 1)
+				finalVec -= vecZ;
+			
+			if(hit.normal.x == -1)
+				finalVec += vecX;
+			else if(hit.normal.x == 1)
+				finalVec -= vecX;
+			//else
+			//	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
+			waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec,  Quaternion.identity);
         }
 		
         else if (waterObject != null)
-        {
-            waterObject.position = hit.point + new Vector3(0,1f,0);
+        {	/*
+			if(hit.normal.y == -1)
+				waterObject.position = hit.point + hit.normal + vecY;
+			else if(hit.normal.y == 1)
+				waterObject.position = hit.point + hit.normal - vecY;
+				
+			if(hit.normal.z == -1)
+				waterObject.position = hit.point + hit.normal + vecZ;
+			else if(hit.normal.z == 1)
+				waterObject.position = hit.point + hit.normal - vecZ;
 			
+			if(hit.normal.x == -1)
+				waterObject.position = hit.point + hit.normal + vecX;
+			else if(hit.normal.x == 1)
+				waterObject.position = hit.point + hit.normal - vecX;
+			
+			//else
+			//	waterObject.position = hit.point + hit.normal * 2 - vec;
+			*/
 		
             waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
 			
 			Rigidbody rb = waterObject.GetComponent<Rigidbody>();
 			rb.mass += 0.05f;
 		}
-		if(hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && waterObject != null) {	
+		if(waterObject != null && (hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") || waterObject.localScale.x > 1.5f)) {	
 			CreateDrop();
 		}
 		
