@@ -13,6 +13,7 @@ public class CheckCameraPoint : MonoBehaviour
     public Transform firePrefab;
     private Transform fireObject;
 
+  
     //WIND
     public GameObject firePoint;
     public GameObject pulse;
