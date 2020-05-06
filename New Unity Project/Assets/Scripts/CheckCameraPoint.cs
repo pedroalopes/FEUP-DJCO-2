@@ -205,7 +205,8 @@ public class CheckCameraPoint : MonoBehaviour
         if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
 			Vector3 finalVec = new Vector3(0,0,0);
-			if(hit.normal.y == -1)		//check for roof
+
+            /*if(hit.normal.y == -1)		//check for roof
 				finalVec += vecY;
 			else if(hit.normal.y == 1)
 				finalVec -= vecY;
@@ -218,10 +219,12 @@ public class CheckCameraPoint : MonoBehaviour
 			if(hit.normal.x == -1)
 				finalVec += vecX;
 			else if(hit.normal.x == 1)
-				finalVec -= vecX;
-			//else
-			//	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
-			waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec,  Quaternion.identity);
+				finalVec -= vecX;*/
+
+            finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
+            //else
+            //	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
+            waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec,  Quaternion.identity);
         }
 		
         else if (waterObject != null)
