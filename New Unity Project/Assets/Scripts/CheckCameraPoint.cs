@@ -9,9 +9,10 @@ public class CheckCameraPoint : MonoBehaviour
     public PlayerController player;
     public Transform newObject;
     private Transform _selection;
-    private LineRenderer lr;
     public Transform firePrefab;
     private Transform fireObject;
+
+    public Transform camera;
 
   
     //WIND
@@ -25,18 +26,15 @@ public class CheckCameraPoint : MonoBehaviour
 	
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-        lr.SetPosition(0, transform.position);
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
-            lr.SetPosition(1, hit.point);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -70,7 +68,7 @@ public class CheckCameraPoint : MonoBehaviour
             case Element.Fire:
                 if (Input.GetKey(KeyCode.E))
                 {
-                    HandleFire(hit);
+                    HandleFire(hit, ray);
 
                 } else if(Input.GetKeyUp(KeyCode.E))
                 {
@@ -122,16 +120,15 @@ public class CheckCameraPoint : MonoBehaviour
         }
     }
 
-    private void HandleFire(RaycastHit hit)
+    private void HandleFire(RaycastHit hit, Ray ray)
     {
         if (fireObject == null)
         {
-            fireObject = Instantiate(firePrefab, transform.position + (transform.forward * 4), transform.rotation);
+            fireObject = Instantiate(firePrefab, transform.position + (camera.transform.forward * 2), transform.rotation);
+            fireObject.SetParent(firePoint.transform);
         }
         else
         {
-            fireObject.SetParent(firePoint.transform);
-            //fireObject.position = transform.position + (transform.forward * 4);
             if (fireObject.localScale.x < 1)
             {
                 fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
