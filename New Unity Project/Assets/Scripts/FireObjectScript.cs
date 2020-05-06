@@ -34,6 +34,7 @@ public class FireObjectScript : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        // print("collision");
 		if(collision.gameObject.tag == "Destroyable") {
             collision.gameObject.GetComponent<DestroyableScript>().occultObject(this.damage);
         }

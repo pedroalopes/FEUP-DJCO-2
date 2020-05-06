@@ -35,64 +35,62 @@ public class CheckCameraPoint : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
-            }
-        } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
-        {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                {
+                    if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
+                }
+            } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
             {
-                if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                {
+                    if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
+                }
             }
-        }
 
-        switch (player.element)
-        {
-            case Element.Earth:
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    HandleEarth(hit, ray);
-                }
-                break;
-            case Element.Wind:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleWind(hit, ray);
-                }
-                break;
-            case Element.Fire:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleFire(hit, ray);
+            switch (player.element)
+            {
+                case Element.Earth:
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        HandleEarth(hit, ray);
+                    }
+                    break;
+                case Element.Wind:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleWind(hit, ray);
+                    }
+                    break;
+                case Element.Fire:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleFire(hit);
 
-                } else if(Input.GetKeyUp(KeyCode.E))
-                {
-                    Vector3 initialPosition = transform.position;
-                    Vector3 finalPosition = hit.point;
+                    } else if(Input.GetKeyUp(KeyCode.E))
+                    {
+                        Vector3 initialPosition = transform.position;
+                        Vector3 finalPosition = hit.point;
 
-                    FireShooter(initialPosition, finalPosition, hit);
-                }
-                break;
-            case Element.Water:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleWater(hit, ray);
-					
-                } 
-				else if(Input.GetKeyUp(KeyCode.E))
-                {
-                    CreateDrop();
-					
-                }
-                break;
-        }
+                        FireShooter(initialPosition, finalPosition);
+                    }
+                    break;
+                case Element.Water:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleWater(hit, ray);
+					    
+                    } 
+				    else if(Input.GetKeyUp(KeyCode.E))
+                    {
+                        CreateDrop();
+					    
+                    }
+                    break;
+            }
    
-           
+        }
        
     }
     
@@ -120,11 +118,14 @@ public class CheckCameraPoint : MonoBehaviour
         }
     }
 
-    private void HandleFire(RaycastHit hit, Ray ray)
+    private void HandleFire(RaycastHit hit)
     {
         if (fireObject == null)
         {
-            fireObject = Instantiate(firePrefab, transform.position + (camera.transform.forward * 2), transform.rotation);
+            Vector3 cameraPosition = transform.position;
+            cameraPosition.y += 0.75f;
+
+            fireObject = Instantiate(firePrefab, cameraPosition + (camera.transform.forward * 1), transform.rotation);
             fireObject.SetParent(firePoint.transform);
         }
         else
@@ -140,10 +141,11 @@ public class CheckCameraPoint : MonoBehaviour
     }
 
     
-    private void FireShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    private void FireShooter(Vector3 initialPosition, Vector3 finalPosition)
     {
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
         Vector3 shoot = (finalPosition - fireObject.position).normalized;
+
         rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
         fireObject.SetParent(null);
         fireObject = null;
