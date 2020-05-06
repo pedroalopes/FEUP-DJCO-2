@@ -135,6 +135,9 @@ public class PlayerController : MonoBehaviour
             movement.Jump(Vector3.up, 1f);
             playerInput.ResetJump();
         }
+        /*if(!movement.grounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))){
+            movement.Move(new Vector2(0, 0), false, false);
+        }*/
     }
     /*********************************************************************/
 

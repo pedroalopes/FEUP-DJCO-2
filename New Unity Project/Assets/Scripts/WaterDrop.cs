@@ -8,6 +8,8 @@ public class WaterDrop : MonoBehaviour
     private double damage = 1;
     private int force = 500;
     private float startTime;
+    [SerializeField]
+    private Rigidbody rbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +19,7 @@ public class WaterDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
-        if(Time.time >= startTime + livingTime) 
+        if (Time.time >= startTime + livingTime) 
             evaporateDrop();
         
     }
@@ -37,5 +38,11 @@ public class WaterDrop : MonoBehaviour
         Debug.Log("Collision");
         Debug.Log("Damage: " + damage);
         Debug.Log("Force: " + force);
+    }
+
+    public void freezeMotion()
+    {
+        rbody.angularVelocity = Vector3.zero;
+        rbody.velocity = Vector3.zero;
     }
 }

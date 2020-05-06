@@ -249,8 +249,9 @@ public class CheckCameraPoint : MonoBehaviour
 			*/
 		
             waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
-			
-			Rigidbody rb = waterObject.GetComponent<Rigidbody>();
+            waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
+
+            Rigidbody rb = waterObject.GetComponent<Rigidbody>();
 			rb.mass += 0.05f;
 		}
 		if(waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f)) {	
@@ -262,8 +263,9 @@ public class CheckCameraPoint : MonoBehaviour
     private void CreateDrop()
     {
 		if(waterObject != null) {
+            waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
 			waterObject = null;
 			dropCooldown = Time.time + 2f;
-		}
+        }
     }
 }
