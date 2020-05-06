@@ -253,7 +253,7 @@ public class CheckCameraPoint : MonoBehaviour
 			Rigidbody rb = waterObject.GetComponent<Rigidbody>();
 			rb.mass += 0.05f;
 		}
-		if(waterObject != null && (hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") || waterObject.localScale.x > 1.5f)) {	
+		if(waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f)) {	
 			CreateDrop();
 		}
 		

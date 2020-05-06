@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8068607096640129282}
   - component: {fileID: -7365759562045106457}
   - component: {fileID: 8183072730054537577}
-  m_Layer: 4
+  m_Layer: 16
   m_Name: WaterDropSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
