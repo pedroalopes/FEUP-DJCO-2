@@ -12,7 +12,6 @@ public class LevitationProperty : MonoBehaviour
     [SerializeField] private float effect_countdown = 0f;
     [SerializeField] private float height_increment = 0.1f;
 
-
     private float forceFactor;
     private Vector3 actionPoint;
     private Vector3 upLift;
@@ -45,10 +44,21 @@ public class LevitationProperty : MonoBehaviour
         }
     }
 
+    public float getHeightLevel() {
+        return heightLevel;
+    }
+
     public void EnableLevitate()
     {
         isLevitating = true;
         incrementHeight(height_increment);
+        effect_countdown = 0;
+    }
+
+    public void EnableLevitateTest(float aimingAtY)
+    {
+        isLevitating = true;
+        heightLevel = aimingAtY;
         effect_countdown = 0;
     }
 
@@ -79,5 +89,6 @@ public class LevitationProperty : MonoBehaviour
             upLift = -Physics.gravity * (forceFactor - rb.velocity.y * bounceDamp);
             rb.AddForceAtPosition(upLift, actionPoint);
         }
+
     }
 }
