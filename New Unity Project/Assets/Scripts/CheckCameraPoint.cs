@@ -9,93 +9,88 @@ public class CheckCameraPoint : MonoBehaviour
     public PlayerController player;
     public Transform newObject;
     private Transform _selection;
-    private LineRenderer lr;
     public Transform firePrefab;
     private Transform fireObject;
 
+    public Transform camera;
+
+  
     //WIND
     public GameObject firePoint;
     public GameObject pulse;
 
 	//WATER
-	private float waterCooldown = 0.00f;
 	private float dropCooldown = 0.00f;
     private Transform waterObject;
-    public Transform waterPrefab;
 	public Transform dropPrefab;
 	
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-        lr.SetPosition(0, transform.position);
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
-            lr.SetPosition(1, hit.point);
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
-            }
-        } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
-        {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                {
+                    if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
+                }
+            } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
             {
-                if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
+                {
+                    if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
+                }
             }
-        }
 
-        switch (player.element)
-        {
-            case Element.Earth:
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    HandleEarth(hit, ray);
-                }
-                break;
-            case Element.Wind:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleWind(hit, ray);
-                }
-                break;
-            case Element.Fire:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleFire(hit);
+            switch (player.element)
+            {
+                case Element.Earth:
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        HandleEarth(hit, ray);
+                    }
+                    break;
+                case Element.Wind:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleWind(hit, ray);
+                    }
+                    break;
+                case Element.Fire:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleFire(hit);
 
-                } else if(Input.GetKeyUp(KeyCode.E))
-                {
-                    Vector3 initialPosition = transform.position;
-                    Vector3 finalPosition = hit.point;
+                    } else if(Input.GetKeyUp(KeyCode.E))
+                    {
+                        Vector3 initialPosition = transform.position;
+                        Vector3 finalPosition = hit.point;
 
-                    FireShooter(initialPosition, finalPosition, hit);
-                }
-                break;
-            case Element.Water:
-                if (Input.GetKey(KeyCode.E))
-                {
-                    HandleWater(hit);
-					
-                }
-                if (Input.GetKey(KeyCode.F))
-                {
-                    CreateDrop(hit, ray);
-					
-                }
-                break;
-        }
+                        FireShooter(initialPosition, finalPosition);
+                    }
+                    break;
+                case Element.Water:
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        HandleWater(hit, ray);
+					    
+                    } 
+				    else if(Input.GetKeyUp(KeyCode.E))
+                    {
+                        CreateDrop();
+					    
+                    }
+                    break;
+            }
    
-           
+        }
        
     }
     
@@ -127,17 +122,17 @@ public class CheckCameraPoint : MonoBehaviour
     {
         if (fireObject == null)
         {
-            fireObject = Instantiate(firePrefab, transform.position + (transform.forward * 2), transform.rotation);
+            Vector3 cameraPosition = transform.position;
+            cameraPosition.y += 0.75f;
 
+            fireObject = Instantiate(firePrefab, cameraPosition + (camera.transform.forward * 1), transform.rotation);
+            fireObject.SetParent(firePoint.transform);
         }
         else
         {
-            fireObject.position = transform.position + (transform.forward * 2);
             if (fireObject.localScale.x < 1)
             {
-
                 fireObject.localScale = fireObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
-
                 fireObject.GetComponent<FireObjectScript>().addDamage();
                 fireObject.GetComponent<FireObjectScript>().removeForce();
             }
@@ -146,12 +141,13 @@ public class CheckCameraPoint : MonoBehaviour
     }
 
     
-    private void FireShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    private void FireShooter(Vector3 initialPosition, Vector3 finalPosition)
     {
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
         Vector3 shoot = (finalPosition - fireObject.position).normalized;
-        rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
 
+        rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
+        fireObject.SetParent(null);
         fireObject = null;
     }
 
@@ -199,37 +195,76 @@ public class CheckCameraPoint : MonoBehaviour
         }
     }
 	
-    private void HandleWater(RaycastHit hit)
+    private void HandleWater(RaycastHit hit, Ray ray)
     {
-        if (Time.time > waterCooldown)
+		Vector3 vecX = new Vector3(-0.7f,0,0);
+		Vector3 vecY = new Vector3(0,-0.7f,0);
+		Vector3 vecZ = new Vector3(0,0,-0.7f);
+		
+        if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
-				waterCooldown = Time.time + 0.3f;
-				waterObject = Instantiate(waterPrefab, transform.position +(transform.forward * 2), transform.rotation);
-				Vector3 initialPosition = transform.position;
-				Vector3 finalPosition = hit.point;
-				waterShooter(initialPosition, finalPosition, hit);
+			Vector3 finalVec = new Vector3(0,0,0);
+
+            /*if(hit.normal.y == -1)		//check for roof
+				finalVec += vecY;
+			else if(hit.normal.y == 1)
+				finalVec -= vecY;
+				
+			if(hit.normal.z == -1)
+				finalVec += vecZ;
+			else if(hit.normal.z == 1)
+				finalVec -= vecZ;
+			
+			if(hit.normal.x == -1)
+				finalVec += vecX;
+			else if(hit.normal.x == 1)
+				finalVec -= vecX;*/
+
+            finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
+            //else
+            //	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
+            waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec,  Quaternion.identity);
         }
+		
+        else if (waterObject != null)
+        {	/*
+			if(hit.normal.y == -1)
+				waterObject.position = hit.point + hit.normal + vecY;
+			else if(hit.normal.y == 1)
+				waterObject.position = hit.point + hit.normal - vecY;
+				
+			if(hit.normal.z == -1)
+				waterObject.position = hit.point + hit.normal + vecZ;
+			else if(hit.normal.z == 1)
+				waterObject.position = hit.point + hit.normal - vecZ;
+			
+			if(hit.normal.x == -1)
+				waterObject.position = hit.point + hit.normal + vecX;
+			else if(hit.normal.x == 1)
+				waterObject.position = hit.point + hit.normal - vecX;
+			
+			//else
+			//	waterObject.position = hit.point + hit.normal * 2 - vec;
+			*/
+		
+            waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+            waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
+
+            Rigidbody rb = waterObject.GetComponent<Rigidbody>();
+			rb.mass += 0.05f;
+		}
+		if(waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f)) {	
+			CreateDrop();
+		}
+		
     }
 
-    private void waterShooter(Vector3 initialPosition, Vector3 finalPosition, RaycastHit hit)
+    private void CreateDrop()
     {
-        Rigidbody rb = waterObject.gameObject.GetComponent<Rigidbody>();
-        Vector3 shoot = (finalPosition - waterObject.position).normalized;
-        rb.AddForce(shoot * (int)waterObject.GetComponent<WaterObject>().getForce());
-        waterObject = null;
-    }
-    
-    private void CreateDrop(RaycastHit hit, Ray ray)
-    {
-        if (!Physics.Raycast(ray, out hit))
-            return;
-
-        var position = hit.point;
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && Time.time > dropCooldown)
-        {
-			position += new Vector3(0,8,0);
-            Instantiate(dropPrefab, position, Quaternion.identity);
-			dropCooldown = Time.time + 5f;
+		if(waterObject != null) {
+            waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
+			waterObject = null;
+			dropCooldown = Time.time + 2f;
         }
     }
 }

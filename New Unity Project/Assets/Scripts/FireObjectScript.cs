@@ -5,43 +5,43 @@ using UnityEngine;
 public class FireObjectScript : MonoBehaviour
 {
     private const float livingTime = 10.0f;
-    private double damage;
+    private float damage;
     private int force;
     private float startTime;
     // Start is called before the first frame update
     void Start()
     {
-        damage = 1;
-        force = 600;
-        startTime = Time.time;
+        this.damage = 1.0f;
+        this.force = 600;
+        this.startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Time.time >= startTime + livingTime) {
-            printStatus();
-
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
         }
     }
 
     public void addDamage() {
-        damage += 0.1;
+        this.damage += 0.1f;
     }
 
     public void removeForce() {
-        force -= 6;
+        this.force -= 6;
     }
     
     void OnCollisionEnter(Collision collision)
     {
-        printStatus();
-
-        Destroy(gameObject);
+        // print("collision");
+		if(collision.gameObject.tag == "Destroyable") {
+            collision.gameObject.GetComponent<DestroyableScript>().occultObject(this.damage);
+        }
+        Destroy(this.gameObject);
     }
 
-    public double getForce() {
+    public int getForce() {
         return this.force;
     }
 

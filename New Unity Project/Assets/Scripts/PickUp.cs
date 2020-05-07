@@ -55,4 +55,6 @@ public class PickUp : MonoBehaviour
     {
         return distance <= pickUpDistance;
     }
+
+    
 }

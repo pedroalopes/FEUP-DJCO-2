@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Selectable
   - Levitate
+  - Destroyable
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -21,9 +23,9 @@ TagManager:
   - EarthCube
   - MoveableObject
   - LevitateObject
-  - 
-  - 
-  - 
+  - CC
+  - FireBall
+  - WaterBall
   - 
   - 
   - 
