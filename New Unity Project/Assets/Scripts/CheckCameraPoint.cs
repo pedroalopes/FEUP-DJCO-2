@@ -14,16 +14,16 @@ public class CheckCameraPoint : MonoBehaviour
 
     public Transform camera;
 
-  
+
     //WIND
     public GameObject firePoint;
     public GameObject pulse;
 
-	//WATER
-	private float dropCooldown = 0.00f;
+    //WATER
+    private float dropCooldown = 0.00f;
     private Transform waterObject;
-	public Transform dropPrefab;
-	
+    public Transform dropPrefab;
+
     void Start()
     {
     }
@@ -41,7 +41,8 @@ public class CheckCameraPoint : MonoBehaviour
                 {
                     if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
                 }
-            } else if(Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
+            }
+            else if (Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
                 {
@@ -68,7 +69,8 @@ public class CheckCameraPoint : MonoBehaviour
                     {
                         HandleFire(hit);
 
-                    } else if(Input.GetKeyUp(KeyCode.E))
+                    }
+                    else if (Input.GetKeyUp(KeyCode.E))
                     {
                         Vector3 initialPosition = transform.position;
                         Vector3 finalPosition = hit.point;
@@ -80,20 +82,20 @@ public class CheckCameraPoint : MonoBehaviour
                     if (Input.GetKey(KeyCode.E))
                     {
                         HandleWater(hit, ray);
-					    
-                    } 
-				    else if(Input.GetKeyUp(KeyCode.E))
+
+                    }
+                    else if (Input.GetKeyUp(KeyCode.E))
                     {
                         CreateDrop();
-					    
+
                     }
                     break;
             }
-   
+
         }
-       
+
     }
-    
+
     private void HandleEarth(RaycastHit hit, Ray ray)
     {
         if (!Physics.Raycast(ray, out hit))
@@ -140,7 +142,7 @@ public class CheckCameraPoint : MonoBehaviour
 
     }
 
-    
+
     private void FireShooter(Vector3 initialPosition, Vector3 finalPosition)
     {
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
@@ -153,18 +155,41 @@ public class CheckCameraPoint : MonoBehaviour
 
     private void HandleWind(RaycastHit hit, Ray ray)
     {
-        if (!Physics.Raycast(ray, out hit))
-            return;
-
-        if (!hit.transform.CompareTag("Levitate"))
+        if (Physics.Raycast(ray, out hit, LayerMask.GetMask("LevitateObject")))
         {
-            Debug.Log("Can't levitate that");
-            return;
+
+            Vector3 _colliderCenter = hit.collider.gameObject.transform.position;
+            Vector3 _cameraPos = Camera.main.transform.position;
+            Vector2 _cameraRotation = Camera.main.GetComponent<CameraMovement>().getMouseAbsolute();
+
+            float aimingAtY = calculateAimingY(_cameraPos, _cameraRotation, _colliderCenter);
+
+            LevitationProperty propLevitation = hit.collider.gameObject.GetComponentInParent<LevitationProperty>();
+
+            propLevitation.EnableLevitateTest(aimingAtY);
         }
 
-      
+
+
         LevitationProperty prop = hit.collider.gameObject.GetComponent<LevitationProperty>();
         prop.EnableLevitate();
+    }
+
+    float calculateAimingY(Vector3 cameraPosition, Vector2 cameraRotation, Vector3 colliderCenter)
+    {
+        float targetY = 0;
+
+        Vector3 horizonAtCollider = new Vector3(colliderCenter.x, cameraPosition.y, colliderCenter.z);
+        float horizonDist = Vector3.Distance(cameraPosition, horizonAtCollider);
+
+        float heightDiff = horizonDist * Mathf.Tan(Mathf.Abs(cameraRotation.y * Mathf.Deg2Rad));
+
+        if (cameraRotation.y < 0)
+            targetY = cameraPosition.y - heightDiff;
+        else
+            targetY = cameraPosition.y + heightDiff;
+
+        return targetY;
     }
 
     private void SpawnWindPulse(Ray rayMouse)
@@ -194,16 +219,16 @@ public class CheckCameraPoint : MonoBehaviour
             Debug.Log("No firepoint");
         }
     }
-	
+
     private void HandleWater(RaycastHit hit, Ray ray)
     {
-		Vector3 vecX = new Vector3(-0.7f,0,0);
-		Vector3 vecY = new Vector3(0,-0.7f,0);
-		Vector3 vecZ = new Vector3(0,0,-0.7f);
-		
+        Vector3 vecX = new Vector3(-0.7f, 0, 0);
+        Vector3 vecY = new Vector3(0, -0.7f, 0);
+        Vector3 vecZ = new Vector3(0, 0, -0.7f);
+
         if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
-			Vector3 finalVec = new Vector3(0,0,0);
+            Vector3 finalVec = new Vector3(0, 0, 0);
 
             /*if(hit.normal.y == -1)		//check for roof
 				finalVec += vecY;
@@ -223,11 +248,11 @@ public class CheckCameraPoint : MonoBehaviour
             finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
             //else
             //	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
-            waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec,  Quaternion.identity);
+            waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec, Quaternion.identity);
         }
-		
+
         else if (waterObject != null)
-        {	/*
+        {   /*
 			if(hit.normal.y == -1)
 				waterObject.position = hit.point + hit.normal + vecY;
 			else if(hit.normal.y == 1)
@@ -246,25 +271,27 @@ public class CheckCameraPoint : MonoBehaviour
 			//else
 			//	waterObject.position = hit.point + hit.normal * 2 - vec;
 			*/
-		
+
             waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
             waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
 
             Rigidbody rb = waterObject.GetComponent<Rigidbody>();
-			rb.mass += 0.05f;
-		}
-		if(waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f)) {	
-			CreateDrop();
-		}
-		
+            rb.mass += 0.05f;
+        }
+        if (waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f))
+        {
+            CreateDrop();
+        }
+
     }
 
     private void CreateDrop()
     {
-		if(waterObject != null) {
+        if (waterObject != null)
+        {
             waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
-			waterObject = null;
-			dropCooldown = Time.time + 2f;
+            waterObject = null;
+            dropCooldown = Time.time + 2f;
         }
     }
 }
