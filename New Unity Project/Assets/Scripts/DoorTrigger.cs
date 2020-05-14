@@ -34,11 +34,13 @@ public class DoorTrigger : MonoBehaviour
     {
         if(objectsColliding <= 0 && isOpened)
         {
-            door.transform.position += new Vector3(0, 6, 0);
+            door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
+            door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
             isOpened = false;
         } else if(!isOpened && objectsColliding > 0)
         {
-            door.transform.position += new Vector3(0, -6, 0);
+            door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
+            door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
             isOpened = true;
         }
 

@@ -102,6 +102,39 @@ public class CheckCameraPoint : MonoBehaviour
             return;
 
         var position = hit.point;
+        if(hit.normal.y == 1)
+        {
+            position.x += -1;
+            position.z += 1;
+        } else if (hit.normal.x == 1)
+        {
+            position.y += 1;
+            position.z += 1;
+        } else if (hit.normal.x == -1)
+        {
+            position.y += -1;
+            position.z += 1;
+        } else if (hit.normal.z == -1)
+        {
+            position.y += 1;
+            position.x += -1;
+        } else if (hit.normal.z == 1)
+        {
+            position.y += -1;
+            position.x += -1;
+        } else if (hit.normal.y < -0.9)
+        {
+            position.z += -1;
+            position.x += -1;
+        }
+
+        //(0,1,0) --> (-1,0,1)
+        //(1,0,0) --> (0,1,1)
+        //(-1,0,0) -->(0,-1,1)
+        //(0,0,-1) -->(-1,1,0)
+        //(0,0,1) -->(-1,-1,0)
+        //(0,-1,0) --> (-1,0,-1)
+
 
         //TODO: Divide by element casted
         /*   EARTH BENDING   */

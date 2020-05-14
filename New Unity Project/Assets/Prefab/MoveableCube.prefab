@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4678749084747088574}
   - component: {fileID: 4678749084747088570}
   - component: {fileID: 4678749084747088564}
-  - component: {fileID: 4678749084747088565}
+  - component: {fileID: 6929201171219900915}
   m_Layer: 12
   m_Name: MoveableCube
   m_TagString: Levitate
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4678749084747088565
+--- !u!65 &6929201171219900915
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,5 +147,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9997919, y: 1.8893583, z: 1.9999738}
-  m_Center: {x: 8.334804e-17, y: 0.0000008940696, z: 5.2041704e-17}
+  m_Size: {x: 1.522323, y: 1.4393568, z: 1.522899}
+  m_Center: {x: 0.00000047690446, y: 0.72217846, z: -0.000001490074}
