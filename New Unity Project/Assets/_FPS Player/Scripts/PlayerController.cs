@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.run && status == Status.crouching)
             Uncrouch();
-
+        
         movement.Move(playerInput.input, playerInput.run, (status == Status.crouching));
         if (movement.grounded && playerInput.Jump())
         {

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float antiBumpFactor = .75f;
     [HideInInspector]
     public Vector3 moveDirection = Vector3.zero;
+    private Vector3 airDirection = Vector3.zero;
     [HideInInspector]
     public Vector3 contactPoint;
     public CharacterController controller;
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool grounded = false;
     public Vector3 jump = Vector3.zero;
+    public Vector3 jumpAir = Vector3.zero;
+
 
     private RaycastHit hit;
     private Vector3 force;
@@ -64,15 +67,27 @@ public class PlayerMovement : MonoBehaviour
         float speed = (!sprint) ? walkSpeed : runSpeed;
         if (crouching) speed = crouchSpeed;
 
-        if (grounded)
+        if(grounded)
         {
-            moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
-            moveDirection = transform.TransformDirection(moveDirection) * speed;
-            UpdateJump();
+            airDirection = new Vector3(input.x, -antiBumpFactor, input.y);
+            airDirection = transform.TransformDirection(airDirection) * speed;
+
+            UpdateJumpAir();
         }
-        
+
+
+        moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
+        moveDirection = transform.TransformDirection(moveDirection) * speed;
+
+        UpdateJump();
+
         // Apply gravity
         moveDirection.y -= gravity * Time.deltaTime;
+        airDirection.y -= gravity * Time.deltaTime;
+        moveDirection.y = airDirection.y;
+
+        Debug.Log(moveDirection);
+
         // Move the controller, and set grounded true or false depending on whether we're standing on something
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }
@@ -100,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(Vector3 dir, float mult)
     {
         jump = dir * mult;
+        jumpAir = dir * mult;
     }
 
     public void UpdateJump()
@@ -112,6 +128,18 @@ public class PlayerMovement : MonoBehaviour
             if (dir.z != 0) moveDirection.z = dir.z;
         }
         jump = Vector3.zero;
+    }
+
+    public void UpdateJumpAir()
+    {
+        if (jumpAir != Vector3.zero)
+        {
+            Vector3 dir = (jumpAir * jumpSpeed);
+            if (dir.x != 0) airDirection.x = dir.x;
+            if (dir.y != 0) airDirection.y = dir.y;
+            if (dir.z != 0) airDirection.z = dir.z;
+        }
+        jumpAir = Vector3.zero;
     }
 
     public void ForceMove(Vector3 direction, float speed, float time, bool applyGravity)
