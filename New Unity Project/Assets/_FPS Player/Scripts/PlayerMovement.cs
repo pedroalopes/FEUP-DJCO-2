@@ -86,8 +86,6 @@ public class PlayerMovement : MonoBehaviour
         airDirection.y -= gravity * Time.deltaTime;
         moveDirection.y = airDirection.y;
 
-        Debug.Log(moveDirection);
-
         // Move the controller, and set grounded true or false depending on whether we're standing on something
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
     }

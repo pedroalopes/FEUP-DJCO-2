@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();
-     
+        CheckJumping();
 
 
         //Check for movement updates
@@ -71,7 +71,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-     private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void CheckJumping()
+    {
+        if(playerInput.Jump() && onButton)
+        {
+            lastButton.removeCollision();
+            onButton = false;
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
      {
         if(hit.transform.gameObject.tag == "Button" && !onButton)
         {
@@ -81,6 +90,7 @@ public class PlayerController : MonoBehaviour
         } else if(onButton && hit.transform.gameObject.tag != "Button")
         {
             lastButton.removeCollision();
+            lastButton = null;
             onButton = false;
         }
      }
