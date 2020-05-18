@@ -7,7 +7,7 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField]
     GameObject door;
 
-    bool isOpened = false;
+    public bool isOpened = false;
     private int objectsColliding = 0;
 
     private void OnCollisionEnter(Collision collision)
