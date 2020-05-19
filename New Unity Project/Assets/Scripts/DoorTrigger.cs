@@ -6,8 +6,8 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField]
     GameObject door;
-
-    public bool isOpened = false;
+    public bool startOpen = false;
+    private bool isOpened = false;
     private int objectsColliding = 0;
 
     private void OnCollisionEnter(Collision collision)
@@ -32,17 +32,44 @@ public class DoorTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(objectsColliding <= 0 && isOpened)
+        if(!startOpen)
+        {
+            handleStartClosed();
+        } else
+        {
+            handleStartOpen();
+        }
+    }
+
+    private void handleStartClosed()
+    {
+        if (objectsColliding <= 0 && isOpened)
         {
             door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
             isOpened = false;
-        } else if(!isOpened && objectsColliding > 0)
+        }
+        else if (!isOpened && objectsColliding > 0)
         {
             door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
             isOpened = true;
         }
+    }
 
+    private void handleStartOpen()
+    {
+        if (objectsColliding <= 0 && !isOpened)
+        {
+            door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
+            door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
+            isOpened = true;
+        }
+        else if (isOpened && objectsColliding > 0)
+        {
+            door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
+            door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
+            isOpened = false;
+        }
     }
 }
