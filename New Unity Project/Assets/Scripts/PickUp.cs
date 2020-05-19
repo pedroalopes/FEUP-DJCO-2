@@ -11,7 +11,7 @@ public class PickUp : MonoBehaviour
     public GameObject item;
     public GameObject tempParent;
     public bool isHolding = false;
-    public float pickUpDistance = 1f;
+    public float pickUpDistance = 0.5f;
 
     private void Update()
     {
