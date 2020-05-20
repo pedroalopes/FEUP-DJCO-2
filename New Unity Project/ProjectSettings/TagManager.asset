@@ -8,6 +8,7 @@ TagManager:
   - Levitate
   - Destroyable
   - Button
+  - ButtonShooter
   layers:
   - Default
   - TransparentFX

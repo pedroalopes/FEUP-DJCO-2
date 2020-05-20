@@ -38,6 +38,9 @@ public class FireObjectScript : MonoBehaviour
 		if(collision.gameObject.tag == "Destroyable") {
             collision.gameObject.GetComponent<DestroyableScript>().occultObject(this.damage);
         }
+		if(collision.gameObject.tag == "ButtonShooter") {
+            collision.gameObject.GetComponent<ShooterButton>().OpenDoor(this.damage);
+        }
         Destroy(this.gameObject);
     }
 
