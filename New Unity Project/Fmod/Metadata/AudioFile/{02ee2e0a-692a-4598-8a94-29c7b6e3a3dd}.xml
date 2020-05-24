@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
-	<object class="AudioFile" id="{04f85897-62b3-4200-b8c9-4a45fb091767}">
+	<object class="AudioFile" id="{02ee2e0a-692a-4598-8a94-29c7b6e3a3dd}">
 		<property name="assetPath">
-			<value>whooshfire_export.wav</value>
+			<value>crack_fire_export.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>3.1067916666666666</value>
+			<value>9</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{134dc151-7677-4072-95e9-8f6cdd09cf31}</destination>
