@@ -27,10 +27,15 @@ public class ShooterButton : MonoBehaviour
 			door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
 			door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
 			isOpened = true;
+			
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<MeshCollider>().enabled = false;
 		}
 	}
     private void closeDoor() {
 		if(isOpened){
+			GetComponent<MeshRenderer>().enabled = true;
+			GetComponent<MeshCollider>().enabled = true;
 			door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
 			door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
 			isOpened = false;
