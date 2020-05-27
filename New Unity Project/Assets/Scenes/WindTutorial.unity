@@ -1462,6 +1462,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3581608301431560998, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581608301431560998, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581608301431560998, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721188978736215274, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721188978736215274, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721188978736215274, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: AllowedElements.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305ee4b919c9949a890c4deca0d4c39a, type: 3}
 --- !u!1001 &382911669
@@ -4549,6 +4579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207055873519877806, guid: af32031441ce4405aa92c7b7975ae7e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af32031441ce4405aa92c7b7975ae7e2, type: 3}
