@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     public Status status;
     public Element element;
+    public bool[] AllowedElements = new bool[4];
+
     [SerializeField]
     private LayerMask ladderLayer;
     public GameObject playerCollider;
@@ -244,20 +246,20 @@ public class PlayerController : MonoBehaviour
 
     void CheckElementChange()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1) && AllowedElements[0])
         {
             element = Element.Earth;
-        } else if (Input.GetKey(KeyCode.Alpha2))
+        } else if (Input.GetKey(KeyCode.Alpha2) && AllowedElements[1])
+        {
+            element = Element.Water;
+        }
+        else if (Input.GetKey(KeyCode.Alpha3) && AllowedElements[2])
         {
             element = Element.Wind;
         }
-        else if (Input.GetKey(KeyCode.Alpha3))
+        else if (Input.GetKey(KeyCode.Alpha4) && AllowedElements[3])
         {
             element = Element.Fire;
-        }
-        else if (Input.GetKey(KeyCode.Alpha4))
-        {
-            element = Element.Water;
         }
 
     }

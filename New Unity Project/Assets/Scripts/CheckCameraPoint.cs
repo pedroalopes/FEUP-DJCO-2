@@ -11,6 +11,7 @@ public class CheckCameraPoint : MonoBehaviour
     private Transform _selection;
     public Transform firePrefab;
     private Transform fireObject;
+    public bool[] AllowedElements = new bool[4];
 
     public Transform camera;
 
@@ -53,24 +54,24 @@ public class CheckCameraPoint : MonoBehaviour
             switch (player.element)
             {
                 case Element.Earth:
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetMouseButtonDown(0))
                     {
                         HandleEarth(hit, ray);
                     }
                     break;
                 case Element.Wind:
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetMouseButton(0))
                     {
                         HandleWind(hit, ray);
                     }
                     break;
                 case Element.Fire:
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetMouseButton(0))
                     {
                         HandleFire(hit);
 
                     }
-                    else if (Input.GetKeyUp(KeyCode.E))
+                    else if (Input.GetMouseButtonUp(0))
                     {
                         Vector3 initialPosition = transform.position;
                         Vector3 finalPosition = hit.point;
@@ -79,12 +80,12 @@ public class CheckCameraPoint : MonoBehaviour
                     }
                     break;
                 case Element.Water:
-                    if (Input.GetKey(KeyCode.E))
+                    if (Input.GetMouseButton(0))
                     {
                         HandleWater(hit, ray);
 
                     }
-                    else if (Input.GetKeyUp(KeyCode.E))
+                    else if (Input.GetMouseButtonUp(0))
                     {
                         CreateDrop();
 
@@ -128,6 +129,7 @@ public class CheckCameraPoint : MonoBehaviour
             position.x += -1;
         }
 
+
         //(0,1,0) --> (-1,0,1)
         //(1,0,0) --> (0,1,1)
         //(-1,0,0) -->(0,-1,1)
@@ -143,6 +145,8 @@ public class CheckCameraPoint : MonoBehaviour
             position += Vector3.Scale(new Vector3(-4, -4, -4), hit.normal);
             Debug.Log(hit.normal);
             newObject.GetComponent<SpawningMovement>().normalDir = hit.normal;
+            position.x -= 1.5f;
+            position.z -= 3f;
             Instantiate(newObject, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
         }
