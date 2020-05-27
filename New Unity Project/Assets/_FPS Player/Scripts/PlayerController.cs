@@ -89,12 +89,17 @@ public class PlayerController : MonoBehaviour
             lastButton = hit.transform.gameObject.GetComponent<DoorTrigger>();
             lastButton.addCollision();
             onButton = true;
-        } else if(onButton && hit.transform.gameObject.tag != "Button")
+        } else if (hit.transform.gameObject.tag == "EndLevel")
+        {
+            EndLevel end = hit.transform.gameObject.GetComponent<EndLevel>();
+            end.LoadScene();
+        } else if (onButton && hit.transform.gameObject.tag != "Button")
         {
             lastButton.removeCollision();
             lastButton = null;
             onButton = false;
         }
+
      }
 
     void UpdateInteraction()

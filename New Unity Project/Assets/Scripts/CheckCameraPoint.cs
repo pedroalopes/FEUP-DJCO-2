@@ -11,7 +11,6 @@ public class CheckCameraPoint : MonoBehaviour
     private Transform _selection;
     public Transform firePrefab;
     private Transform fireObject;
-    public bool[] AllowedElements = new bool[4];
 
     public Transform camera;
 
