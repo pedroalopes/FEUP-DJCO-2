@@ -16,16 +16,20 @@ public class UIManager : MonoBehaviour
         switch (player.element)
         {
             case Element.Earth:
-                SetCrosshairElement(0);
-                break;
-            case Element.Wind:
-                SetCrosshairElement(1);
-                break;
-            case Element.Fire:
-                SetCrosshairElement(2);
+                if(player.AllowedElements[0])
+                    SetCrosshairElement(0);
                 break;
             case Element.Water:
-                SetCrosshairElement(3);
+                if (player.AllowedElements[1])
+                    SetCrosshairElement(1);
+                break;
+            case Element.Wind:
+                if (player.AllowedElements[2])
+                    SetCrosshairElement(2);
+                break;
+            case Element.Fire:
+                if (player.AllowedElements[3])
+                    SetCrosshairElement(3);
                 break;
         }
     }

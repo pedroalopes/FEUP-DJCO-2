@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyableScript : MonoBehaviour
 {
-    private const float racio = 1.5f;
+    public float racio = 1.5f;
     private float occultTime = 0.0f;
     // Start is called before the first frame update
     void Start()

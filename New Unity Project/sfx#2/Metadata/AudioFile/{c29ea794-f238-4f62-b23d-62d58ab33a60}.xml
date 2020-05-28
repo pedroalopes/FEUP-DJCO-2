@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{c29ea794-f238-4f62-b23d-62d58ab33a60}">
+		<property name="assetPath">
+			<value>walk_woods_export.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>29.100408163265307</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8a00213f-920c-4fac-a536-295dbdf08ae6}</destination>
+		</relationship>
+	</object>
+</objects>

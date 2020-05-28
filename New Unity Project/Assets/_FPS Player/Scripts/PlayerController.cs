@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     public Status status;
     public Element element;
+    public bool[] AllowedElements = new bool[4];
+
     [SerializeField]
     private LayerMask ladderLayer;
     public GameObject playerCollider;
@@ -87,12 +89,17 @@ public class PlayerController : MonoBehaviour
             lastButton = hit.transform.gameObject.GetComponent<DoorTrigger>();
             lastButton.addCollision();
             onButton = true;
-        } else if(onButton && hit.transform.gameObject.tag != "Button")
+        } else if (hit.transform.gameObject.tag == "EndLevel")
+        {
+            EndLevel end = hit.transform.gameObject.GetComponent<EndLevel>();
+            end.LoadScene();
+        } else if (onButton && hit.transform.gameObject.tag != "Button")
         {
             lastButton.removeCollision();
             lastButton = null;
             onButton = false;
         }
+
      }
 
     void UpdateInteraction()
@@ -244,20 +251,20 @@ public class PlayerController : MonoBehaviour
 
     void CheckElementChange()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1) && AllowedElements[0])
         {
             element = Element.Earth;
-        } else if (Input.GetKey(KeyCode.Alpha2))
+        } else if (Input.GetKey(KeyCode.Alpha2) && AllowedElements[1])
+        {
+            element = Element.Water;
+        }
+        else if (Input.GetKey(KeyCode.Alpha3) && AllowedElements[2])
         {
             element = Element.Wind;
         }
-        else if (Input.GetKey(KeyCode.Alpha3))
+        else if (Input.GetKey(KeyCode.Alpha4) && AllowedElements[3])
         {
             element = Element.Fire;
-        }
-        else if (Input.GetKey(KeyCode.Alpha4))
-        {
-            element = Element.Water;
         }
 
     }
