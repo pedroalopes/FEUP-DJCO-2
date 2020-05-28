@@ -259,6 +259,8 @@ public class CheckCameraPoint : MonoBehaviour
         Vector3 vecY = new Vector3(0, -0.7f, 0);
         Vector3 vecZ = new Vector3(0, 0, -0.7f);
 
+        Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
+
         if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
             Vector3 finalVec = new Vector3(0, 0, 0);
