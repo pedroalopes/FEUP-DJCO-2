@@ -144,8 +144,9 @@ public class CheckCameraPoint : MonoBehaviour
             position += Vector3.Scale(new Vector3(-4, -4, -4), hit.normal);
             Debug.Log(hit.normal);
             newObject.GetComponent<SpawningMovement>().normalDir = hit.normal;
-            position.x -= 1.5f;
+            position.x -= 1f;
             position.z -= 3f;
+
             Instantiate(newObject, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
         }
