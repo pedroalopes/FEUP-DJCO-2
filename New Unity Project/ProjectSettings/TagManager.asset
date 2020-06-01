@@ -9,6 +9,7 @@ TagManager:
   - Destroyable
   - Button
   - ButtonShooter
+  - EndLevel
   layers:
   - Default
   - TransparentFX

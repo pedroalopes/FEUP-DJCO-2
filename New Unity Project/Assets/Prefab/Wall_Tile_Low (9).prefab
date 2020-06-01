@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 871538406069334987}
   - component: {fileID: 1417233777441377002}
   - component: {fileID: 3285794818475480517}
+  - component: {fileID: 6999272281489822350}
   m_Layer: 0
   m_Name: Wall_Tile:ZBrushPolyMesh3DTile_Wall
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6999272281489822350
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854965457838629511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5496068603512398600, guid: d208c06cceb60f04396efa7822af9ba0, type: 3}
 --- !u!1 &3489393368315183513
 GameObject:
   m_ObjectHideFlags: 0

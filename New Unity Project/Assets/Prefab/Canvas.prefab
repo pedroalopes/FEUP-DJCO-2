@@ -487,14 +487,14 @@ MonoBehaviour:
   player: {fileID: 0}
   crosshairs:
   - {fileID: 4207055873601733225}
+  - {fileID: 4207055871837866463}
   - {fileID: 4207055872892775696}
   - {fileID: 4207055872219673457}
-  - {fileID: 4207055871837866463}
   symbols:
   - {fileID: 4207055872212808952}
+  - {fileID: 4207055873380194590}
   - {fileID: 4207055871911240444}
   - {fileID: 4207055873519877804}
-  - {fileID: 4207055873380194590}
 --- !u!1 &4207055873380194592
 GameObject:
   m_ObjectHideFlags: 0
