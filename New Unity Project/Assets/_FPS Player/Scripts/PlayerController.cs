@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         } else if (hit.transform.gameObject.tag == "EndLevel")
         {
             EndLevel end = hit.transform.gameObject.GetComponent<EndLevel>();
-            end.LoadScene();
+            end.ChangeLevel();
         } else if (onButton && hit.transform.gameObject.tag != "Button")
         {
             lastButton.removeCollision();
