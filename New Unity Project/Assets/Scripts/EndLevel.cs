@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class EndLevel : MonoBehaviour
 {
-    public string nextLevelName;
-    public void LoadScene()
+    public Animator transitionAnimation;
+    public string sceneName;
+    public void ChangeLevel()
     {
-        SceneManager.LoadScene(nextLevelName);
+        StartCoroutine(LoadScene());
+    }
+    IEnumerator LoadScene()
+    {
+        transitionAnimation.SetTrigger("end");
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(sceneName);
     }
 }
