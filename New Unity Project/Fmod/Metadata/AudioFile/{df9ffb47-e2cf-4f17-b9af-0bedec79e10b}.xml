@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{df9ffb47-e2cf-4f17-b9af-0bedec79e10b}">
+		<property name="assetPath">
+			<value>amb_levelWATER.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>263.00799999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{134dc151-7677-4072-95e9-8f6cdd09cf31}</destination>
+		</relationship>
+	</object>
+</objects>

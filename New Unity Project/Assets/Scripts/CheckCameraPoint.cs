@@ -24,12 +24,25 @@ public class CheckCameraPoint : MonoBehaviour
     private Transform waterObject;
     public Transform dropPrefab;
 
+	[FMODUnity.EventRef]
+    public string DestroyWallEvent = "";
+	FMOD.Studio.EventInstance destroyWall;
+	
+	[FMODUnity.EventRef]
+    public string WindEvent = "";
+	FMOD.Studio.EventInstance wind;
+	
     void Start()
     {
+		destroyWall = FMODUnity.RuntimeManager.CreateInstance(DestroyWallEvent);
+		wind = FMODUnity.RuntimeManager.CreateInstance(WindEvent);
     }
 
     private void Update()
     {
+		destroyWall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
+		wind.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
+		
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -147,11 +160,13 @@ public class CheckCameraPoint : MonoBehaviour
             position.x -= 1f;
             position.z -= 3f;
 
+			destroyWall.start();
             Instantiate(newObject, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
         }
         else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
         {
+			destroyWall.start();
             hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
 
         }
@@ -194,7 +209,8 @@ public class CheckCameraPoint : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, LayerMask.GetMask("LevitateObject")))
         {
-
+			wind.start();
+			
             Vector3 _colliderCenter = hit.collider.gameObject.transform.position;
             Vector3 _cameraPos = Camera.main.transform.position;
             Vector2 _cameraRotation = Camera.main.GetComponent<CameraMovement>().getMouseAbsolute();

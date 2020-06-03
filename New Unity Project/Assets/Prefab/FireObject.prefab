@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8748103094021710132}
   - component: {fileID: 2757593959957589608}
   - component: {fileID: 5823092925602850348}
+  - component: {fileID: 4498492702751620346}
   m_Layer: 2
   m_Name: FireObject
   m_TagString: Untagged
@@ -123,3 +124,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90294bb90d7c9f16ba38555c7b7e8c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
+--- !u!114 &4498492702751620346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638218090670556915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/main SFX/SFX #1/fire/whooshfire_export
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0

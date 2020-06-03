@@ -8,6 +8,10 @@ public enum Element { Earth, Fire, Water, Wind }
 
 public class PlayerController : MonoBehaviour
 {
+	[FMODUnity.EventRef]
+    public string PlayerRunEvent = "";
+	FMOD.Studio.EventInstance playerRun;
+    
     public Status status;
     public Element element;
     public bool[] AllowedElements = new bool[4];
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+		playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
 
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
         UpdateInteraction();
         UpdateMovingStatus();
         CheckJumping();
+		playerRun.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
 
 
         //Check for movement updates
@@ -117,9 +123,14 @@ public class PlayerController : MonoBehaviour
     {
         if ((int)status <= 1)
         {
-            status = Status.idle;
-            if (playerInput.input.magnitude > 0.02f)
+            if (playerInput.input.magnitude > 0.02f) {
                 status = Status.moving;
+                playFootsteps();
+            }
+            else {
+                status = Status.idle;
+                stopFootsteps();
+            }
         }
     }
 
@@ -176,6 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         movement.controller.height = halfheight;
         status = Status.crouching;
+        stopFootsteps();
     }
 
     void Uncrouch()
@@ -268,4 +280,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+	void playFootsteps(){
+		if(!IsPlaying(playerRun)) {
+			playerRun.start();
+		}
+	}
+	void stopFootsteps() {
+		if(IsPlaying(playerRun))
+			playerRun.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+	}
+	
+	bool IsPlaying(FMOD.Studio.EventInstance instance) {
+		FMOD.Studio.PLAYBACK_STATE state;   
+		instance.getPlaybackState(out state);
+		return state == FMOD.Studio.PLAYBACK_STATE.PLAYING;
+	}
 }
