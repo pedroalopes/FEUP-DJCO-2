@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8748103094021710132}
   - component: {fileID: 2757593959957589608}
   - component: {fileID: 5823092925602850348}
-  - component: {fileID: 4498492702751620346}
   m_Layer: 2
   m_Name: FireObject
   m_TagString: Untagged
@@ -271,6 +270,18 @@ PrefabInstance:
     - target: {fileID: 19813804, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19813804, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19813804, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19813804, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
