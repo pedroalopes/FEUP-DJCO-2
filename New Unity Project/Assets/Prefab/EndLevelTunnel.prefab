@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnimation: {fileID: 4508303711334169337}
-  sceneName: WaterScene
+  sceneName: 
 --- !u!54 &6543319806062864217
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9dab0ae819ac5ca88f785a7500122f8, type: 2}
+  - {fileID: 2100000, guid: 0b7f652f2be0840f19f95649e099d834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2946,7 +2946,7 @@ GameObject:
   - component: {fileID: 4154590387252280049}
   - component: {fileID: 4154590387252280054}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2992,7 +2992,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9dab0ae819ac5ca88f785a7500122f8, type: 2}
+  - {fileID: 2100000, guid: 0b7f652f2be0840f19f95649e099d834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3252,7 +3252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8994433097688596621}
   m_Layer: 0
-  m_Name: Door (7)
+  m_Name: FrontFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3413,7 +3413,7 @@ PrefabInstance:
     - target: {fileID: 6613668435279542100, guid: 227610a1c27c149bf90756bcc037d5bb,
         type: 3}
       propertyPath: m_Name
-      value: Door (5)
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 7895691673191712071, guid: 227610a1c27c149bf90756bcc037d5bb,
         type: 3}
