@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterMaterial
+  m_Name: WaterMaterial2
   m_Shader: {fileID: -6465566751694194690, guid: 0d7bf1fc393d15a479e18263156882a6,
     type: 3}
   m_ShaderKeywords: 
@@ -62,6 +62,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_445C3099: 10
+    - Vector1_566931FF: 1
+    - Vector1_BF7B6976: 0.5
+    - Vector1_F7160CD7: 0.95
+    - Vector1_F887DDC9: 0.4
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -84,6 +89,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_E695CB8E: {r: 0.1960784, g: 0.2901961, b: 0.6509804, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
