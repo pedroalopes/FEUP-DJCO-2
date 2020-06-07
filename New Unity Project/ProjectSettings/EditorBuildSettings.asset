@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 3ffecb241159461dca4d5b52c774551b
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/WaterEarthWind.unity
     guid: 74bf70701308a2db6bd5afed6c3ce6c2
   - enabled: 1
     path: Assets/Scenes/EarthScene.unity
