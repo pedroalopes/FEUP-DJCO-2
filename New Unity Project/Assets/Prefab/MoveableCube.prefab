@@ -163,6 +163,7 @@ MonoBehaviour:
   canHold: 1
   item: {fileID: 4678749084747088567}
   tempParent: {fileID: 0}
+  player: {fileID: 0}
   isHolding: 0
   pickUpDistance: 2
 --- !u!54 &4678749084747088564
