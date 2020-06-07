@@ -12,6 +12,14 @@ public class PickUp : MonoBehaviour
     public GameObject tempParent;
     public bool isHolding = false;
     public float pickUpDistance = 0.5f;
+    private Vector3 initialPosition;
+
+
+    private void Start()
+    {
+        initialPosition = transform.position;
+        item.GetComponent<Rigidbody>().detectCollisions = true;
+    }
 
     private void Update()
     {
@@ -56,5 +64,16 @@ public class PickUp : MonoBehaviour
         return distance <= pickUpDistance;
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Cube Colliding");
+        if(collision.gameObject.layer == LayerMask.NameToLayer("DestroyCube"))
+        {
+            gameObject.transform.position = initialPosition;
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
+
+    }
+
 }
