@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 4678749084747088567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 7944703810440445246}
   - {fileID: 2663823045134797574}
@@ -163,7 +163,6 @@ MonoBehaviour:
   canHold: 1
   item: {fileID: 4678749084747088567}
   tempParent: {fileID: 0}
-  player: {fileID: 0}
   isHolding: 0
   pickUpDistance: 2
 --- !u!54 &4678749084747088564
