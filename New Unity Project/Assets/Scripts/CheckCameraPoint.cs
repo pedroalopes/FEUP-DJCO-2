@@ -24,25 +24,25 @@ public class CheckCameraPoint : MonoBehaviour
     private Transform waterObject;
     public Transform dropPrefab;
 
-	[FMODUnity.EventRef]
+    [FMODUnity.EventRef]
     public string DestroyWallEvent = "";
-	FMOD.Studio.EventInstance destroyWall;
-	
-	[FMODUnity.EventRef]
+    FMOD.Studio.EventInstance destroyWall;
+
+    [FMODUnity.EventRef]
     public string WindEvent = "";
-	FMOD.Studio.EventInstance wind;
-	
+    FMOD.Studio.EventInstance wind;
+
     void Start()
     {
-		destroyWall = FMODUnity.RuntimeManager.CreateInstance(DestroyWallEvent);
-		wind = FMODUnity.RuntimeManager.CreateInstance(WindEvent);
+        destroyWall = FMODUnity.RuntimeManager.CreateInstance(DestroyWallEvent);
+        wind = FMODUnity.RuntimeManager.CreateInstance(WindEvent);
     }
 
     private void Update()
     {
-		destroyWall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
-		wind.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
-		
+        destroyWall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        wind.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -115,27 +115,32 @@ public class CheckCameraPoint : MonoBehaviour
             return;
 
         var position = hit.point;
-        if(hit.normal.y == 1)
+        if (hit.normal.y == 1)
         {
             position.x += -1;
             position.z += 1;
-        } else if (hit.normal.x == 1)
+        }
+        else if (hit.normal.x == 1)
         {
             position.y += 1;
             position.z += 1;
-        } else if (hit.normal.x == -1)
+        }
+        else if (hit.normal.x == -1)
         {
             position.y += -1;
             position.z += 1;
-        } else if (hit.normal.z == -1)
+        }
+        else if (hit.normal.z == -1)
         {
             position.y += 1;
             position.x += -1;
-        } else if (hit.normal.z == 1)
+        }
+        else if (hit.normal.z == 1)
         {
             position.y += -1;
             position.x += -1;
-        } else if (hit.normal.y < -0.9)
+        }
+        else if (hit.normal.y < -0.9)
         {
             position.z += -1;
             position.x += -1;
@@ -160,13 +165,13 @@ public class CheckCameraPoint : MonoBehaviour
             position.x -= 1f;
             position.z -= 3f;
 
-			destroyWall.start();
+            destroyWall.start();
             Instantiate(newObject, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
         }
         else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
         {
-			destroyWall.start();
+            destroyWall.start();
             hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
 
         }
@@ -209,8 +214,8 @@ public class CheckCameraPoint : MonoBehaviour
     {
         if (Physics.Raycast(ray, out hit, LayerMask.GetMask("LevitateObject")))
         {
-			wind.start();
-			
+            wind.start();
+
             Vector3 _colliderCenter = hit.collider.gameObject.transform.position;
             Vector3 _cameraPos = Camera.main.transform.position;
             Vector2 _cameraRotation = Camera.main.GetComponent<CameraMovement>().getMouseAbsolute();
@@ -219,13 +224,8 @@ public class CheckCameraPoint : MonoBehaviour
 
             LevitationProperty propLevitation = hit.collider.gameObject.GetComponentInParent<LevitationProperty>();
 
-            propLevitation.EnableLevitateTest(aimingAtY);
+            propLevitation.EnableLevitate(aimingAtY);
         }
-
-
-
-        LevitationProperty prop = hit.collider.gameObject.GetComponent<LevitationProperty>();
-        prop.EnableLevitate();
     }
 
     float calculateAimingY(Vector3 cameraPosition, Vector2 cameraRotation, Vector3 colliderCenter)

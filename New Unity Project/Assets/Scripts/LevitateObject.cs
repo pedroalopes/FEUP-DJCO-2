@@ -39,7 +39,7 @@ public class LevitateObject : MonoBehaviour
 
                 LevitationProperty propLevitation = hit.collider.gameObject.GetComponentInParent<LevitationProperty>();
 
-                propLevitation.EnableLevitateTest(aimingAtY);
+                //propLevitation.EnableLevitate(aimingAtY);
             }
         }
     }

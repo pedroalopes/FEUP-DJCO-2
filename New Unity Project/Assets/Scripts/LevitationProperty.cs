@@ -44,18 +44,19 @@ public class LevitationProperty : MonoBehaviour
         }
     }
 
-    public float getHeightLevel() {
+    public float getHeightLevel()
+    {
         return heightLevel;
     }
 
-    public void EnableLevitate()
+    /*public void EnableLevitate()
     {
         isLevitating = true;
         incrementHeight(height_increment);
         effect_countdown = 0;
-    }
+    }*/
 
-    public void EnableLevitateTest(float aimingAtY)
+    public void EnableLevitate(float aimingAtY)
     {
         isLevitating = true;
         heightLevel = aimingAtY;
