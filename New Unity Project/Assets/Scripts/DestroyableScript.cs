@@ -6,6 +6,7 @@ public class DestroyableScript : MonoBehaviour
 {
     public float racio = 1.5f;
     private float occultTime = 0.0f;
+    public GameObject[] childs = new GameObject[6];
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +17,16 @@ public class DestroyableScript : MonoBehaviour
     {
         if (occultTime > 0)
         {
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<MeshCollider>().enabled = false;
-            StartCoroutine(ActivationRoutine());
+            for (int i = 0; i < 6; i++)
+            {
+                childs[i].GetComponent<MeshRenderer>().enabled = false;
+                childs[i].GetComponent<MeshCollider>().enabled = false;
+                if(i == 5)
+                    StartCoroutine(ActivationRoutine(childs[i], true));
+                else
+                    StartCoroutine(ActivationRoutine(childs[i],false));
+            }
+            
         }
     }
 
@@ -28,11 +36,12 @@ public class DestroyableScript : MonoBehaviour
 
     }
 
-    IEnumerator ActivationRoutine()
+    IEnumerator ActivationRoutine(GameObject child,bool isColliding)
     {
         yield return new WaitForSeconds(occultTime);
-        GetComponent<MeshRenderer>().enabled = true;
-        GetComponent<MeshCollider>().enabled = true;
+        child.GetComponent<MeshRenderer>().enabled = true;
+        if(isColliding)
+            child.GetComponent<MeshCollider>().enabled = true;
         occultTime = 0.0f;
     }
 }
