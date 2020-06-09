@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class WindController : MonoBehaviour
 {
+    [FMODUnity.EventRef]
+    public string WindEvent = "";
+    FMOD.Studio.EventInstance wind;
+
+    void Start()
+    {
+        wind = FMODUnity.RuntimeManager.CreateInstance(WindEvent);
+    }
+
+    void Update()
+    {
+        wind.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+    }
+
     public void handleCharge(RaycastHit hit)
     {
 
         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
         {
-            //wind.start();
+            wind.start();
 
             Vector3 _colliderCenter = hit.collider.gameObject.transform.position;
             Vector3 _cameraPos = Camera.main.transform.position;

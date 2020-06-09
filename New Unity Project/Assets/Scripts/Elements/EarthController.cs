@@ -6,6 +6,21 @@ public class EarthController : MonoBehaviour
 {
 
     public Transform earthProp;
+
+    [FMODUnity.EventRef]
+    public string DestroyWallEvent = "";
+    FMOD.Studio.EventInstance destroyWall;
+
+    void Start()
+    {
+        destroyWall = FMODUnity.RuntimeManager.CreateInstance(DestroyWallEvent);
+    }
+
+    void Update()
+    {
+        destroyWall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+
+    }
     public void handleStart(RaycastHit hit)
     {
 
@@ -19,12 +34,13 @@ public class EarthController : MonoBehaviour
             position.z -= 3f;
 
             Instantiate(earthProp, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
+            destroyWall.start();
 
         }
         else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
         {
             hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
-
+            destroyWall.start();
         }
     }
 

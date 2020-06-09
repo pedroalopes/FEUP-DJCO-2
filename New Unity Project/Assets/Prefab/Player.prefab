@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 131203707935981118}
   - component: {fileID: 7721188978736215273}
   - component: {fileID: 7721188978736215274}
-  - component: {fileID: 413335734}
   - component: {fileID: 413335735}
   - component: {fileID: 413335744}
   - component: {fileID: 413335745}
@@ -91,7 +90,7 @@ MonoBehaviour:
   PlayerRunEvent: event:/main SFX/SFX #1/run
   status: 0
   element: 0
-  AllowedElements: 01010101
+  AllowedElements: 01000000
   ladderLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -269,18 +268,6 @@ MonoBehaviour:
     type: 3}
   DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
   WindEvent: event:/main SFX/SFX #1/Wind/blow3_export
---- !u!114 &413335734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680789253649324610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67111ba136b79cb419423d2875730e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &413335735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earthProp: {fileID: 2231211249992640233, guid: 62f95795271c44a2c87fe6f379f98ddf,
     type: 3}
+  DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
 --- !u!114 &413335745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770b4bd0b2fe4a04e80113160222cb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WindEvent: event:/main SFX/SFX #1/Wind/blow3_export
 --- !u!114 &413335746
 MonoBehaviour:
   m_ObjectHideFlags: 0

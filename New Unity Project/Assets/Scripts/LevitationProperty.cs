@@ -64,7 +64,6 @@ public class LevitationProperty : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            Debug.Log(LayerMask.LayerToName(hits[i].transform.gameObject.layer));
             if (hits[i].transform.gameObject.layer != LayerMask.NameToLayer("MoveableObject") && hits[i].transform.gameObject.layer != LayerMask.NameToLayer("LevitateObject"))
             {
                 heightLevel = level;

@@ -150,7 +150,6 @@ public class CheckCameraPoint : MonoBehaviour
         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             position += Vector3.Scale(new Vector3(-4, -4, -4), hit.normal);
-            Debug.Log(hit.normal);
             newObject.GetComponent<SpawningMovement>().normalDir = hit.normal;
             position.x -= 1f;
             position.z -= 3f;

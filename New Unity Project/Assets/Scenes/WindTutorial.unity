@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4422042, g: 0.4912188, b: 0.571116, a: 1}
+  m_IndirectSpecularColor: {r: 0.4422041, g: 0.49121934, b: 0.57111615, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1227,6 +1227,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 413335744, guid: 305ee4b919c9949a890c4deca0d4c39a, type: 3}
+      propertyPath: DestroyWallEvent
+      value: event:/main SFX/SFX #1/fire/destroy_stones_export
+      objectReference: {fileID: 0}
+    - target: {fileID: 413335745, guid: 305ee4b919c9949a890c4deca0d4c39a, type: 3}
+      propertyPath: WindEvent
+      value: event:/main SFX/SFX #1/Wind/blow3_export
+      objectReference: {fileID: 0}
     - target: {fileID: 680789253649324610, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: m_Name
@@ -5759,8 +5767,8 @@ Transform:
   - {fileID: 8246123287107002795}
   - {fileID: 8246123287742039547}
   - {fileID: 298694711}
-  - {fileID: 637171095}
   - {fileID: 1447212297}
+  - {fileID: 637171095}
   - {fileID: 615216308}
   m_Father: {fileID: 0}
   m_RootOrder: 27

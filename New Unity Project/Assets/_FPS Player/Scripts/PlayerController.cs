@@ -52,9 +52,6 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         playerAction = GetComponent<PlayerAction>();
 
-        if (GetComponentInChildren<AnimateLean>())
-            animateLean = GetComponentInChildren<AnimateLean>();
-
         slideLimit = movement.controller.slopeLimit - .1f;
         radius = movement.controller.radius;
         height = movement.controller.height;

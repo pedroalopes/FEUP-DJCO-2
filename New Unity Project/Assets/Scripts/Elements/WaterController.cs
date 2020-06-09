@@ -30,7 +30,6 @@ public class WaterController : MonoBehaviour
             Vector3 finalVec = new Vector3(0, 0, 0);
             finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
             waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec, Quaternion.identity);
-            Debug.Log(waterObject);
         }
     }
 

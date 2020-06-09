@@ -21,14 +21,14 @@
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
 [LOG] SoundI::release                          :  (0x7ffbc4d2a458)
 [LOG] SoundI::release                          :     destroy_stones_export (0x7ffbc4d2b358)
-[LOG] SoundI::release                          :  (0x7ffbc76d6928)
-[LOG] SoundI::release                          :     run1 (0x7ffa7cbfbbe8)
-[LOG] SoundI::release                          :  (0x7ffa7cf02cb8)
-[LOG] SoundI::release                          :     blow3_export (0x7ffbc56b45f8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SoundI::release [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+read::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
