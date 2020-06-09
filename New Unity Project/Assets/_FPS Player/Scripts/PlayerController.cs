@@ -5,16 +5,16 @@ using UnityEngine;
 
 public enum Status { idle, moving, crouching, climbingLadder }
 public enum Element { Earth, Fire, Water, Wind }
-
 public class PlayerController : MonoBehaviour
 {
-	[FMODUnity.EventRef]
+    [FMODUnity.EventRef]
     public string PlayerRunEvent = "";
-	FMOD.Studio.EventInstance playerRun;
-    
+    FMOD.Studio.EventInstance playerRun;
+
     public Status status;
     public Element element;
     public bool[] AllowedElements = new bool[4];
+    private Dictionary<Element, int> elementDictionary;
 
     [SerializeField]
     private LayerMask ladderLayer;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     PlayerMovement movement;
     PlayerInput playerInput;
+    PlayerAction playerAction;
     AnimateLean animateLean;
 
     bool canInteract;
@@ -46,12 +47,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-		playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
+        playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
-
-        if (GetComponentInChildren<AnimateLean>())
-            animateLean = GetComponentInChildren<AnimateLean>();
+        playerAction = GetComponent<PlayerAction>();
 
         slideLimit = movement.controller.slopeLimit - .1f;
         radius = movement.controller.radius;
@@ -59,6 +58,13 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        elementDictionary = new Dictionary<Element, int>();
+        elementDictionary[Element.Earth] = 0;
+        elementDictionary[Element.Water] = 1;
+        elementDictionary[Element.Wind] = 2;
+        elementDictionary[Element.Fire] = 3;
+
     }
 
     /******************************* UPDATE ******************************/
@@ -68,20 +74,21 @@ public class PlayerController : MonoBehaviour
         UpdateInteraction();
         UpdateMovingStatus();
         CheckJumping();
-		playerRun.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform)); 
+        playerRun.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
 
 
         //Check for movement updates
         CheckCrouching();
         CheckLadderClimbing();
         CheckElementChange();
-    
 
+        UseElement();
+        PickUpObject();
     }
 
     private void CheckJumping()
     {
-        if(playerInput.Jump() && onButton)
+        if (playerInput.Jump() && onButton)
         {
             lastButton.removeCollision();
             onButton = false;
@@ -89,24 +96,26 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
-     {
-        if(hit.transform.gameObject.tag == "Button" && !onButton)
+    {
+        if (hit.transform.gameObject.tag == "Button" && !onButton)
         {
             lastButton = hit.transform.gameObject.GetComponent<DoorTrigger>();
             lastButton.addCollision();
             onButton = true;
-        } else if (hit.transform.gameObject.tag == "EndLevel")
+        }
+        else if (hit.transform.gameObject.tag == "EndLevel")
         {
             EndLevel end = hit.transform.gameObject.GetComponent<EndLevel>();
             end.ChangeLevel();
-        } else if (onButton && hit.transform.gameObject.tag != "Button")
+        }
+        else if (onButton && hit.transform.gameObject.tag != "Button")
         {
             lastButton.removeCollision();
             lastButton = null;
             onButton = false;
         }
 
-     }
+    }
 
     void UpdateInteraction()
     {
@@ -123,17 +132,18 @@ public class PlayerController : MonoBehaviour
     {
         if ((int)status <= 1)
         {
-            if (playerInput.input.magnitude > 0.02f) {
+            if (playerInput.input.magnitude > 0.02f)
+            {
                 status = Status.moving;
                 playFootsteps();
             }
-            else {
+            else
+            {
                 status = Status.idle;
                 stopFootsteps();
             }
         }
     }
-
 
     /******************************** MOVE *******************************/
     void FixedUpdate()
@@ -153,7 +163,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.run && status == Status.crouching)
             Uncrouch();
-        
+
         movement.Move(playerInput.input, playerInput.run, (status == Status.crouching));
         if (movement.grounded && playerInput.Jump())
         {
@@ -163,9 +173,6 @@ public class PlayerController : MonoBehaviour
             movement.Jump(Vector3.up, 1f);
             playerInput.ResetJump();
         }
-        /*if(!movement.grounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))){
-            movement.Move(new Vector2(0, 0), false, false);
-        }*/
     }
     /*********************************************************************/
 
@@ -174,7 +181,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!movement.grounded || (int)status > 2) return;
 
-        if(playerInput.crouch)
+        if (playerInput.crouch)
         {
             if (status != Status.crouching)
                 Crouch();
@@ -249,8 +256,8 @@ public class PlayerController : MonoBehaviour
     }
     /*********************************************************************/
 
- 
-   
+
+
     /*********************************************************************/
 
     bool hasObjectInfront(float dis, LayerMask layer)
@@ -261,38 +268,64 @@ public class PlayerController : MonoBehaviour
         return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1);
     }
 
+    /*********************************************************************/
+
+
+
+    /*********************************************************************/
+    /* ACTIONS */
+
+    void PickUpObject()
+    {
+        if (playerInput.pickUpKeyDown)
+            playerAction.interactWithObject();
+    }
+
+    void UseElement()
+    {
+        if (playerInput.elementKeyDown)
+        {
+            playerAction.startElement(element);
+        }
+        else if (playerInput.elementKeyPressed)
+        {
+            playerAction.chargeElement(element);
+        }
+        else if (playerInput.elementKeyUp)
+        {
+            playerAction.releaseElement(element);
+        }
+    }
+
     void CheckElementChange()
     {
-        if (Input.GetKey(KeyCode.Alpha1) && AllowedElements[0])
-        {
-            element = Element.Earth;
-        } else if (Input.GetKey(KeyCode.Alpha2) && AllowedElements[1])
-        {
-            element = Element.Water;
-        }
-        else if (Input.GetKey(KeyCode.Alpha3) && AllowedElements[2])
-        {
-            element = Element.Wind;
-        }
-        else if (Input.GetKey(KeyCode.Alpha4) && AllowedElements[3])
-        {
-            element = Element.Fire;
-        }
-
+        if (AllowedElements[elementDictionary[playerInput.currentElement]])
+            element = playerInput.currentElement;
     }
-	void playFootsteps(){
-		if(!IsPlaying(playerRun)) {
-			playerRun.start();
-		}
-	}
-	void stopFootsteps() {
-		if(IsPlaying(playerRun))
-			playerRun.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-	}
-	
-	bool IsPlaying(FMOD.Studio.EventInstance instance) {
-		FMOD.Studio.PLAYBACK_STATE state;   
-		instance.getPlaybackState(out state);
-		return state == FMOD.Studio.PLAYBACK_STATE.PLAYING;
-	}
+
+    /*********************************************************************/
+
+
+
+    /*********************************************************************/
+    /* SOUND */
+    void playFootsteps()
+    {
+        if (!IsPlaying(playerRun))
+        {
+            playerRun.start();
+        }
+    }
+    void stopFootsteps()
+    {
+        if (IsPlaying(playerRun))
+            playerRun.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state == FMOD.Studio.PLAYBACK_STATE.PLAYING;
+    }
 }

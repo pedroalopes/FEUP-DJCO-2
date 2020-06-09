@@ -17,9 +17,14 @@ GameObject:
   - component: {fileID: 131203707935981118}
   - component: {fileID: 7721188978736215273}
   - component: {fileID: 7721188978736215274}
+  - component: {fileID: 413335735}
+  - component: {fileID: 413335744}
+  - component: {fileID: 413335745}
+  - component: {fileID: 413335746}
+  - component: {fileID: 413335747}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +248,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680789253649324610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 583b25beb1a9e43f0bb41c28e854ad4a, type: 3}
   m_Name: 
@@ -259,10 +264,80 @@ MonoBehaviour:
   camera: {fileID: 680789254800566081}
   firePoint: {fileID: 7721188979892155314}
   pulse: {fileID: 1864874825342273019, guid: b89bc6d6c98d27fd2aebbbd4948031bd, type: 3}
-  dropPrefab: {fileID: 6214009831407367681, guid: 4c9ec09350f393c4db15c33dbc4747a3,
+  dropPrefab: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
     type: 3}
   DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
   WindEvent: event:/main SFX/SFX #1/Wind/blow3_export
+--- !u!114 &413335735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680789253649324610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a629a49a7501a479fa4beb43127b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupDestination: {fileID: 7721188979112858232}
+--- !u!114 &413335744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680789253649324610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56623217fd13faa4caa4676509560445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earthProp: {fileID: 2231211249992640233, guid: 62f95795271c44a2c87fe6f379f98ddf,
+    type: 3}
+  DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
+--- !u!114 &413335745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680789253649324610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770b4bd0b2fe4a04e80113160222cb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindEvent: event:/main SFX/SFX #1/Wind/blow3_export
+--- !u!114 &413335746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680789253649324610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b1143d9a2933b458f7f20d84258863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 1247597910945018354, guid: b3f1fcb00179743ca8e75f1d724de541,
+    type: 3}
+  firePoint: {fileID: 7721188979892155314}
+--- !u!114 &413335747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680789253649324610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e656b66512adf43971e1eada4f7aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
+    type: 3}
 --- !u!1 &680789254800566084
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +353,7 @@ GameObject:
   - component: {fileID: 5230525886023985335}
   - component: {fileID: 9209629829195442176}
   m_Layer: 2
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

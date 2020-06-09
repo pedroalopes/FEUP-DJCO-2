@@ -42,7 +42,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0.73, z: 0}
 --- !u!1 &4678749084747088567
 GameObject:
@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightLevel: 0
+  startHeight: 0
+  maxLevitateHeight: 0
   levitateHeight: 1
   bounceDamp: 0.3
   centreOffset: {x: 0, y: 0.73, z: 0}
@@ -163,7 +165,7 @@ MonoBehaviour:
   canHold: 1
   item: {fileID: 4678749084747088567}
   tempParent: {fileID: 0}
-  isHolding: 0
+  isBeingHeld: 0
   pickUpDistance: 2
 --- !u!54 &4678749084747088564
 Rigidbody:
@@ -191,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7944703810440445246}
   - component: {fileID: 1252478177216721687}
+  - component: {fileID: 8095367007213557532}
   m_Layer: 12
   m_Name: Physics
   m_TagString: Untagged
@@ -225,3 +228,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.43, z: 1.5}
   m_Center: {x: 0, y: 0.72, z: 0}
+--- !u!114 &8095367007213557532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269162656961776794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41457dab74696044faf3a61d9da1dc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

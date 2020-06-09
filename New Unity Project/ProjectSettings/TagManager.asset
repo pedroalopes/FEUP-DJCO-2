@@ -33,8 +33,9 @@ TagManager:
   - Terrain
   - WaterGrid
   - DestroyCube
-  - WaterTemp
-  - IgnoreRaycast2
+  - SkyDome
+  - 
+  - 
   - 
   - 
   - 
