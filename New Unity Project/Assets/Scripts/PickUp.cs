@@ -5,75 +5,76 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     Vector3 objectPos;
-    public float distance;
-
     public bool canHold = true;
     public GameObject item;
     public GameObject tempParent;
-    public bool isHolding = false;
+    public bool isBeingHeld = false;
     public float pickUpDistance = 0.5f;
     private Vector3 initialPosition;
+    private LevitationProperty levitationProperty;
+
 
 
     private void Start()
     {
         initialPosition = transform.position;
         item.GetComponent<Rigidbody>().detectCollisions = true;
+        levitationProperty = this.GetComponentInParent<LevitationProperty>();
+
     }
 
     private void Update()
     {
-        distance = Vector3.Distance(item.transform.position, tempParent.transform.position);
-        if(!canInteract())
-        {
-            isHolding = false;
-        }
-
-        if (isHolding)
+        if (isBeingHeld)
         {
             item.GetComponent<Rigidbody>().velocity = Vector3.zero;
             item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            item.transform.SetParent(tempParent.transform);
-        } else
-        {
-            objectPos = item.transform.position;
-            item.transform.SetParent(null);
-            item.GetComponent<Rigidbody>().useGravity = true;
-            item.transform.position = objectPos;
         }
     }
+
 
     public bool Interact()
     {
-        if (!isHolding)
-        {
-            if (canInteract())
-            {
-                item.GetComponent<Rigidbody>().useGravity = false;
-                item.GetComponent<Rigidbody>().detectCollisions = true;
-            }
-            else return false;
-        }
+        if (!isBeingHeld)
+            PickUpObject();
+        else
+            Drop();
 
-        isHolding = !isHolding;
-        return true;
+        return isBeingHeld;
 
     }
-    public bool canInteract()
+
+    private void PickUpObject()
     {
-        return distance <= pickUpDistance;
+        item.GetComponent<Rigidbody>().useGravity = false;
+        item.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        item.transform.SetParent(tempParent.transform);
+        item.GetComponent<LevitationProperty>().StopLevitating();
+        isBeingHeld = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Drop()
     {
-        Debug.Log("Cube Colliding");
-        if(collision.gameObject.layer == LayerMask.NameToLayer("DestroyCube"))
+        item.GetComponent<Rigidbody>().useGravity = true;
+        item.transform.SetParent(null);
+        isBeingHeld = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("DestroyCube"))
         {
             gameObject.transform.position = initialPosition;
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            return;
         }
 
-    }
+        if (collision.gameObject.CompareTag("Player"))
+            return;
 
+        Drop();
+        levitationProperty.StopLevitating();
+    }
 }

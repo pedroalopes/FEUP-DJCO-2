@@ -14,7 +14,6 @@ public class CheckCameraPoint : MonoBehaviour
 
     public Transform camera;
 
-
     //WIND
     public GameObject firePoint;
     public GameObject pulse;
@@ -48,24 +47,17 @@ public class CheckCameraPoint : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            /*if (Input.GetKeyDown(KeyCode.E))
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
                 {
                     if (hit.transform.gameObject.GetComponent<PickUp>().Interact()) { return; }
                 }
-            }
-            else if (Input.GetKey(KeyCode.E) || Input.GetKeyUp(KeyCode.E))
-            {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("MoveableObject"))
-                {
-                    if (hit.transform.gameObject.GetComponent<PickUp>().canInteract()) { return; }
-                }
-            }
+            }*/
 
             switch (player.element)
             {
-                case Element.Earth:
+                /*case Element.Earth:
                     if (Input.GetMouseButtonDown(0))
                     {
                         HandleEarth(hit, ray);
@@ -76,12 +68,11 @@ public class CheckCameraPoint : MonoBehaviour
                     {
                         HandleWind(hit, ray);
                     }
-                    break;
-                case Element.Fire:
+                    break;*/
+                /*case Element.Fire:
                     if (Input.GetMouseButton(0))
                     {
                         HandleFire(hit);
-
                     }
                     else if (Input.GetMouseButtonUp(0))
                     {
@@ -100,9 +91,8 @@ public class CheckCameraPoint : MonoBehaviour
                     else if (Input.GetMouseButtonUp(0))
                     {
                         CreateDrop();
-
                     }
-                    break;
+                    break;*/
             }
 
         }
@@ -284,49 +274,12 @@ public class CheckCameraPoint : MonoBehaviour
         if (waterObject == null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Water") && Time.time > dropCooldown)
         {
             Vector3 finalVec = new Vector3(0, 0, 0);
-
-            /*if(hit.normal.y == -1)		//check for roof
-				finalVec += vecY;
-			else if(hit.normal.y == 1)
-				finalVec -= vecY;
-				
-			if(hit.normal.z == -1)
-				finalVec += vecZ;
-			else if(hit.normal.z == 1)
-				finalVec -= vecZ;
-			
-			if(hit.normal.x == -1)
-				finalVec += vecX;
-			else if(hit.normal.x == 1)
-				finalVec -= vecX;*/
-
             finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
-            //else
-            //	waterObject = Instantiate(dropPrefab, hit.point + hit.normal * 2 - vec,  Quaternion.identity);
             waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec, Quaternion.identity);
         }
 
         else if (waterObject != null)
-        {   /*
-			if(hit.normal.y == -1)
-				waterObject.position = hit.point + hit.normal + vecY;
-			else if(hit.normal.y == 1)
-				waterObject.position = hit.point + hit.normal - vecY;
-				
-			if(hit.normal.z == -1)
-				waterObject.position = hit.point + hit.normal + vecZ;
-			else if(hit.normal.z == 1)
-				waterObject.position = hit.point + hit.normal - vecZ;
-			
-			if(hit.normal.x == -1)
-				waterObject.position = hit.point + hit.normal + vecX;
-			else if(hit.normal.x == 1)
-				waterObject.position = hit.point + hit.normal - vecX;
-			
-			//else
-			//	waterObject.position = hit.point + hit.normal * 2 - vec;
-			*/
-
+        {
             waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
             waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
 

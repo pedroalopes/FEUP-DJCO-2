@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LevitationProperty : MonoBehaviour
 {
-    [SerializeField] private float heightLevel = 0f;
+    [SerializeField] private float heightLevel;
+    [SerializeField] private float startHeight;
+    [SerializeField] private float maxLevitateHeight;
     [SerializeField] private float levitateHeight = 1f;
     [SerializeField] private float bounceDamp = 0.05f;
     [SerializeField] private Vector3 centreOffset;
@@ -21,14 +23,12 @@ public class LevitationProperty : MonoBehaviour
     private bool levitate = false;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        maxLevitateHeight = 5;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isLevitating)
@@ -49,18 +49,28 @@ public class LevitationProperty : MonoBehaviour
         return heightLevel;
     }
 
-    /*public void EnableLevitate()
-    {
-        isLevitating = true;
-        incrementHeight(height_increment);
-        effect_countdown = 0;
-    }*/
-
     public void EnableLevitate(float aimingAtY)
     {
         isLevitating = true;
-        heightLevel = aimingAtY;
+        setHeightLevel(aimingAtY);
         effect_countdown = 0;
+    }
+
+    private void setHeightLevel(float level)
+    {
+        Debug.DrawRay(transform.position + transform.TransformDirection(centreOffset), Vector3.down, Color.red);
+
+        RaycastHit[] hits = Physics.RaycastAll(transform.position + transform.TransformDirection(centreOffset), Vector3.down, maxLevitateHeight);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Debug.Log(LayerMask.LayerToName(hits[i].transform.gameObject.layer));
+            if (hits[i].transform.gameObject.layer != LayerMask.NameToLayer("MoveableObject") && hits[i].transform.gameObject.layer != LayerMask.NameToLayer("LevitateObject"))
+            {
+                heightLevel = level;
+                return;
+            }
+        }
     }
 
     private void incrementHeight(float inc)
@@ -73,7 +83,7 @@ public class LevitationProperty : MonoBehaviour
         }
     }
 
-    private void StopLevitating()
+    public void StopLevitating()
     {
         isLevitating = false;
         heightLevel = 0;

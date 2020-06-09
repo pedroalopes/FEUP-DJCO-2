@@ -48,6 +48,14 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetKey(KeyCode.C); }
     }
 
+    public bool elementKeyDown { get; private set; }
+    public bool elementKeyUp { get; private set; }
+    public bool elementKeyPressed { get; private set; }
+
+    public bool pickUpKeyDown { get; private set; }
+
+    public Element currentElement { get; private set; }
+
     private Vector2 previous;
     private Vector2 _down;
 
@@ -74,6 +82,14 @@ public class PlayerInput : MonoBehaviour
             if (previous.y != 0)
                 _down.y = previous.y;
         }
+
+        chooseElement();
+
+        elementKeyDown = Input.GetMouseButtonDown(0);
+        elementKeyUp = Input.GetMouseButtonUp(0);
+        elementKeyPressed = Input.GetMouseButton(0);
+
+        pickUpKeyDown = Input.GetKeyDown(KeyCode.E);
     }
 
     public void FixedUpdate()
@@ -95,5 +111,28 @@ public class PlayerInput : MonoBehaviour
     public void ResetJump()
     {
         jumpTimer = -1;
+    }
+
+
+    private void chooseElement()
+    {
+        {
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                currentElement = Element.Earth;
+            }
+            else if (Input.GetKey(KeyCode.Alpha2))
+            {
+                currentElement = Element.Water;
+            }
+            else if (Input.GetKey(KeyCode.Alpha3))
+            {
+                currentElement = Element.Wind;
+            }
+            else if (Input.GetKey(KeyCode.Alpha4))
+            {
+                currentElement = Element.Fire;
+            }
+        }
     }
 }
