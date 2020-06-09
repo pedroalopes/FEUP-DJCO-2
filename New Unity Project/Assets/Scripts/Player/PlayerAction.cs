@@ -11,7 +11,7 @@ public class PlayerAction : MonoBehaviour
     private WaterController waterController;
 
     private float maxPickUpDistance;
-
+    public Transform pickupDestination;
 
     private bool isHoldingObject = false;
     void Start()
@@ -23,6 +23,18 @@ public class PlayerAction : MonoBehaviour
         maxPickUpDistance = 3;
     }
 
+    void Update()
+    {
+        Debug.Log(getObjectHit().transform.gameObject.name);
+        Debug.Log(isHoldingObject);
+
+        if (isHoldingObject && getObjectHit().transform.gameObject.layer != LayerMask.NameToLayer("MoveableObject"))
+        {
+            Debug.Log("Cenas");
+            Debug.Log(pickupDestination.GetComponentInChildren<PickUp>());
+            isHoldingObject = pickupDestination.GetComponentInChildren<PickUp>().Interact();
+        }
+    }
     RaycastHit getObjectHit()
     {
 

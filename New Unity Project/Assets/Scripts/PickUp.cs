@@ -74,7 +74,6 @@ public class PickUp : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
             return;
 
-        Drop();
         levitationProperty.StopLevitating();
     }
 }
