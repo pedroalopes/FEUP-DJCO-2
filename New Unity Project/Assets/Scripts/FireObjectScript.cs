@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireObjectScript : MonoBehaviour
 {
-    private const float livingTime = 10.0f;
+    private const float livingTime = 30.0f;
     private float damage;
     private int force;
     private float startTime;
@@ -12,7 +12,7 @@ public class FireObjectScript : MonoBehaviour
     void Start()
     {
         this.damage = 1.0f;
-        this.force = 600;
+        this.force = 1200;
         this.startTime = Time.time;
     }
 
