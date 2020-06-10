@@ -18,6 +18,8 @@ public class FireController : MonoBehaviour
     }
     public void handleCharge()
     {
+        if (fireObject == null)
+            return;
 
         if (fireObject.localScale.x < 1)
         {
@@ -30,6 +32,9 @@ public class FireController : MonoBehaviour
 
     public void handleRelease(RaycastHit hit)
     {
+        if (fireObject == null)
+            return;
+
         Rigidbody rb = fireObject.gameObject.GetComponent<Rigidbody>();
         Vector3 shoot = (hit.point - fireObject.position).normalized;
 
