@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9630513, y: 1, z: 0.9742047, w: 0}
+    m_Value: {x: 0.95277786, y: 1, z: 0.96802187, w: -0.14755967}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.9416665, y: 1, z: 0.98488706, w: 0}
+    m_Value: {x: 1, y: 0.9962328, z: 0.9220178, w: -0.20431326}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.9837675, y: 1, z: 0.8863063, w: 0}
+    m_Value: {x: 0.9823018, y: 1, z: 0.97534853, w: -0.38613147}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
@@ -121,11 +121,11 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.88
+    m_Value: 0.89
     min: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.681
+    m_Value: 0.58
     min: 0
     max: 1
   clamp:
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 5.18
+    m_Value: 6
     min: -100
     max: 100
   tint:
