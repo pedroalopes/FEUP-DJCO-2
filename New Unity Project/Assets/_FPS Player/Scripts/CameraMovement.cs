@@ -22,6 +22,8 @@ public class CameraMovement : MonoBehaviour
 
     private Quaternion rotation;
 
+    private CursorLockMode cursorStatus;
+
     void Start()
     {
         // Set target direction to the camera's initial orientation.
@@ -30,12 +32,14 @@ public class CameraMovement : MonoBehaviour
         // Set target direction for the character body to its inital state.
         if (characterBody)
             targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
+        
+        cursorStatus = CursorLockMode.Locked;
     }
 
     void Update()
     {
         // Ensure the cursor is always locked when set
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = cursorStatus;
 
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
@@ -85,5 +89,15 @@ public class CameraMovement : MonoBehaviour
     public Vector2 getMouseAbsolute()
     {
         return _mouseAbsolute;
+    }
+
+    public void UnlockCursor()
+    {
+        cursorStatus = CursorLockMode.None;
+    }
+    
+    public void LockCursor()
+    {
+        cursorStatus = CursorLockMode.Locked;
     }
 }

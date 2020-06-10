@@ -1,1 +1,21 @@
-{"level":{"currentLevel":"null"},"sound":{"ambientMusic":false,"playerSounds":false},"display":{"ambientLight":1.2040066719055176},"controls":{"moveForward":"W","moveBack":"S","moveLeft":"A","moveRight":"D","catchObject":"E","levitateObject":"E","fire":"Mouse button 1"}}
+{
+  "level": {
+    "currentLevel": "null"
+  },
+  "sound": {
+    "ambientMusic": true,
+    "playerSounds": false
+  },
+  "display": {
+    "ambientLight": 1.4216219186782838
+  },
+  "controls": {
+    "moveForward": "W",
+    "moveBack": "S",
+    "moveLeft": "A",
+    "moveRight": "D",
+    "catchObject": "E",
+    "levitateObject": "E",
+    "fire": "Mouse button 1"
+  }
+}

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject player;
     private UserSettings userSettings;
     public static bool gameIsPaused = false;
     public void Start()
@@ -27,20 +28,29 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        gameIsPaused = true;
+		Component[] components = player.GetComponentsInChildren(typeof(CameraMovement));
+		CameraMovement cameraMovement = (CameraMovement) components[0];
+		cameraMovement.UnlockCursor();
+
+		pauseMenu.SetActive(true);
+		gameIsPaused = true;
+		Time.timeScale = 0f;
     }
     
     public void NewGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void Continue()
     {
+Debug.Log("continue");
+		Time.timeScale = 1f;
+		Component[] components = player.GetComponentsInChildren(typeof(CameraMovement));
+		CameraMovement cameraMovement = (CameraMovement) components[0];
+		cameraMovement.LockCursor();
+
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
         gameIsPaused = false;
     }
     
