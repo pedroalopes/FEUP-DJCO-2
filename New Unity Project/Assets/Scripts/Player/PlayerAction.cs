@@ -16,6 +16,9 @@ public class PlayerAction : MonoBehaviour
     public Transform pickupDestination;
 
     private bool isHoldingObject = false;
+
+    private PlayerController controller;
+
     void Start()
     {
         earthController = GetComponent<EarthController>();
@@ -23,6 +26,10 @@ public class PlayerAction : MonoBehaviour
         fireController = GetComponent<FireController>();
         waterController = GetComponent<WaterController>();
         maxPickUpDistance = 3;
+
+        controller = GetComponent<PlayerController>();
+        controller.Launched += FireAfterSwapping;
+
     }
 
     void Update()
@@ -37,7 +44,7 @@ public class PlayerAction : MonoBehaviour
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit,mask,mask);
+        Physics.Raycast(ray, out hit, mask, mask);
 
         return hit;
     }
@@ -147,6 +154,14 @@ public class PlayerAction : MonoBehaviour
 
             waterController.handleRelease(hit);
         }
+
+    }
+
+    public void FireAfterSwapping()
+    {
+        RaycastHit hit = getObjectHit();
+
+        fireController.handleRelease(hit);
 
     }
 

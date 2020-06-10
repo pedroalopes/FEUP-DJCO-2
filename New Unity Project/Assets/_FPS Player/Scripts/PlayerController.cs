@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
     int wallDir = 1;
 
+    public delegate void LaunchFireball();
+    public event LaunchFireball Launched;
+
     private void Start()
     {
         playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
@@ -300,7 +303,14 @@ public class PlayerController : MonoBehaviour
     void CheckElementChange()
     {
         if (AllowedElements[elementDictionary[playerInput.currentElement]])
+        {
+            Element oldEle = element;
             element = playerInput.currentElement;
+
+            if (oldEle == Element.Fire && playerInput.currentElement != Element.Fire)
+                Launched?.Invoke();
+
+        }
     }
 
     /*********************************************************************/
