@@ -13888,7 +13888,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-34484
+  m_Name: pb_Mesh-148026
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15226,6 +15226,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4005334705654154946, guid: 3ce79c4e4ef8b40168b14f229b80495a,
+        type: 3}
+      propertyPath: sceneName
+      value: FireScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4154590385652250083, guid: 3ce79c4e4ef8b40168b14f229b80495a,
         type: 3}
       propertyPath: m_Mesh
