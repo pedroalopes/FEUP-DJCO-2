@@ -35,10 +35,17 @@ public class WaterController : MonoBehaviour
 
     public void handleCharge(RaycastHit hit)
     {
-        if (waterObject != null && ((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f))
-            CreateDrop();
+        if (waterObject == null)
+            return;
 
-        waterObject.localScale = waterObject.localScale + new Vector3(0.01f, 0.01f, 0.01f);
+        Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
+        if (((hit.transform.gameObject.layer != LayerMask.NameToLayer("Water") && hit.transform.gameObject.layer != LayerMask.NameToLayer("WaterBall")) || waterObject.localScale.x > 1.5f))
+        {
+            CreateDrop();
+            return;
+        }
+
+        waterObject.localScale = waterObject.localScale + new Vector3(0.005f, 0.005f, 0.005f);
         waterObject.gameObject.GetComponent<WaterDrop>().freezeMotion();
 
         Rigidbody rb = waterObject.GetComponent<Rigidbody>();
@@ -48,7 +55,8 @@ public class WaterController : MonoBehaviour
 
     public void handleRelease(RaycastHit hit)
     {
-        CreateDrop();
+        if (waterObject != null)
+            CreateDrop();
     }
 
     private void CreateDrop()

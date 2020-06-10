@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heightLevel: 0
   startHeight: 0
-  maxLevitateHeight: 0
+  maxLevitateHeight: 10
   levitateHeight: 1
   bounceDamp: 0.3
   centreOffset: {x: 0, y: 0.73, z: 0}
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d802639af8248b0a953340a67b1bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
   canHold: 1
   item: {fileID: 4678749084747088567}
   tempParent: {fileID: 0}

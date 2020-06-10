@@ -15,22 +15,22 @@ PrefabInstance:
     - target: {fileID: 8827856212626801299, guid: 84e82d90551934cf8ae391934cbb9a86,
         type: 3}
       propertyPath: m_Name
-      value: WaterDropSphere 1 Variant
+      value: WaterDropSphere 1 Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.370705
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4761033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.127735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
         type: 3}

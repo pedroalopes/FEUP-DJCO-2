@@ -6,7 +6,7 @@ public class LevitationProperty : MonoBehaviour
 {
     [SerializeField] private float heightLevel;
     [SerializeField] private float startHeight;
-    [SerializeField] private float maxLevitateHeight;
+    [SerializeField] private float maxLevitateHeight = 10;
     [SerializeField] private float levitateHeight = 1f;
     [SerializeField] private float bounceDamp = 0.05f;
     [SerializeField] private Vector3 centreOffset;
@@ -26,7 +26,6 @@ public class LevitationProperty : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        maxLevitateHeight = 5;
     }
 
     void Update()
