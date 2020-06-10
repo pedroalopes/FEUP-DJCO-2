@@ -62,8 +62,8 @@ public class DoorTrigger : MonoBehaviour
             door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
             if(door2 != null)
             {
-                door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
-                door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
+                door2.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
+                door2.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
             }
             isOpened = true;
         }

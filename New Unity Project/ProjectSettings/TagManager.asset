@@ -34,9 +34,8 @@ TagManager:
   - WaterGrid
   - DestroyCube
   - SkyDome
-  - 
-  - 
-  - 
+  - IgnoreRaycast2
+  - IgnoreRaycast3
   - 
   - 
   - 

@@ -9,6 +9,8 @@ public class PlayerAction : MonoBehaviour
     private WindController windController;
     private FireController fireController;
     private WaterController waterController;
+    [SerializeField]
+    LayerMask mask;
 
     private float maxPickUpDistance;
     public Transform pickupDestination;
@@ -35,7 +37,7 @@ public class PlayerAction : MonoBehaviour
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit);
+        Physics.Raycast(ray, out hit,mask,mask);
 
         return hit;
     }
