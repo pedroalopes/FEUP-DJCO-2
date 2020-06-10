@@ -2231,7 +2231,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3192
+  m_Name: pb_Mesh-135846
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5488,6 +5488,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4005334705654154946, guid: 3ce79c4e4ef8b40168b14f229b80495a,
+        type: 3}
+      propertyPath: sceneName
+      value: WaterEarthScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4154590385652250083, guid: 3ce79c4e4ef8b40168b14f229b80495a,
         type: 3}
       propertyPath: m_Mesh
@@ -5849,6 +5854,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305ee4b919c9949a890c4deca0d4c39a, type: 3}
+--- !u!1 &1578166365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7721188979112858233, guid: 305ee4b919c9949a890c4deca0d4c39a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1578166364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1587135348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6742,7 +6753,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tempParent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1578166365}
     - target: {fileID: 4678749084747088571, guid: a09fe8a1d36f344ed8b4ed5a21e88731,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
