@@ -139,9 +139,9 @@ GameObject:
   - component: {fileID: 2853698144766340847}
   - component: {fileID: 6427852564732984296}
   - component: {fileID: 5990103699492383658}
-  m_Layer: 22
+  m_Layer: 21
   m_Name: low_Button_Button_Top_Low:Mesh
-  m_TagString: Button
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
