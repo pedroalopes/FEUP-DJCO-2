@@ -12,6 +12,7 @@ TagManager:
   - EndLevel
   - Controls
   - Invisible
+  - Destroy
   layers:
   - Default
   - TransparentFX

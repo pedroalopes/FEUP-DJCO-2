@@ -63,7 +63,7 @@ public class PickUp : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("DestroyCube"))
+        if (collision.gameObject.CompareTag("Destroy"))
         {
             gameObject.transform.position = initialPosition;
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
