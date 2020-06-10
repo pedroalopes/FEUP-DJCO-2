@@ -5741,6 +5741,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 413335735, guid: 305ee4b919c9949a890c4deca0d4c39a, type: 3}
+      propertyPath: mask.m_Bits
+      value: 2096947
+      objectReference: {fileID: 0}
     - target: {fileID: 680789253649324610, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: m_Name
@@ -5814,12 +5818,12 @@ PrefabInstance:
     - target: {fileID: 3581608301431560998, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: AllowedElements.Array.data[2]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3581608301431560998, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: AllowedElements.Array.data[3]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4242881946545639629, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}

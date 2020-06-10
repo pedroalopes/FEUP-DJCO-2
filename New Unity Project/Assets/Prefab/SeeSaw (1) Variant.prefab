@@ -31,7 +31,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &162081982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: cafe2dd70398eb2499678fad22b46bbf,
         type: 3}
       propertyPath: m_Name
-      value: SeeSaw (1)
+      value: SeeSaw (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4095898239783335383, guid: cafe2dd70398eb2499678fad22b46bbf,
         type: 3}
