@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-    
+using UnityEngine.UI;
+
 using static ManageUserSettings;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject settingsMenu;
+    public GameObject canvas;
 
     private UserSettings userSettings;
     public void Start()
     {
-        Debug.Log("Start main menu");
         userSettings = ManageUserSettings.LoadUserSettings();
+        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
+        canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(userSettings.level.currentLevel);
     }
 
     public void showSettings()
@@ -28,7 +31,6 @@ public class MainMenu : MonoBehaviour
     }
 
     public void QuitGame() {
-        Debug.Log("Quit");
         Application.Quit();
     }
 }
