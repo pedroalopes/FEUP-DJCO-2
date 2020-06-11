@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
+
+    [FMODUnity.EventRef]
+    public string FireShootEvent = "";
+    FMOD.Studio.EventInstance fireShoot;
+	
     public Transform firePrefab;
     public GameObject firePoint;
     private Transform fireObject;
@@ -12,12 +17,14 @@ public class FireController : MonoBehaviour
     {
         if (fireObject == null)
         {
+			fireShoot = FMODUnity.RuntimeManager.CreateInstance(FireShootEvent);
             fireObject = Instantiate(firePrefab, Camera.main.transform.position + (Camera.main.transform.forward * 1), transform.rotation);
             fireObject.SetParent(firePoint.transform);
         }
     }
     public void handleCharge()
     {
+        fireShoot.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         if (fireObject == null)
             return;
 
@@ -41,5 +48,6 @@ public class FireController : MonoBehaviour
         rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
         fireObject.SetParent(null);
         fireObject = null;
+		fireShoot.start();
     }
 }
