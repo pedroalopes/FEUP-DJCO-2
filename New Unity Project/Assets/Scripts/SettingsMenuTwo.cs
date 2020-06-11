@@ -5,15 +5,10 @@ using UnityEngine;
  using UnityEngine.UI;
  using TMPro;
 
-using FMODUnity;
-
-public class SettingsMenu : MonoBehaviour
+ public class SettingsMenuTwo : MonoBehaviour
 {
     private UserSettings userSettings;
-	public GameObject ambientSound;
-	public GameObject player;
-	public GameObject directionalLight;
-
+    
     public void Start()
     {
         userSettings = ManageUserSettings.LoadUserSettings();
@@ -42,18 +37,6 @@ public class SettingsMenu : MonoBehaviour
         {
 			tmp_dropdown.value = userSettings.display.getScreenResolution().position;
         }
-
-		if(!userSettings.sound.getSound("ambientMusic") && ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
-			ambientSound.GetComponent<StudioEventEmitter>().Stop();
-		} else if(userSettings.sound.getSound("ambientMusic") && !ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
-			ambientSound.GetComponent<StudioEventEmitter>().Play();
-		}
-
-		if(!userSettings.sound.getSound("playerSounds")) {
-			player.GetComponent<PlayerController>().soundEnabled = false;
-		} else {
-			player.GetComponent<PlayerController>().soundEnabled = true;
-		}
     }
 
     private void setSounds()
@@ -89,25 +72,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void Apply() 
     {
-		if(!userSettings.sound.getSound("ambientMusic") && ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
-			ambientSound.GetComponent<StudioEventEmitter>().Stop();
-		} else if(userSettings.sound.getSound("ambientMusic") && !ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
-			ambientSound.GetComponent<StudioEventEmitter>().Play();
-		}
-
-		if(!userSettings.sound.getSound("playerSounds")) {
-			player.GetComponent<PlayerController>().soundEnabled = false;
-		} else {
-			player.GetComponent<PlayerController>().soundEnabled = true;
-		}
-
-		Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
-		camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
-
-		Light light = (Light)directionalLight.GetComponent(typeof(Light));
-		light.intensity = userSettings.display.getDisplay("ambientLight") + 0.5f;
-
-        ManageUserSettings.SaveUserSettings(userSettings);
+	        ManageUserSettings.SaveUserSettings(userSettings);
     }
 
 	public void ChangedResolution(TMP_Dropdown change) {		

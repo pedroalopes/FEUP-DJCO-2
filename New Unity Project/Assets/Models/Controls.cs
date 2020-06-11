@@ -3,15 +3,18 @@
 [System.Serializable]
 public class Controls
 {
-    public string moveForward;
-    public string moveBack;
-    public string moveLeft;
-    public string moveRight;
-    public string catchObject;
-    public string levitateObject;
-    public string fire;
+    public KeyCode moveForward;
+    public KeyCode moveBack;
+    public KeyCode moveLeft;
+    public KeyCode moveRight;
+    public KeyCode catchObject;
+    public KeyCode levitateObject;
+    public KeyCode crouch;
+    public KeyCode jump;
+    public KeyCode run;
+    public KeyCode fire;
 
-    public string getControl(string name) {
+    public KeyCode getControl(string name) {
         if(name == "moveForward") {
             return moveForward;
         } else if(name == "moveBack") {
@@ -26,25 +29,37 @@ public class Controls
             return levitateObject;      
         } else if(name == "fire") {
             return fire;
+        } else if(name == "crouch") {
+            return crouch;
+        } else if(name == "jump") {
+            return jump;
+        } else if(name == "run") {
+            return run;
         }
-        return "";
+        return KeyCode.Z;
     }
     
-    public void setControl(string name, string text) {
+    public void setControl(string name, KeyCode keyCode) {
         if(name == "moveForward") {
-            moveForward = text.ToUpper();
+            moveForward = keyCode;
         } else if(name == "moveBack") {
-            moveBack = text.ToUpper();
+            moveBack = keyCode;
         } else if(name == "moveLeft") {
-            moveLeft = text.ToUpper();
+            moveLeft = keyCode;
         } else if(name == "moveRight") {
-            moveRight = text.ToUpper();
+            moveRight = keyCode;
         } else if(name == "catchObject") {
-            catchObject = text.ToUpper();
+            catchObject = keyCode;
         } else if(name == "levitateObject") {
-            levitateObject = text.ToUpper();      
+            levitateObject = keyCode;      
         } else if(name == "fire") {
-            fire = text.ToUpper();
+            fire = keyCode;
+        } else if(name == "crouch") {
+            crouch = keyCode;
+        } else if(name == "jump") {
+            jump = keyCode;
+        } else if(name == "run") {
+            run = keyCode;
         }
     }
 }

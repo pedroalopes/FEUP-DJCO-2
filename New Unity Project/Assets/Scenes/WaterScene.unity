@@ -1329,6 +1329,21 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 1943630334}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 373910144}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 361980848}
     - target: {fileID: 4125881355806921967, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

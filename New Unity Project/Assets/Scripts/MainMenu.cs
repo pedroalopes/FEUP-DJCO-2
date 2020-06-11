@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
+using System;
 
 using static ManageUserSettings;
 
@@ -11,7 +13,6 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject canvas;
-
     private UserSettings userSettings;
     public void Start()
     {

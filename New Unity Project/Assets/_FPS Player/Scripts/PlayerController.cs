@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ManageUserSettings;
 
 public enum Status { idle, moving, crouching, climbingLadder }
 public enum Element { Earth, Fire, Water, Wind }
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
     public delegate void LaunchFireball();
     public event LaunchFireball Launched;
 
+    public bool soundEnabled;
+    private UserSettings userSettings;
+
     private void Start()
     {
 		playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
@@ -79,6 +83,8 @@ public class PlayerController : MonoBehaviour
         elementDictionary[Element.Wind] = 2;
         elementDictionary[Element.Fire] = 3;
 
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
     }
 
     /******************************* UPDATE ******************************/
@@ -101,6 +107,11 @@ public class PlayerController : MonoBehaviour
 
         UseElement();
         PickUpObject();
+        
+        //update sound status
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+        Debug.Log(soundEnabled);
     }
 
     private void CheckJumping()
@@ -356,7 +367,7 @@ public class PlayerController : MonoBehaviour
 
     void playFootsteps()
     {
-        if (!jumping && !IsPlaying(playerRun))
+        if (!jumping && !IsPlaying(playerRun) && soundEnabled)
         {
             playerRun.start();
         }
@@ -368,7 +379,10 @@ public class PlayerController : MonoBehaviour
     }	
 	
 	void playJump(){
-		playerJump.start();
+        if (soundEnabled)
+        {
+            playerJump.start();
+        }
 	}
 	
 	void stopJump() {
@@ -377,7 +391,7 @@ public class PlayerController : MonoBehaviour
 	}
 	
 	void playLanding(){
-		if(!IsPlaying(playerLand)) {
+		if(!IsPlaying(playerLand) && soundEnabled) {
 			playerLand.start();
 		}
 	}

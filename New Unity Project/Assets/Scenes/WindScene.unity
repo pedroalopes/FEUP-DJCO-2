@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -548,6 +548,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8dfd4828387f5443a33a12149b37cde, type: 3}
+--- !u!1 &142300635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7869562475391177352, guid: 5517f68d9b2bf481f82a59333bea63dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1172658198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &150161651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,6 +1700,21 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 901092775}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 376226085}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 142300635}
     - target: {fileID: 4125881355806921967, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

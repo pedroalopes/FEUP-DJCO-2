@@ -18,6 +18,9 @@ public class PauseMenu : MonoBehaviour
 
 		CanvasScaler canvasScaler = pauseMenu.GetComponent<CanvasScaler>();
 		canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
+
+		Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
+		camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
     }
     
     void Update()

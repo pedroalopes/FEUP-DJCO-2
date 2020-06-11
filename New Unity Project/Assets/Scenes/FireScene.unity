@@ -14661,6 +14661,21 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 287034977}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1867803868}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 2053922710}
     - target: {fileID: 4125881355740084410, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
       propertyPath: m_textInfo.characterCount
