@@ -11438,6 +11438,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4005334705654154946, guid: 3ce79c4e4ef8b40168b14f229b80495a,
+        type: 3}
+      propertyPath: sceneName
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4154590385652250083, guid: 3ce79c4e4ef8b40168b14f229b80495a,
         type: 3}
       propertyPath: m_Mesh
