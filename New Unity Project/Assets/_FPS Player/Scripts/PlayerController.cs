@@ -9,6 +9,10 @@ public enum Element { Earth, Fire, Water, Wind }
 public class PlayerController : MonoBehaviour
 {
 	[FMODUnity.EventRef]
+    public string ChangeElementEvent = "";
+	FMOD.Studio.EventInstance changeElement;
+	
+	[FMODUnity.EventRef]
     public string PlayerRunEvent = "";
 	FMOD.Studio.EventInstance playerRun;
 	
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
     float halfradius;
     float halfheight;
 
+	private Element oldEle;
+
     int wallDir = 1;
 
     public delegate void LaunchFireball();
@@ -66,6 +72,7 @@ public class PlayerController : MonoBehaviour
 		playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
 		playerJump = FMODUnity.RuntimeManager.CreateInstance(PlayerJumpEvent);
 		playerLand = FMODUnity.RuntimeManager.CreateInstance(PlayerLandEvent);
+		changeElement = FMODUnity.RuntimeManager.CreateInstance(ChangeElementEvent);
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
         playerAction = GetComponent<PlayerAction>();
@@ -97,7 +104,7 @@ public class PlayerController : MonoBehaviour
         playerRun.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         playerJump.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         playerLand.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
-
+		changeElement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
 
         //Check for movement updates
         CheckCrouching();
@@ -349,9 +356,12 @@ public class PlayerController : MonoBehaviour
     {
         if (AllowedElements[elementDictionary[playerInput.currentElement]])
         {
-            Element oldEle = element;
+			if(oldEle != element)
+				playChangeElement();
+            oldEle = element;
             element = playerInput.currentElement;
-
+			//playChangeElement();
+			
             if (oldEle == Element.Fire && playerInput.currentElement != Element.Fire)
                 Launched?.Invoke();
 
@@ -385,13 +395,20 @@ public class PlayerController : MonoBehaviour
         }
 	}
 	
+	void playChangeElement(){
+        if (soundEnabled)
+        {
+            changeElement.start();
+        }
+	}
+	
 	void stopJump() {
 		if(IsPlaying(playerJump))
 			playerJump.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 	}
 	
 	void playLanding(){
-		if(!IsPlaying(playerLand) && soundEnabled) {
+		if(soundEnabled) {
 			playerLand.start();
 		}
 	}

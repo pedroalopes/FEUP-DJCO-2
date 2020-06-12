@@ -88,7 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedef31058aa28142829c34206f79b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRunEvent: event:/main SFX/SFX #1/run
+  ChangeElementEvent: event:/main SFX/SFX #1/click_button_export
+  PlayerRunEvent: event:/main SFX/SFX #1/run_sand_export
   PlayerJumpEvent: event:/main SFX/SFX #1/jump_export
   PlayerLandEvent: event:/main SFX/SFX #1/land_export
   status: 0
@@ -98,6 +99,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   playerCollider: {fileID: 0}
+  soundEnabled: 0
 --- !u!114 &7721188978265459792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +471,7 @@ MonoBehaviour:
   smoothing: {x: 2, y: 2}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
+  inPause: 0
 --- !u!114 &5230525886023985335
 MonoBehaviour:
   m_ObjectHideFlags: 0
