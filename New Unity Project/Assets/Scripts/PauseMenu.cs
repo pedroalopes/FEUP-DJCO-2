@@ -47,6 +47,9 @@ public class PauseMenu : MonoBehaviour
     
     public void NewGame()
     {
+		Time.timeScale = 1f;
+        userSettings.level.currentLevel = "EarthScene";
+        ManageUserSettings.SaveUserSettings(userSettings);
         SceneManager.LoadScene("MainMenu");
     }
     
@@ -63,6 +66,7 @@ public class PauseMenu : MonoBehaviour
     
     public void Restart()
     {
+		Time.timeScale = 1f;
         SceneManager.LoadScene(userSettings.level.currentLevel);
     }
     

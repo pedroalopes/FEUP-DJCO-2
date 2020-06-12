@@ -15,6 +15,9 @@ public class EndLevel : MonoBehaviour
     {
         transitionAnimation.SetTrigger("end");
         yield return new WaitForSeconds(1.5f);
+        UserSettings userSettings = ManageUserSettings.LoadUserSettings();
+        userSettings.level.currentLevel = sceneName;
+        ManageUserSettings.SaveUserSettings(userSettings);
         SceneManager.LoadScene(sceneName);
     }
 }
