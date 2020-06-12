@@ -17680,6 +17680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1392900249}
   player: {fileID: 1867803868}
+  ambientSound: {fileID: 2053922710}
+  directionalLight: {fileID: 287034977}
 --- !u!1001 &1899620509
 PrefabInstance:
   m_ObjectHideFlags: 0

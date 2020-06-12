@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class DestroyableScript : MonoBehaviour
 {
+    
     [FMODUnity.EventRef]
     private string DestroyEvent = "event:/main SFX/SFX #1/fire/destroy_stones_export";
     FMOD.Studio.EventInstance destroy;
 	
+    private UserSettings userSettings;
+    
     public float racio = 1.5f;
     private float occultTime = 0.0f;
     public GameObject[] childs = new GameObject[6];
     // Start is called before the first frame update
     void Start()
     {
-		destroy = FMODUnity.RuntimeManager.CreateInstance(DestroyEvent);
+        userSettings = ManageUserSettings.LoadUserSettings();
+        if (userSettings.sound.getSound("playerSounds"))
+        {
+            destroy = FMODUnity.RuntimeManager.CreateInstance(DestroyEvent);
+        }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-		destroy.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
-		
+        userSettings = ManageUserSettings.LoadUserSettings();
+        if (userSettings.sound.getSound("playerSounds"))
+        {
+            destroy.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        }
+
         if (occultTime > 0)
         {
 			

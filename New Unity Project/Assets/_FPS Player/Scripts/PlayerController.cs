@@ -118,7 +118,6 @@ public class PlayerController : MonoBehaviour
         //update sound status
         userSettings = ManageUserSettings.LoadUserSettings();
         soundEnabled = userSettings.sound.getSound("playerSounds");
-        Debug.Log(soundEnabled);
     }
 
     private void CheckJumping()

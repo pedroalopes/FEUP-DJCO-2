@@ -6300,6 +6300,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 373910144}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 1943630334}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 361980848}
     - target: {fileID: 680789253649324610, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: m_Name

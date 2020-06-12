@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using FMODUnity;
+
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject player;
     private UserSettings userSettings;
     public static bool gameIsPaused = false;
+
+	public GameObject ambientSound;
+	public GameObject directionalLight;
 
     public void Start()
     {
@@ -21,6 +26,21 @@ public class PauseMenu : MonoBehaviour
 
 		Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
 		camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
+
+		if(!userSettings.sound.getSound("ambientMusic") && ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
+			ambientSound.GetComponent<StudioEventEmitter>().Stop();
+		} else if(userSettings.sound.getSound("ambientMusic") && !ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
+			ambientSound.GetComponent<StudioEventEmitter>().Play();
+		}
+
+		if(!userSettings.sound.getSound("playerSounds")) {
+			player.GetComponent<PlayerController>().soundEnabled = false;
+		} else {
+			player.GetComponent<PlayerController>().soundEnabled = true;
+		}
+
+		Light light = (Light)directionalLight.GetComponent(typeof(Light));
+		light.intensity = userSettings.display.getDisplay("ambientLight") + 0.5f;
     }
     
     void Update()

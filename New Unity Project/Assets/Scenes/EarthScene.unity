@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9314,6 +9314,16 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 181203428}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 1207931750}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 1648338299}
     - target: {fileID: 680789253649324610, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: m_Name
