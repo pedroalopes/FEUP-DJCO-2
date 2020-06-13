@@ -7,9 +7,17 @@ public enum Status { idle, moving, crouching, climbingLadder }
 public enum Element { Earth, Fire, Water, Wind }
 public class PlayerController : MonoBehaviour
 {
-    [FMODUnity.EventRef]
+	[FMODUnity.EventRef]
     public string PlayerRunEvent = "";
-    FMOD.Studio.EventInstance playerRun;
+	FMOD.Studio.EventInstance playerRun;
+	
+	[FMODUnity.EventRef]
+    public string PlayerJumpEvent = "";
+	FMOD.Studio.EventInstance playerJump;
+	
+	[FMODUnity.EventRef]
+    public string PlayerLandEvent = "";
+	FMOD.Studio.EventInstance playerLand;
 
     public Status status;
     public Element element;
@@ -34,6 +42,7 @@ public class PlayerController : MonoBehaviour
     bool canGrabLedge;
     bool controlledSlide;
     bool onButton = false;
+    bool jumping = false;
 
     float rayDistance;
     float slideLimit;
@@ -50,7 +59,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
+		playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
+		playerJump = FMODUnity.RuntimeManager.CreateInstance(PlayerJumpEvent);
+		playerLand = FMODUnity.RuntimeManager.CreateInstance(PlayerLandEvent);
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
         playerAction = GetComponent<PlayerAction>();
@@ -78,12 +89,15 @@ public class PlayerController : MonoBehaviour
         UpdateMovingStatus();
         CheckJumping();
         playerRun.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        playerJump.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        playerLand.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
 
 
         //Check for movement updates
         CheckCrouching();
         CheckLadderClimbing();
         CheckElementChange();
+		CheckGround();
 
         UseElement();
         PickUpObject();
@@ -98,6 +112,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckGround()
+    {
+		if(movement.grounded) {
+			stopJump();
+			if(jumping) {
+				playLanding();
+				jumping = false;
+			}
+			else if(playerInput.Jump()) {
+				stopFootsteps();
+				playJump();
+				jumping = true;
+			}
+		}
+		else {
+			jumping = true;
+			stopFootsteps();
+		}
+    }
+	
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.transform.gameObject.tag == "Button" && !onButton)
@@ -319,9 +353,10 @@ public class PlayerController : MonoBehaviour
 
     /*********************************************************************/
     /* SOUND */
+
     void playFootsteps()
     {
-        if (!IsPlaying(playerRun))
+        if (!jumping && !IsPlaying(playerRun))
         {
             playerRun.start();
         }
@@ -330,8 +365,28 @@ public class PlayerController : MonoBehaviour
     {
         if (IsPlaying(playerRun))
             playerRun.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-    }
-
+    }	
+	
+	void playJump(){
+		playerJump.start();
+	}
+	
+	void stopJump() {
+		if(IsPlaying(playerJump))
+			playerJump.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+	}
+	
+	void playLanding(){
+		if(!IsPlaying(playerLand)) {
+			playerLand.start();
+		}
+	}
+	
+	void stopLand() {
+		if(IsPlaying(playerLand))
+			playerLand.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+	}
+	
     bool IsPlaying(FMOD.Studio.EventInstance instance)
     {
         FMOD.Studio.PLAYBACK_STATE state;

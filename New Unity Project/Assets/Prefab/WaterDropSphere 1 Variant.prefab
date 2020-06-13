@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8426005541401225173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827856212626801299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/main SFX/SFX #1/Water/water_bubble_export
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1001 &6791676301310672483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74,3 +97,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2632907e09248574d8801a5965aafc2e, type: 3}
+--- !u!1 &8827856212626801299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2648743202275146992, guid: 2632907e09248574d8801a5965aafc2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6791676301310672483}
+  m_PrefabAsset: {fileID: 0}

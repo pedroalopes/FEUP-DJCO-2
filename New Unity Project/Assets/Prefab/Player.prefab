@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRunEvent: event:/main SFX/SFX #1/run
+  PlayerJumpEvent: event:/main SFX/SFX #1/jump_export
+  PlayerLandEvent: event:/main SFX/SFX #1/land_export
   status: 0
   element: 0
   AllowedElements: 01000000
@@ -325,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b1143d9a2933b458f7f20d84258863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireShootEvent: event:/main SFX/SFX #1/fire/whooshfire_export
   firePrefab: {fileID: 1247597910945018354, guid: b3f1fcb00179743ca8e75f1d724de541,
     type: 3}
   firePoint: {fileID: 7721188979892155314}
