@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ManageUserSettings;
 
 public class EarthController : MonoBehaviour
 {
@@ -10,17 +11,30 @@ public class EarthController : MonoBehaviour
     [FMODUnity.EventRef]
     public string DestroyWallEvent = "";
     FMOD.Studio.EventInstance destroyWall;
+	
+	[FMODUnity.EventRef]
+    public string EarthElementEvent = "";
+	FMOD.Studio.EventInstance earthElement;
+	
+	private bool soundEnabled;
 
+    private UserSettings userSettings;
+	
     void Start()
     {
-        destroyWall = FMODUnity.RuntimeManager.CreateInstance(DestroyWallEvent);
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+        earthElement = FMODUnity.RuntimeManager.CreateInstance(EarthElementEvent);
     }
 
     void Update()
     {
-        destroyWall.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
-
+        earthElement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        //update sound status
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
     }
+
     public void handleStart(RaycastHit hit)
     {
 
@@ -34,13 +48,15 @@ public class EarthController : MonoBehaviour
             position.z -= 3f;
 
             Instantiate(earthProp, position, Quaternion.FromToRotation(Vector3.up, hit.normal));
-            destroyWall.start();
+            //destroyWall.start();
+			playEarthElement();
 
         }
         else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("EarthCube"))
         {
             hit.transform.gameObject.GetComponent<SpawningMovement>().changeCubeSize(2);
-            destroyWall.start();
+            //destroyWall.start();
+			playEarthElement();
         }
     }
 
@@ -80,4 +96,8 @@ public class EarthController : MonoBehaviour
 
         return position;
     }
+	void playEarthElement() {
+		if(soundEnabled)
+			earthElement.start();
+	}
 }

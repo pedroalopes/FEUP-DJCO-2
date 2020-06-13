@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ManageUserSettings;
 
 public class WaterController : MonoBehaviour
 {
@@ -10,8 +11,22 @@ public class WaterController : MonoBehaviour
     private Vector3 vecY;
     private Vector3 vecZ;
     private float dropCooldown;
+	private bool soundEnabled;
+	
+	[FMODUnity.EventRef]
+    public string WaterElementEvent = "";
+	FMOD.Studio.EventInstance waterElement;
+	
+    private UserSettings userSettings;
+	
     void Start()
     {
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+		
+		waterElement = FMODUnity.RuntimeManager.CreateInstance(WaterElementEvent);
+		
+		
         vecX = new Vector3(-0.7f, 0, 0);
         vecY = new Vector3(0, -0.7f, 0);
         vecZ = new Vector3(0, 0, -0.7f);
@@ -30,8 +45,18 @@ public class WaterController : MonoBehaviour
             Vector3 finalVec = new Vector3(0, 0, 0);
             finalVec += Vector3.Scale(new Vector3(-0.7f, -0.7f, -0.7f), hit.normal);
             waterObject = Instantiate(dropPrefab, hit.point + hit.normal + finalVec, Quaternion.identity);
+			playWater();
         }
     }
+	
+	void Update() 
+	{
+		waterElement.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+		
+        //update sound status
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+	}
 
     public void handleCharge(RaycastHit hit)
     {
@@ -68,4 +93,8 @@ public class WaterController : MonoBehaviour
             dropCooldown = Time.time + 2f;
         }
     }
+	private void playWater() {
+		if(soundEnabled)
+			waterElement.start();
+	}
 }

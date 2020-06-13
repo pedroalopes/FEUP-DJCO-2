@@ -8,6 +8,7 @@ public enum Status { idle, moving, crouching, climbingLadder }
 public enum Element { Earth, Fire, Water, Wind }
 public class PlayerController : MonoBehaviour
 {
+
 	[FMODUnity.EventRef]
     public string ChangeElementEvent = "";
 	FMOD.Studio.EventInstance changeElement;
@@ -411,7 +412,7 @@ public class PlayerController : MonoBehaviour
 			playerLand.start();
 		}
 	}
-	
+
 	void stopLand() {
 		if(IsPlaying(playerLand))
 			playerLand.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);

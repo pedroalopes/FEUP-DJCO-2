@@ -304,6 +304,7 @@ MonoBehaviour:
   earthProp: {fileID: 2231211249992640233, guid: 62f95795271c44a2c87fe6f379f98ddf,
     type: 3}
   DestroyWallEvent: event:/main SFX/SFX #1/fire/destroy_stones_export
+  EarthElementEvent: event:/main SFX/SFX #1/Earth/earth_build
 --- !u!114 &413335745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b1143d9a2933b458f7f20d84258863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireEvent: event:/main SFX/SFX #1/fire/fire_ball_export
   FireShootEvent: event:/main SFX/SFX #1/fire/whooshfire_export
   firePrefab: {fileID: 1247597910945018354, guid: b3f1fcb00179743ca8e75f1d724de541,
     type: 3}
@@ -347,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 8873582613344978217, guid: 84e82d90551934cf8ae391934cbb9a86,
     type: 3}
+  WaterElementEvent: event:/main SFX/SFX #1/Water/water_bubble_export
 --- !u!114 &415068589858473120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +365,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 3580929613760325421, guid: 734d9470a4ad5d94ab4027b783e4ccc0,
     type: 3}
   player: {fileID: 0}
+  ambientSound: {fileID: 0}
+  directionalLight: {fileID: 0}
 --- !u!1 &680789254800566084
 GameObject:
   m_ObjectHideFlags: 0

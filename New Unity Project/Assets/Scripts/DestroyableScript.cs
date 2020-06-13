@@ -9,6 +9,7 @@ public class DestroyableScript : MonoBehaviour
     private string DestroyEvent = "event:/main SFX/SFX #1/fire/destroy_stones_export";
     FMOD.Studio.EventInstance destroy;
 	
+	private bool soundEnabled;
     private UserSettings userSettings;
     
     public float racio = 1.5f;
@@ -18,20 +19,15 @@ public class DestroyableScript : MonoBehaviour
     void Start()
     {
         userSettings = ManageUserSettings.LoadUserSettings();
-        if (userSettings.sound.getSound("playerSounds"))
-        {
-            destroy = FMODUnity.RuntimeManager.CreateInstance(DestroyEvent);
-        }
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+
     }
     
     // Update is called once per frame
     void Update()
     {
         userSettings = ManageUserSettings.LoadUserSettings();
-        if (userSettings.sound.getSound("playerSounds"))
-        {
-            destroy.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
-        }
+        soundEnabled = userSettings.sound.getSound("playerSounds");
 
         if (occultTime > 0)
         {
@@ -52,7 +48,7 @@ public class DestroyableScript : MonoBehaviour
     public void occultObject(float damage)
     {
         this.occultTime = racio * damage;
-		destroy.start();
+		playDestroy();
 
     }
 
@@ -64,4 +60,8 @@ public class DestroyableScript : MonoBehaviour
             child.GetComponent<MeshCollider>().enabled = true;
         occultTime = 0.0f;
     }
+	void playDestroy() {
+		if(soundEnabled)
+			destroy.start();
+	}
 }
