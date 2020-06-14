@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38758615, g: 0.43049124, b: 0.5004767, a: 1}
+  m_IndirectSpecularColor: {r: 0.38758615, g: 0.43049088, b: 0.5004764, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3440,6 +3440,60 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &403011535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403011537}
+  - component: {fileID: 403011536}
+  m_Layer: 0
+  m_Name: AmbSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &403011536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403011535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/main SFX/SFX #1/Ambience/amb_water
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!4 &403011537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403011535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.720675, y: 44.90292, z: 34.689243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &439491741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012540657484, guid: 7fbdfd6f6f8e7b8459e7ec638775fbcc,
@@ -10064,6 +10118,21 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7721188978509600344}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 7869562474889891045}
+    - target: {fileID: 4125881355692850581, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 403011535}
     - target: {fileID: 4125881355806921967, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10117,7 +10186,7 @@ PrefabInstance:
     - target: {fileID: 4125881355823443514, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4125881355823443514, guid: 7ad1a5d8d719d3c40b98d0e3cf24606e,
         type: 3}
@@ -16978,7 +17047,7 @@ PrefabInstance:
     - target: {fileID: 9140373015254653534, guid: 41f57dee0608fb54ca9b43745125ebcc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -36.58
+      value: -36.83
       objectReference: {fileID: 0}
     - target: {fileID: 9140373015254653534, guid: 41f57dee0608fb54ca9b43745125ebcc,
         type: 3}
@@ -19516,6 +19585,16 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 440621895}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 403011535}
+    - target: {fileID: 415068589858473120, guid: 305ee4b919c9949a890c4deca0d4c39a,
+        type: 3}
+      propertyPath: directionalLight
+      value: 
+      objectReference: {fileID: 7869562474889891045}
     - target: {fileID: 680789253649324610, guid: 305ee4b919c9949a890c4deca0d4c39a,
         type: 3}
       propertyPath: m_Name
@@ -19717,3 +19796,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5517f68d9b2bf481f82a59333bea63dc, type: 3}
+--- !u!1 &7869562474889891045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7869562475391177352, guid: 5517f68d9b2bf481f82a59333bea63dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7869562474889891044}
+  m_PrefabAsset: {fileID: 0}

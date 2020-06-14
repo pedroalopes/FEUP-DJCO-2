@@ -52,6 +52,7 @@ public class PlayerAction : MonoBehaviour
     public void interactWithObject()
     {
         RaycastHit hit = getObjectHit();
+        Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
 
         if (hit.collider == null)
             return;

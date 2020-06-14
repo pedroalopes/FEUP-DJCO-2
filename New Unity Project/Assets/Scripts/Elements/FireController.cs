@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ManageUserSettings;
 
 public class FireController : MonoBehaviour
 {
+	
+	[FMODUnity.EventRef]
+    public string FireEvent = "";
+	FMOD.Studio.EventInstance fire;
 
     [FMODUnity.EventRef]
     public string FireShootEvent = "";
@@ -12,12 +17,25 @@ public class FireController : MonoBehaviour
     public Transform firePrefab;
     public GameObject firePoint;
     private Transform fireObject;
+	private bool soundEnabled;
+	
+    private UserSettings userSettings;
 
     public void handleStart()
     {
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+		
+		
+		fire = FMODUnity.RuntimeManager.CreateInstance(FireEvent);
+        fire.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+		playFireStart();
+		
+		fireShoot = FMODUnity.RuntimeManager.CreateInstance(FireShootEvent);
+		
         if (fireObject == null)
         {
-			fireShoot = FMODUnity.RuntimeManager.CreateInstance(FireShootEvent);
+			//fireShoot = FMODUnity.RuntimeManager.CreateInstance(FireShootEvent);
             fireObject = Instantiate(firePrefab, Camera.main.transform.position + (Camera.main.transform.forward * 1), transform.rotation);
             fireObject.SetParent(firePoint.transform);
         }
@@ -36,6 +54,14 @@ public class FireController : MonoBehaviour
         }
 
     }
+	void Update () {
+		
+		fire.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+		
+        //update sound status
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+	}
 
     public void handleRelease(RaycastHit hit)
     {
@@ -48,6 +74,14 @@ public class FireController : MonoBehaviour
         rb.AddForce(shoot * (int)fireObject.GetComponent<FireObjectScript>().getForce());
         fireObject.SetParent(null);
         fireObject = null;
-		fireShoot.start();
+		playFireShoot();
     }
+	void playFireStart() {
+		if(soundEnabled)
+			fire.start();
+	}
+	void playFireShoot() {
+		if(soundEnabled)
+			fireShoot.start();
+	}
 }
