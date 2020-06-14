@@ -11,7 +11,22 @@ public class DoorTrigger : MonoBehaviour
     public bool startOpen = false;
     private bool isOpened = false;
     private int objectsColliding = 0;
-
+	
+	private bool soundEnabled;
+    private UserSettings userSettings;
+	
+    [FMODUnity.EventRef]
+    private string DoorOpenEvent = "event:/main SFX/SFX #1/open_door_export";
+    FMOD.Studio.EventInstance doorOpen;
+	
+	void Start() {
+		
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
+		
+		doorOpen = FMODUnity.RuntimeManager.CreateInstance(DoorOpenEvent);
+	}
+	
     private void OnCollisionEnter(Collision collision)
     {
         addCollision();
@@ -34,6 +49,9 @@ public class DoorTrigger : MonoBehaviour
 
     private void Update()
     {
+		doorOpen.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        userSettings = ManageUserSettings.LoadUserSettings();
+        soundEnabled = userSettings.sound.getSound("playerSounds");
         if(!startOpen)
         {
             handleStartClosed();
@@ -49,6 +67,7 @@ public class DoorTrigger : MonoBehaviour
         {
             door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
+			playDoorOpen();
             isOpened = false;
             if(door2 != null)
             {
@@ -60,10 +79,11 @@ public class DoorTrigger : MonoBehaviour
         {
             door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
+			playDoorOpen();
             if(door2 != null)
             {
                 door2.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
-                door2.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
+                door2.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);playDoorOpen();
             }
             isOpened = true;
         }
@@ -76,12 +96,18 @@ public class DoorTrigger : MonoBehaviour
             door.gameObject.transform.GetChild(0).position -= new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position -= new Vector3(0, 6, 0);
             isOpened = true;
+			playDoorOpen();
         }
         else if (isOpened && objectsColliding > 0)
         {
             door.gameObject.transform.GetChild(0).position += new Vector3(0, 6, 0);
             door.gameObject.transform.GetChild(1).position += new Vector3(0, 6, 0);
             isOpened = false;
+			playDoorOpen();
         }
     }
+	void playDoorOpen() {
+		if(soundEnabled)
+			doorOpen.start();
+	}
 }

@@ -8007,7 +8007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/main SFX/SFX #1/Ambience/amb_water
+  Event: event:/main SFX/SFX #1/Ambience/amb_earth_water
   PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1

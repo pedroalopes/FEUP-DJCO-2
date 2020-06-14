@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4497103, g: 0.49977732, b: 0.57563263, a: 1}
+  m_IndirectSpecularColor: {r: 0.44971055, g: 0.49977732, b: 0.5756328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -16245,7 +16245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/main SFX/SFX #1/Ambience/amb_fire
+  Event: event:/main SFX/SFX #1/Ambience/amb_all
   PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
@@ -17269,6 +17269,11 @@ PrefabInstance:
       propertyPath: door2
       value: 
       objectReference: {fileID: 368191635}
+    - target: {fileID: 5990103699492383658, guid: 0612022291fd5034694db0e569ace787,
+        type: 3}
+      propertyPath: DoorOpenEvent
+      value: event:/main SFX/SFX #1/open_door_export
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0612022291fd5034694db0e569ace787, type: 3}
 --- !u!1 &1995734848 stripped
