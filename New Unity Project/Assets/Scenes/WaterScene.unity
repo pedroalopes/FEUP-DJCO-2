@@ -628,17 +628,17 @@ PrefabInstance:
     - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55.63
+      value: 60.8
       objectReference: {fileID: 0}
     - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 44.99
+      value: 43.19
       objectReference: {fileID: 0}
     - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.910002
+      value: 26.21
       objectReference: {fileID: 0}
     - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
         type: 3}
@@ -3538,6 +3538,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindBadgeFlag
       objectReference: {fileID: 0}
+    - target: {fileID: 2590471721186843729, guid: 5436b3e814cdce1479d235b548d984b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5436b3e814cdce1479d235b548d984b3, type: 3}
 --- !u!1 &650892425
@@ -3758,6 +3763,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1157206155}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &700893636
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1568854138}
+    m_Modifications:
+    - target: {fileID: 5235183513267260615, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterBadgeFlag (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 57.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 43.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.20791169
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9781476
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0, type: 3}
 --- !u!1001 &701218090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4617,6 +4706,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireBadgeFlag
       objectReference: {fileID: 0}
+    - target: {fileID: 7483347394996673759, guid: 87544e1681ecb4244837810282c45cdb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87544e1681ecb4244837810282c45cdb, type: 3}
 --- !u!4 &960709630 stripped
@@ -5447,6 +5541,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1587135348}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1240232675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5238802118531619345, guid: 3fa8eeddf4e8d3746997fc6a93f7dbf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 700893636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1249192201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010281450330, guid: 46b49871773764447a894bbb1c459502,
@@ -5837,12 +5937,17 @@ PrefabInstance:
     - target: {fileID: 7299068402461382482, guid: 8ef88aa464b91fe41b6707271359174b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6999999
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7299068402461382482, guid: 8ef88aa464b91fe41b6707271359174b,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.6999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299068402461382482, guid: 8ef88aa464b91fe41b6707271359174b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ef88aa464b91fe41b6707271359174b, type: 3}
@@ -6371,6 +6476,7 @@ Transform:
   - {fileID: 1239536726}
   - {fileID: 325113676}
   - {fileID: 650892426}
+  - {fileID: 1240232675}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6547,6 +6653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EarthBadgeFlag
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126822379536906010, guid: 3130460399b3e2a4fb6222ea8e1a2027,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6130020386174607820, guid: 3130460399b3e2a4fb6222ea8e1a2027,
         type: 3}
