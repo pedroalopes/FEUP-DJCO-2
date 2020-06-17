@@ -7,10 +7,20 @@ public class EndLevel : MonoBehaviour
 {
     public Animator transitionAnimation;
     public string sceneName;
+
+    public Transform levelTransition;
+    private LevelLoader loader;
+
+    void Start()
+    {
+        loader = levelTransition.GetComponent<LevelLoader>();
+    }
     public void ChangeLevel()
     {
-        StartCoroutine(LoadScene());
+        loader.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        // StartCoroutine(LoadScene());
     }
+
     IEnumerator LoadScene()
     {
         transitionAnimation.SetTrigger("end");
