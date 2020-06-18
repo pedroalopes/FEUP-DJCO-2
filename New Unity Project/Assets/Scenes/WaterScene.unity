@@ -3146,12 +3146,12 @@ PrefabInstance:
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 0.5140526
       objectReference: {fileID: 0}
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 13
+      value: 51.779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26665771b361ea84d9d1a2b6983b6c6e, type: 3}
@@ -6532,11 +6532,11 @@ PrefabInstance:
         he was just tired from the walk, and that everything was just his brain playing
         tricks on him.
 
-        
 
-        This was the first of some weird situations.
-        In the following week, while near the fireplace at home, the fire seemed
-        to gain life in his hands while he was just warming them. The next day, while
+
+        This was the first of some weird situations. In
+        the following week, while near the fireplace at home, the fire seemed to
+        gain life in his hands while he was just warming them. The next day, while
         helping his parents on the farm, the soil around him felt strange. He began
         to think he was going insane with all these mysterious feelings and hallucinations.'
       objectReference: {fileID: 0}
@@ -7569,7 +7569,7 @@ PrefabInstance:
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.96
+      value: 36.59
       objectReference: {fileID: 0}
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
@@ -7624,7 +7624,7 @@ PrefabInstance:
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 0.50102997
       objectReference: {fileID: 0}
     - target: {fileID: 9168455579662883289, guid: 26665771b361ea84d9d1a2b6983b6c6e,
         type: 3}
