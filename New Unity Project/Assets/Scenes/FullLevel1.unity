@@ -6156,7 +6156,7 @@ PrefabInstance:
     - target: {fileID: 4057863649781304045, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 19
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4057863649781304045, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
@@ -6181,12 +6181,12 @@ PrefabInstance:
     - target: {fileID: 4057863649781304045, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
       propertyPath: m_text
-      value: TitleRogue Attack
+      value: Rogue Attack
       objectReference: {fileID: 0}
     - target: {fileID: 4057863649781304045, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: 13
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4116959544759254309, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
