@@ -18,8 +18,17 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         userSettings = ManageUserSettings.LoadUserSettings();
-        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
-        canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
+        
+        Screen.SetResolution(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getHeight(), true);
+
+        // CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
+        // canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
+        if (userSettings.level.currentLevel == "MainMenu" || userSettings.level.currentLevel == "")
+        {
+            userSettings.level.currentLevel = "EarthScene";
+            ManageUserSettings.SaveUserSettings(userSettings);
+        }
+        
         if (userSettings.level.currentLevel == "EarthScene")
         {
             continueButton.SetActive(false);
@@ -29,6 +38,15 @@ public class MainMenu : MonoBehaviour
             continueButton.SetActive(true);
         }
     }
+
+    public void Update()
+    {
+        userSettings = ManageUserSettings.LoadUserSettings();
+        
+        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
+        canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
+    }
+    
     public void PlayGame()
     {
         userSettings.level.currentLevel = "EarthScene";

@@ -11,11 +11,11 @@ public class ScreenResolution
         this.height = height;
         this.position = position;
     }
-    public float getWidth() {
+    public int getWidth() {
         return width;
     }
     
-    public float getHeight() {
+    public int getHeight() {
         return height;
     }
 
