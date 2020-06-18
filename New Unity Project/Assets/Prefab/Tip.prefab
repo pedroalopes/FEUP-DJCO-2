@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9168455579662883291}
   - component: {fileID: 9168455579662883236}
   - component: {fileID: 9168455579662883295}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
