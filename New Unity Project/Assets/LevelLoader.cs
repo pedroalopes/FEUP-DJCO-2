@@ -28,7 +28,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator waitToEnableCursor()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         cameraMovement.UnlockCursor();
     }
 
@@ -41,9 +41,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator setCanvasActive()
     {
-        yield return new WaitForSeconds(1f);
-        UI.gameObject.GetComponent<UIManager>().setCanvasVisible();
+        yield return new WaitForSeconds(3f);
         backgroundPanel.gameObject.SetActive(false);
+        UI.gameObject.GetComponent<UIManager>().setCanvasVisible();
         controller.UnfreezePlayer();
     }
 
