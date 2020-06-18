@@ -4882,6 +4882,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7194728277013567231, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
+        type: 3}
+      propertyPath: sceneName
+      value: EndScene
+      objectReference: {fileID: 0}
     - target: {fileID: 7540148424998078734, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
       propertyPath: m_Mesh
@@ -16252,7 +16257,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-125842
+  m_Name: pb_Mesh-43670
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

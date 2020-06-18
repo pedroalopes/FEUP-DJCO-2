@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
 
         // CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
         // canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
-        if (userSettings.level.currentLevel == "MainMenu" || userSettings.level.currentLevel == "")
+        if (userSettings.level.currentLevel == "MainMenu" || userSettings.level.currentLevel == "" || userSettings.level.currentLevel == "EndScene")
         {
             userSettings.level.currentLevel = "EarthScene";
             ManageUserSettings.SaveUserSettings(userSettings);
