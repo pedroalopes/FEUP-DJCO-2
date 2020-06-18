@@ -100,9 +100,12 @@ public class SettingsMenu : MonoBehaviour
 		} else {
 			player.GetComponent<PlayerController>().soundEnabled = true;
 		}
+		Screen.SetResolution(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getHeight(), true);
 
-		Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
-		camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
+		Debug.Log("**************************");
+
+		// Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
+		// camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
 
 		Light light = (Light)directionalLight.GetComponent(typeof(Light));
 		light.intensity = userSettings.display.getDisplay("ambientLight") + 0.5f;

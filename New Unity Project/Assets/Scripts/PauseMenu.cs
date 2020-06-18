@@ -24,8 +24,10 @@ public class PauseMenu : MonoBehaviour
 		CanvasScaler canvasScaler = pauseMenu.GetComponent<CanvasScaler>();
 		canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
 
-		Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
-		camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
+		Screen.SetResolution(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getHeight(), true);
+
+		// Camera camera = (Camera)player.GetComponentInChildren(typeof(Camera));
+		// camera.fieldOfView = userSettings.display.getScreenResolution().getWidth() / 23;
 
 		if(!userSettings.sound.getSound("ambientMusic") && ambientSound.GetComponent<StudioEventEmitter>().IsPlaying()) {
 			ambientSound.GetComponent<StudioEventEmitter>().Stop();
@@ -52,6 +54,11 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        userSettings = ManageUserSettings.LoadUserSettings();
+        
+        CanvasScaler canvasScaler = pauseMenu.GetComponent<CanvasScaler>();
+        canvasScaler.referenceResolution = new Vector2(userSettings.display.getScreenResolution().getWidth(), userSettings.display.getScreenResolution().getWidth());
     }
 
     public void Pause()
