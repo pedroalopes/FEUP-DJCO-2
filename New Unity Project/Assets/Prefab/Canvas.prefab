@@ -98,7 +98,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 25
   m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 4207055873102061430}
   - component: {fileID: 4207055873102061431}
   - component: {fileID: 4207055873102061427}
+  - component: {fileID: 8939573599525658052}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -653,6 +654,18 @@ MonoBehaviour:
   - {fileID: 4207055873380194590}
   - {fileID: 4207055871911240444}
   - {fileID: 4207055873519877804}
+--- !u!225 &8939573599525658052
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4207055873102061432}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4207055873380194592
 GameObject:
   m_ObjectHideFlags: 0
