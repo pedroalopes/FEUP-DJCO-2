@@ -35,7 +35,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator deactivateBackground()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.9f);
         backgroundPanel.gameObject.SetActive(false);
     }
 
@@ -45,12 +45,18 @@ public class LevelLoader : MonoBehaviour
     }
     IEnumerator LoadNextScene(int sceneIndex)
     {
+        int indexToLoad = sceneIndex;
+
+        if (indexToLoad == SceneManager.sceneCountInBuildSettings)
+            indexToLoad = 0;
+
         loadingScreenAnimator.SetTrigger("ActivateLevel");
         yield return new WaitForSeconds(3f);
         UserSettings userSettings = ManageUserSettings.LoadUserSettings();
-        userSettings.level.currentLevel = SceneManager.GetSceneByBuildIndex(sceneIndex).name;
+        userSettings.level.currentLevel = SceneManager.GetSceneByBuildIndex(indexToLoad).name;
         ManageUserSettings.SaveUserSettings(userSettings);
-        SceneManager.LoadScene(sceneIndex);
+
+        SceneManager.LoadScene(indexToLoad);
     }
 
     /*IEnumerator LoadAsync(int sceneIndex)

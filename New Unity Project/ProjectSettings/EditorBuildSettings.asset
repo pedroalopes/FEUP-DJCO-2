@@ -6,30 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/MainMenu.unity
-    guid: 3ffecb241159461dca4d5b52c774551b
+    path: Assets/Scenes/MainMenu.unity
+    guid: 517ec4e6be8a847d6a7b9552ad871a5b
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/EarthScene.unity
-    guid: f5449f03d496d0140b654f77ec902b9a
+    path: Assets/Scenes/EarthScene.unity
+    guid: 0b362bc2797564b46903b50de85e0272
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/WaterScene.unity
-    guid: 99286cbdb12802a43bd4a9e986d8843c
+    path: Assets/Scenes/WaterScene.unity
+    guid: 6023f5c1ea16c46cbbace338507b439d
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/WaterEarthScene.unity
-    guid: ea216644869087347ba6c709ffb7e6f0
+    path: Assets/Scenes/WaterEarthScene.unity
+    guid: a9c3a6b30e4ec4e2693bebb28669d8b2
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/WindScene.unity
-    guid: 8c2d02a3b32c54a95a99c1563734d1dd
+    path: Assets/Scenes/WindScene.unity
+    guid: ec685ce5fd3e04089864fb33e4e81069
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/WaterEarthWindScene.unity
-    guid: 74bf70701308a2db6bd5afed6c3ce6c2
+    path: Assets/Scenes/WaterEarthWindScene.unity
+    guid: 0e087b9c621194768bf3fbaf169284f9
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/FireScene.unity
-    guid: 3a50f376383c6cd46ad4edf9504f7993
+    path: Assets/Scenes/FireScene.unity
+    guid: cbb73763fa5b748b286398244a265ec8
   - enabled: 1
-    path: Assets/Assets/Animations/Scenes/LevelX.unity
-    guid: fc7f6a342d10a9544bc372086c54cc61
-  - enabled: 1
-    path: Assets/Assets/Animations/Scenes/FullLevel1.unity
-    guid: 8066e8e3e70f94598b1748e7836d83a0
+    path: Assets/Scenes/FullLevel1.unity
+    guid: 4abad4a342c944a7cb409560f95f8046
   m_configObjects: {}

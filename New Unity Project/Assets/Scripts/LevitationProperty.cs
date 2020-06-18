@@ -57,6 +57,8 @@ public class LevitationProperty : MonoBehaviour
 
     private void setHeightLevel(float level)
     {
+        if (level > 50 || level < -50)
+            return;
         Debug.DrawRay(transform.position + transform.TransformDirection(centreOffset), Vector3.down, Color.red);
 
         RaycastHit[] hits = Physics.RaycastAll(transform.position + transform.TransformDirection(centreOffset), Vector3.down, maxLevitateHeight);
@@ -98,6 +100,10 @@ public class LevitationProperty : MonoBehaviour
             upLift = -Physics.gravity * (forceFactor - rb.velocity.y * bounceDamp);
             rb.AddForceAtPosition(upLift, actionPoint);
         }
+
+        rb.angularVelocity *= 0.01f;
+        rb.velocity = Vector3.Scale(rb.velocity, new Vector3(0.1f, 1.0f, 0.1f));
+
 
     }
 }
