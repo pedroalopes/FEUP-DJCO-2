@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6383,7 +6383,7 @@ PrefabInstance:
         It was sensei.... Despite all his efforts, not even him was able to handle
         such power and anger. The village was turned into ruins...
 
-        
+
 
         Some
         of the families survived the mayhem and left the village, afraid of what
@@ -18821,7 +18821,7 @@ PrefabInstance:
     - target: {fileID: 4207055873102061432, guid: af32031441ce4405aa92c7b7975ae7e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af32031441ce4405aa92c7b7975ae7e2, type: 3}
