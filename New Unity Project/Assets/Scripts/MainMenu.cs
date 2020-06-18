@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     {
         userSettings.level.currentLevel = "EarthScene";
         ManageUserSettings.SaveUserSettings(userSettings);
-        SceneManager.LoadScene("EarthScene");
+        SceneManager.LoadScene(userSettings.level.currentLevel);
     }
     
     public void Continue()

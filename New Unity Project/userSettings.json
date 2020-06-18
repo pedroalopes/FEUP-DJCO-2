@@ -1,1 +1,29 @@
-{"level":{"currentLevel":"EarthScene"},"sound":{"ambientMusic":false,"playerSounds":false},"display":{"ambientLight":0.42499008774757388,"screenResolution":{"width":1024,"height":768,"position":2}},"controls":{"moveForward":119,"moveBack":115,"moveLeft":97,"moveRight":100,"catchObject":101,"levitateObject":101,"crouch":99,"jump":32,"run":304,"fire":323}}
+{
+  "level": {
+    "currentLevel": "EarthScene"
+  },
+  "sound": {
+    "ambientMusic": false,
+    "playerSounds": false
+  },
+  "display": {
+    "ambientLight": 0.9865481853485107,
+    "screenResolution": {
+      "width": 1600,
+      "height": 900,
+      "position": 1
+    }
+  },
+  "controls": {
+    "moveForward": 119,
+    "moveBack": 115,
+    "moveLeft": 97,
+    "moveRight": 100,
+    "catchObject": 101,
+    "levitateObject": 101,
+    "crouch": 99,
+    "jump": 32,
+    "run": 304,
+    "fire": 323
+  }
+}
