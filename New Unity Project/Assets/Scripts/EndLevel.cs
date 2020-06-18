@@ -17,6 +17,9 @@ public class EndLevel : MonoBehaviour
     }
     public void ChangeLevel()
     {
+        UserSettings userSettings = ManageUserSettings.LoadUserSettings();
+        userSettings.level.currentLevel = sceneName;
+        ManageUserSettings.SaveUserSettings(userSettings);
         loader.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

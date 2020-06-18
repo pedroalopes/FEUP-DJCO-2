@@ -67,9 +67,9 @@ public class LevelLoader : MonoBehaviour
             indexToLoad = 0;
 
         yield return new WaitForSeconds(3f);
-        UserSettings userSettings = ManageUserSettings.LoadUserSettings();
-        userSettings.level.currentLevel = SceneManager.GetSceneByBuildIndex(indexToLoad).name;
-        ManageUserSettings.SaveUserSettings(userSettings);
+        // UserSettings userSettings = ManageUserSettings.LoadUserSettings();
+        // userSettings.level.currentLevel = SceneManager.GetSceneByBuildIndex(indexToLoad).name;
+        // ManageUserSettings.SaveUserSettings(userSettings);
 
         SceneManager.LoadScene(indexToLoad);
     }
