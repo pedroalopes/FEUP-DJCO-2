@@ -9,14 +9,14 @@ public class UIManager : MonoBehaviour
     public PlayerController player;
     public Image[] crosshairs = new Image[4];
     public Image[] symbols = new Image[4];
-    
+
     // Update is called once per frame
     void Update()
     {
         switch (player.element)
         {
             case Element.Earth:
-                if(player.AllowedElements[0])
+                if (player.AllowedElements[0])
                     SetCrosshairElement(0);
                 break;
             case Element.Water:
@@ -36,18 +36,34 @@ public class UIManager : MonoBehaviour
 
     private void SetCrosshairElement(int index)
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (i != index)
             {
                 crosshairs[i].gameObject.SetActive(false);
-                symbols[i].color = new Color32(140, 140,140,255);
-            } else  {
+                symbols[i].color = new Color32(140, 140, 140, 255);
+            }
+            else
+            {
                 crosshairs[i].gameObject.SetActive(true);
                 symbols[i].color = new Color32(255, 255, 255, 255);
 
             }
         }
+    }
+
+    public bool ShowDialog(string text)
+    {
+        Transform dialog = transform.Find("DialogGroup");
+        Animator dialogAnimator = dialog.GetComponent<Animator>();
+
+        if (!dialogAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            return false;
+
+        dialog.Find("Box/DialogText").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = text;
+        dialog.GetComponent<Animator>().SetTrigger("Show");
+
+        return true;
     }
 
 }
