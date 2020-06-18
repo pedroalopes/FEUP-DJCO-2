@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 347638937}
   - component: {fileID: 347638939}
   - component: {fileID: 347638938}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Terrain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6061,7 +6061,7 @@ PrefabInstance:
     - target: {fileID: 2400505663777845477, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 586.07153
+      value: 586.0716
       objectReference: {fileID: 0}
     - target: {fileID: 2400505663777845477, guid: cc524b6d1a76a6d48a8f81dfe23334d6,
         type: 3}
