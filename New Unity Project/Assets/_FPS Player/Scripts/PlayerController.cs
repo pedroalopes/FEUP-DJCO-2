@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
     public bool soundEnabled;
     private UserSettings userSettings;
 
+    private bool frozen = false;
+
     private void Start()
     {
         playerRun = FMODUnity.RuntimeManager.CreateInstance(PlayerRunEvent);
@@ -225,6 +227,8 @@ public class PlayerController : MonoBehaviour
     /******************************** MOVE *******************************/
     void FixedUpdate()
     {
+        if (frozen)
+            return;
         switch (status)
         {
             case Status.climbingLadder:
@@ -451,6 +455,29 @@ public class PlayerController : MonoBehaviour
         FMOD.Studio.PLAYBACK_STATE state;
         instance.getPlaybackState(out state);
         return state == FMOD.Studio.PLAYBACK_STATE.PLAYING;
+    }
+
+    public void FreezePlayer()
+    {
+        StartCoroutine(Freeze());
+    }
+    public void UnfreezePlayer()
+    {
+        StartCoroutine(Unfreeze());
+    }
+
+    IEnumerator Freeze()
+    {
+        yield return new WaitForSeconds(0.5f);
+        frozen = true;
+
+    }
+
+    IEnumerator Unfreeze()
+    {
+        yield return new WaitForSeconds(0.5f);
+        frozen = false;
+
     }
 }
 

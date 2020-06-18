@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         inPause = false;
-        
+
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
 
@@ -107,7 +107,7 @@ public class CameraMovement : MonoBehaviour
         characterBody.GetComponent<PlayerInput>().enabled = false;
         inPause = true;
     }
-    
+
     public void LockCursor()
     {
         cursorStatus = CursorLockMode.Locked;

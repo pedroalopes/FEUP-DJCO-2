@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public Image[] crosshairs = new Image[4];
     public Image[] symbols = new Image[4];
 
+    private CanvasGroup canvasGroup;
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +66,23 @@ public class UIManager : MonoBehaviour
         dialog.GetComponent<Animator>().SetTrigger("Show");
 
         return true;
+    }
+
+    public void setCanvasInvisible()
+    {
+        if (canvasGroup == null)
+        {
+            canvasGroup = this.gameObject.GetComponent<CanvasGroup>();
+            Debug.Log("canvasGroup " + canvasGroup);
+        }
+        canvasGroup.alpha = 0;
+
+    }
+
+    public void setCanvasVisible()
+    {
+        canvasGroup.alpha = 1;
+
     }
 
 }

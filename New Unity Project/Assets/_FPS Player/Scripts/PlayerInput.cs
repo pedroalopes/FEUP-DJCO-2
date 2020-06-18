@@ -78,12 +78,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool crouch
     {
-        get { return Input.GetKey(userSettings.controls.crouch); }
-    }
-
-    public bool crouching
-    {
-        get { return Input.GetKey(userSettings.controls.crouch); }
+        get { return Input.GetKeyDown(userSettings.controls.crouch); }
     }
 
     public bool elementKeyDown { get; private set; }

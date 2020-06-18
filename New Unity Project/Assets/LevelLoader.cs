@@ -10,37 +10,53 @@ public class LevelLoader : MonoBehaviour
     AsyncOperation async;
     // public Button button;
     public Animator loadingScreenAnimator;
+    public GameObject player;
     public CameraMovement cameraMovement;
     public GameObject transitionContent;
     public GameObject backgroundPanel;
     public GameObject UI;
+    private PlayerController controller;
 
     void Start()
     {
-        transitionContent.gameObject.SetActive(false);
-        StartCoroutine(deactivateBackground());
-        // button.gameObject.SetActive(false);
+        controller = player.GetComponent<PlayerController>();
+        controller.FreezePlayer();
+        UI.gameObject.GetComponent<UIManager>().setCanvasInvisible();
+        StartCoroutine(waitToEnableCursor());
 
     }
-    public void LoadLevel(int sceneIndex)
-    {
-        UI.gameObject.SetActive(false);
-        transitionContent.gameObject.SetActive(true);
-        backgroundPanel.gameObject.SetActive(true);
 
-        // button.gameObject.SetActive(true);
-        loadingScreenAnimator.SetTrigger("Start");
+    IEnumerator waitToEnableCursor()
+    {
+        yield return new WaitForSeconds(1.5f);
         cameraMovement.UnlockCursor();
     }
 
-    IEnumerator deactivateBackground()
+    public void ContinueToLevel()
     {
-        yield return new WaitForSeconds(0.9f);
+        loadingScreenAnimator.SetTrigger("ContinueToLevel");
+        StartCoroutine(setCanvasActive());
+        cameraMovement.LockCursor();
+    }
+
+    IEnumerator setCanvasActive()
+    {
+        yield return new WaitForSeconds(1f);
+        UI.gameObject.GetComponent<UIManager>().setCanvasVisible();
         backgroundPanel.gameObject.SetActive(false);
+        controller.UnfreezePlayer();
+    }
+
+    public void LoadLevel(int sceneIndex)
+    {
+        backgroundPanel.gameObject.SetActive(true);
+        loadingScreenAnimator.SetTrigger("EndLevel");
+        NextScene();
     }
 
     public void NextScene()
     {
+        controller.FreezePlayer();
         StartCoroutine(LoadNextScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
     IEnumerator LoadNextScene(int sceneIndex)
@@ -50,7 +66,6 @@ public class LevelLoader : MonoBehaviour
         if (indexToLoad == SceneManager.sceneCountInBuildSettings)
             indexToLoad = 0;
 
-        loadingScreenAnimator.SetTrigger("ActivateLevel");
         yield return new WaitForSeconds(3f);
         UserSettings userSettings = ManageUserSettings.LoadUserSettings();
         userSettings.level.currentLevel = SceneManager.GetSceneByBuildIndex(indexToLoad).name;
