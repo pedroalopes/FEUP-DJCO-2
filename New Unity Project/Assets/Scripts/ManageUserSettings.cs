@@ -6,11 +6,11 @@ using System.Text;
 
 public class ManageUserSettings : MonoBehaviour
 {
-    private static string path = "userSettings.json";
+    private static string path = "Assets/userSettings.json";
 
     public static UserSettings LoadUserSettings()
     {
-        string jsonString = File.ReadAllText(path); 
+        string jsonString = File.ReadAllText(path);
         UserSettings userSettings = JsonUtility.FromJson<UserSettings>(jsonString);
         return userSettings;
     }
