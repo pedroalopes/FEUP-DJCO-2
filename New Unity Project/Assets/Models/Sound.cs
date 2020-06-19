@@ -4,6 +4,12 @@ public class Sound
     public bool ambientMusic;
     public bool playerSounds;
     
+    public Sound()
+    {
+        this.ambientMusic = true;
+        this.playerSounds = true;
+    }
+    
     public bool getSound(string name) {
         if(name == "ambientMusic") {
             return ambientMusic;

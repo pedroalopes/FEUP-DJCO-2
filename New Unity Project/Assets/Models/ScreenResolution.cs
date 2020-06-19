@@ -5,6 +5,13 @@ public class ScreenResolution
     public int height;
     public int position;
     
+    public ScreenResolution()
+    {
+        this.width = 1600;
+        this.height = 900;
+        this.position = 1;
+    }
+
     public ScreenResolution(int width, int height, int position)
     {
         this.width = width;

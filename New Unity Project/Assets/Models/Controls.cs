@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Controls
@@ -13,6 +17,20 @@ public class Controls
     public KeyCode jump;
     public KeyCode run;
     public KeyCode fire;
+    
+    public Controls()
+    {
+        this.moveForward = KeyCode.W;
+        this.moveBack = KeyCode.S;
+        this.moveLeft = KeyCode.A;
+        this.moveRight = KeyCode.D;
+        this.catchObject = KeyCode.E;
+        this.levitateObject = KeyCode.E;
+        this.crouch = KeyCode.C;
+        this.jump = KeyCode.Space;
+        this.run = KeyCode.LeftShift;
+        this.fire = KeyCode.Mouse0;
+    }
 
     public KeyCode getControl(string name) {
         if(name == "moveForward") {

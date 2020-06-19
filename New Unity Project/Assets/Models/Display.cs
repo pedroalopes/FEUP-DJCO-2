@@ -10,6 +10,12 @@ public class Display
     public float ambientLight;
 	public ScreenResolution screenResolution;
     
+    public Display()
+    {
+        this.ambientLight = 1.0f;
+        this.screenResolution = new ScreenResolution();
+    }
+
     public float getDisplay(string name) {
         if(name == "ambientLight") {
             return ambientLight;
