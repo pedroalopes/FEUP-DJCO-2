@@ -20,11 +20,11 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
 
-        if (!(System.IO.File.Exists(@"Assets/userSettings.json")))
+        if (!(System.IO.File.Exists(@"Assets\\userSettings.json")))
         {
             UserSettings x = new UserSettings();
             x.level.currentLevel = "EarthScene";
-            System.IO.File.WriteAllText("Assets/userSettings.json", JsonUtility.ToJson(x));
+            System.IO.File.WriteAllText("Assets\\userSettings.json", JsonUtility.ToJson(x));
         }
 
         userSettings = ManageUserSettings.LoadUserSettings();
