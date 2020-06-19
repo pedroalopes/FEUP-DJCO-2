@@ -6,7 +6,7 @@ using System.Text;
 
 public class ManageUserSettings : MonoBehaviour
 {
-    private static string path = "Assets\\userSettings.json";
+    private static string path = Application.persistentDataPath + "/userSettings.json";
 
     public static UserSettings LoadUserSettings()
     {
