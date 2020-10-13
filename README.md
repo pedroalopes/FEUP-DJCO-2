@@ -2,7 +2,13 @@
 
 This is a game developed in the course of Computer Games Development (DJCO) as a group project.
 
-Itch.io Page https://antoniocruz.itch.io/benders-quest?fbclid=IwAR3NdyNTLuU-jq6j7KfhRefQB3i0oUgz0x4wrsjDCOP2kBTOIEJy3M3wmKM
+# Online Page
+https://antoniocruz.itch.io/benders-quest?fbclid=IwAR3NdyNTLuU-jq6j7KfhRefQB3i0oUgz0x4wrsjDCOP2kBTOIEJy3M3wmKM
+
+# Game Teaser
+https://www.youtube.com/watch?v=sy6f4A1lm7c&feature=emb_title
+
+# Description
 
 A Bender's Quest presents the player with a singleplayer puzzle experience, where he has to solve several enigmas in order to advance towards the final goal. Together with a misterious and mythical storytelling about a very peculiar village, the player is given the opportunity to immerse himself in a quest to understand the main character's past. 
 
