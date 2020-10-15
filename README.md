@@ -1,6 +1,6 @@
 # A BENDER'S QUEST
 
-This is a game developed in the course of Computer Games Development (DJCO) as a group project.
+This is a game developed in the course of Computer Games Development (DJCO) as a group project (with [António Cruz](https://github.com/AntoniooCruz), [Fábio Araújo](https://github.com/FabioMNAraujo) and [Henrique Sendim](https://github.com/sendim)).
 
 # Online Page
 https://antoniocruz.itch.io/benders-quest?fbclid=IwAR3NdyNTLuU-jq6j7KfhRefQB3i0oUgz0x4wrsjDCOP2kBTOIEJy3M3wmKM
